@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:bip32/bip32.dart' as bip32;
 import 'package:bip39/bip39.dart' as bip39;
 import 'package:starknet/src/presets/udc.g.dart';
+import 'package:starknet/src/types/felt.dart';
 import 'package:starknet/starknet.dart';
 import 'package:starknet_provider/starknet_provider.dart';
 
@@ -402,11 +403,53 @@ class Account {
       nonce: nonce,
       maxFee: maxFee,
     );
-
     return provider.addDeployAccountTransaction(
       DeployAccountTransactionRequest(
         deployAccountTransaction: DeployAccountTransactionV1(
           classHash: classHash,
+          signature: signature,
+          maxFee: maxFee,
+          nonce: nonce,
+          contractAddressSalt: contractAddressSalt,
+          constructorCalldata: constructorCalldata,
+        ),
+      ),
+    );
+  }
+
+  static Future<DeployAccountTransactionResponse> deployBraavosAccount({
+    required Signer signer,
+    required Provider provider,
+    required List<Felt> constructorCalldata,
+    required Felt classHash,
+    required Felt baseClassHash,
+    Felt? contractAddressSalt,
+    Felt? maxFee,
+    Felt? nonce,
+  }) async {
+    final chainId = (await provider.chainId()).when(
+      result: (result) => Felt.fromHexString(result),
+      error: (error) => StarknetChainId.testNet,
+    );
+
+    maxFee = maxFee ?? defaultMaxFee;
+    nonce = nonce ?? defaultNonce;
+    contractAddressSalt = contractAddressSalt ?? signer.publicKey;
+
+    final signature = signer.signBraavosDeployAccountTransactionV1(
+      contractAddressSalt: contractAddressSalt,
+      classHash: classHash,
+      baseClassHash: baseClassHash,
+      constructorCalldata: constructorCalldata,
+      chainId: chainId,
+      nonce: nonce,
+      maxFee: maxFee,
+    );
+
+    return provider.addDeployAccountTransaction(
+      DeployAccountTransactionRequest(
+        deployAccountTransaction: DeployAccountTransactionV1(
+          classHash: baseClassHash,
           signature: signature,
           maxFee: maxFee,
           nonce: nonce,
@@ -564,18 +607,19 @@ class OpenzeppelinAccountDerivation implements AccountDerivation {
 }
 
 /// Account derivation used by Braavos account
+/// refactor according to https://github.com/xJonathanLEI/starknet-rs
 class BraavosAccountDerivation extends AccountDerivation {
   final Provider provider;
   final Felt chainId;
 
-  // FIXME: hardcoded value for testnet 2023-02-24
+  // update according https://github.com/myBraavos/braavos-account-cairo
   final classHash = Felt.fromHexString(
-    "0x03131fa018d520a037686ce3efddeab8f28895662f019ca3ca18a626650f7d1e",
+    "0x00816dd0297efc55dc1e7559020a3a825e81ef734b558f03c83325d4da7e6253",
   );
 
-  /// FIXME: implementation class hash should be retrieved at runtime
-  final implementationClassHash = Felt.fromHexString(
-    "0x5aa23d5bb71ddaa783da7ea79d405315bafa7cf0387a74f4593578c3e9e6570",
+  // update according https://github.com/myBraavos/braavos-account-cairo
+  final baseClassHash = Felt.fromHexString(
+    "0x013bfe114fb1cf405bfc3a7f8dbe2d91db146c17521d40dcf57e16d6b59fa8e6",
   );
   final initializerSelector = getSelectorByName("initializer");
 
@@ -594,11 +638,36 @@ class BraavosAccountDerivation extends AccountDerivation {
   @override
   List<Felt> constructorCalldata({required Felt publicKey}) {
     return [
-      implementationClassHash,
-      initializerSelector,
-      Felt.fromInt(1),
       publicKey
     ];
+  }
+
+  Future<Felt> deploy({required Account account}) async {
+    final tx = await Account.deployBraavosAccount(
+      signer: account.signer,
+      provider: account.provider,
+      constructorCalldata: constructorCalldata(
+        publicKey: account.signer.publicKey,
+      ),
+      classHash: classHash,
+      baseClassHash: baseClassHash,
+      contractAddressSalt: account.signer.publicKey,
+      nonce: Felt.fromInt(0),
+    );
+    final deployTxHash = tx.when(
+      result: (result) {
+        print(
+          "Account is deployed at ${result.contractAddress.toHexString()} (tx: ${result.transactionHash.toHexString()})",
+        );
+        return result.transactionHash;
+      },
+      error: (error) {
+        throw Exception(
+          "Account deploy failed: ${error.code} ${error.message}",
+        );
+      },
+    );
+    return deployTxHash;
   }
 
   @override
@@ -606,7 +675,7 @@ class BraavosAccountDerivation extends AccountDerivation {
     final calldata = constructorCalldata(publicKey: publicKey);
     final salt = publicKey;
     final accountAddress = Contract.computeAddress(
-      classHash: classHash,
+      classHash: baseClassHash,
       calldata: calldata,
       salt: salt,
     );
@@ -620,7 +689,7 @@ class ArgentXAccountDerivation extends AccountDerivation {
 
   // FIXME: hardcoded value for testnet 2023-02-24
   final classHash = Felt.fromHexString(
-    "0x025ec026985a3bf9d0cc1fe17326b245dfdc3ff89b8fde106542a3ea56c5a918",
+    "0x036078334509b514626504edc9fb252328d1a240e4e948bef8d0c08dff45927f",
   );
 
   /// FIXME: implementation address should be retrieved at runtime
@@ -644,9 +713,9 @@ class ArgentXAccountDerivation extends AccountDerivation {
   @override
   List<Felt> constructorCalldata({required Felt publicKey}) {
     return [
-      implementationAddress,
-      getSelectorByName("initialize"),
-      Felt.fromInt(2),
+      // implementationAddress,
+      // getSelectorByName("initialize"),
+      // Felt.fromInt(2),
       publicKey,
       Felt.fromInt(0),
     ];

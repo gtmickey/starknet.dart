@@ -4,7 +4,7 @@ import 'package:starknet_provider/starknet_provider.dart';
 import 'package:http/http.dart';
 
 Future<void> resetDevnet() async {
-  final starknetRpc = Platform.environment['STARKNET_RPC'];
+  final starknetRpc = 'https://starknet-sepolia.infura.io/v3/e85bd9f050204c0a91bb4c069bb75e9e';
   if (starknetRpc == null) {
     throw Exception('STARKNET_RPC environment variable is not set');
   }
@@ -28,12 +28,12 @@ Future<void> resetDevnet() async {
 }
 
 ReadProvider getProvider() {
-  final env = Platform.environment;
-  if (env['STARKNET_RPC'] == null) {
-    throw Exception('STARKNET_RPC environment variable is not set');
-  }
+  // final env = Platform.environment;
+  // if (env['STARKNET_RPC'] == null) {
+  //   throw Exception('STARKNET_RPC environment variable is not set');
+  // }
 
-  return JsonRpcReadProvider(nodeUri: Uri.parse(env['STARKNET_RPC']!));
+  return JsonRpcReadProvider(nodeUri: Uri.parse('https://starknet-sepolia.infura.io/v3/e85bd9f050204c0a91bb4c069bb75e9e'));
 }
 
 ReadProvider getJsonRpcReadProvider() {

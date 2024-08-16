@@ -80,6 +80,10 @@ final infuraGoerliTestnetUri = Uri.parse(
   'https://starknet-goerli.infura.io/v3/f54befa531584e2d8516addbf285a560',
 );
 
+final infurasepoliaTestnetUri = Uri.parse(
+  'https://starknet-sepolia.public.blastapi.io/rpc/v0_7',
+);
+
 // Mainnet
 
 final infuraMainnetUri = Uri.parse(

@@ -9,7 +9,7 @@ void main() {
     late ReadProvider provider;
 
     Felt balanceContractAddress = Felt.fromHexString(
-        "0x03cdc588f4f1bff66c8a6896e7008cc39c7804d36b16e93792625bd18bffd249");
+        "0x06c2a560e3a2a1303699e24a6a9249ecb6e9a51163dada01b2ab0b8a43e24905");
 
     Felt invalidHexString = Felt.fromHexString(
         '0x0000000000000000000000000000000000000000000000000000000000000000');
@@ -59,6 +59,7 @@ void main() {
     group('blockNumber', () {
       test('returns a strictly positive block number', () async {
         final blockNumber = await provider.blockNumber();
+        print('wtf ${blockNumber}');
         expect(blockNumber is BlockNumberResult && blockNumber.result >= 0,
             isTrue);
       });
@@ -491,10 +492,13 @@ void main() {
           contractAddress: balanceContractAddress,
           blockId: BlockId.latest,
         );
-
+        print('wtf ${response.toJson()}');
         response.when(
             error: (error) => fail("Shouldn't fail"),
-            result: (result) => expect(result, Felt.fromHexString("0x0")));
+            result: (result) {
+              print('wtf ${result.toInt()}');
+              expect(result, Felt.fromHexString("0x02"));
+            });
       });
 
       test('reading nonce from invalid block id returns BLOCK_NOT_FOUND error',

@@ -1,3 +1,4 @@
+import 'package:starknet/src/crypto/poseidon.dart';
 import 'package:starknet/starknet.dart';
 import 'package:starknet_provider/starknet_provider.dart';
 
@@ -231,5 +232,80 @@ class Signer {
     );
 
     return [Felt(signature.r), Felt(signature.s)];
+  }
+
+  List<Felt> signBraavosDeployAccountTransactionV1({
+    required Felt contractAddressSalt,
+    required Felt classHash,
+    required Felt baseClassHash,
+    required List<Felt> constructorCalldata,
+    required Felt chainId,
+    Felt? nonce,
+    Felt? maxFee,
+  }) {
+    maxFee = maxFee ?? defaultMaxFee;
+    nonce = nonce ?? defaultNonce;
+    final contractAddress = Contract.computeAddress(
+      classHash: baseClassHash,
+      calldata: constructorCalldata,
+      salt: contractAddressSalt,
+    );
+
+    final transactionHash = calculateTransactionHashCommon(
+      txHashPrefix: TransactionHashPrefix.deployAccount.toBigInt(),
+      version: 1,
+      address: contractAddress.toBigInt(),
+      entryPointSelector: BigInt.from(0),
+      calldata: toBigIntList([
+        baseClassHash,
+        contractAddressSalt,
+        ...constructorCalldata,
+      ]),
+      maxFee: maxFee.toBigInt(),
+      chainId: chainId.toBigInt(),
+      additionalData: [nonce.toBigInt()],
+    );
+
+    final signature = starknet_sign(
+      privateKey: privateKey.toBigInt(),
+      messageHash: transactionHash,
+    );
+
+    final aux = [
+      // account_implementation
+      classHash,
+      // signer_type
+      Felt.fromInt(0),
+      // secp256r1_signer.x.low
+      Felt.fromInt(0),
+      // secp256r1_signer.x.high
+      Felt.fromInt(0),
+      // secp256r1_signer.y.low
+      Felt.fromInt(0),
+      // secp256r1_signer.y.high
+      Felt.fromInt(0),
+      // multisig_threshold
+      Felt.fromInt(0),
+      // withdrawal_limit_low
+      Felt.fromInt(0),
+      // fee_rate
+      Felt.fromInt(0),
+      // stark_fee_rate
+      Felt.fromInt(0),
+      chainId,
+    ];
+
+    final auxHash =
+        poseidonHasher.hashMany(aux.map((e) => e.toBigInt()).toList());
+    final auxSignature = starknet_sign(
+      privateKey: privateKey.toBigInt(),
+      messageHash: auxHash,
+    );
+
+    final result = [Felt(signature.r), Felt(signature.s)];
+    result.addAll(aux);
+    result.add(Felt(auxSignature.r));
+    result.add(Felt(auxSignature.s));
+    return result;
   }
 }
