@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:starknet/src/static_config.dart';
-import 'package:starknet_provider/starknet_provider.dart';
+import 'package:starknet/starknet.dart';
 
 import 'types/index.dart';
 

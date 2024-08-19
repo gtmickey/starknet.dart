@@ -1,5 +1,4 @@
 import 'package:starknet/starknet.dart';
-import 'package:starknet_provider/starknet_provider.dart';
 
 class ERC20 extends Contract {
   ERC20({required super.account, required super.address});

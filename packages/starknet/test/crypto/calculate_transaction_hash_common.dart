@@ -1,5 +1,4 @@
 import 'package:starknet/starknet.dart';
-import 'package:starknet_provider/starknet_provider.dart';
 import 'package:test/test.dart';
 
 void main() {
