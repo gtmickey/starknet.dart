@@ -18,7 +18,7 @@ void main() async {
       mnemonic: mnemonic,
       provider: provider,
       chainId: Felt.fromHexString("0x534e5f5345504f4c4941"),
-      index: 2,
+      index: 0,
       // accountDerivation: ArgentXAccountDerivation(),
     );
     // Braavos Account class hash - 0x00816dd0297efc55dc1e7559020a3a825e81ef734b558f03c83325d4da7e6253
@@ -37,17 +37,28 @@ void main() async {
     print(account.signer.publicKey.toHexString());
     print(account.accountAddress.toHexString());
     valid = await account.isValid;
-
-    if (valid) {
-      print("account deployed");
-
-      return;
-    }
+final nonce = await account.getNonce(BlockId.latest);
+    print("nonce = ${nonce.toHexString()}");
+    // if (valid) {
+    //   print("account deployed");
+    //
+    //   return;
+    // }
     print("deploy");
     final braavosAccount =
         BraavosAccountDerivation(provider: provider, chainId: chainId);
-    final deployTxHash = await braavosAccount.deploy(account: account);
 
+
+    final aa = await account.getEstimateMaxFeeForDeployAccountTx(
+        nonce: nonce,
+        constructorCalldata: [account.signer.publicKey],
+        contractAddressSalt: account.signer.publicKey,
+        classHash: BraavosAccountDerivation.classHash);
+
+    print("aa = ${aa.toHexString()}");
+    // return;
+
+    final deployTxHash = await braavosAccount.deploy(account: account);
     print("deployTxHash: ${deployTxHash.toHexString()}");
     final isAccepted = await waitForAcceptance(
       transactionHash: deployTxHash.toHexString(),

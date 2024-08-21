@@ -56,6 +56,7 @@ void main() async {
     recipient: account.accountAddress,
     amount:
         Uint256(low: Felt(BigInt.from(0.005 * 1e18)), high: Felt.fromInt(0)),
+    erc20ContractAddress: ethAddress,
   );
   bool isAccepted =
       await waitForAcceptance(transactionHash: txHash, provider: provider);

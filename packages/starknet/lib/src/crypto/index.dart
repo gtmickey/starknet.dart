@@ -26,7 +26,7 @@ export 'signature.dart';
 /// Impl Ref: https://github.com/starkware-libs/cairo-lang/blob/167b28bcd940fd25ea3816204fa882a0b0a49603/src/starkware/starknet/core/os/transaction_hash/transaction_hash.py#L18
 BigInt calculateTransactionHashCommon({
   required BigInt txHashPrefix,
-  int version = 0,
+  required BigInt version,
   required BigInt address,
   required BigInt entryPointSelector,
   required List<BigInt> calldata,
@@ -35,9 +35,18 @@ BigInt calculateTransactionHashCommon({
   List<BigInt> additionalData = const [],
 }) {
   final calldataHash = computeHashOnElements(calldata);
+
+
+  for (BigInt c in calldata){
+    print("wtf execute_calldata = ${Felt(c).toHexString()}");
+  }
+
+
+  print("wtf call dataHash = ${Felt(calldataHash).toHexString()}");
+
   final List<BigInt> dataToHash = [
     txHashPrefix,
-    BigInt.from(version),
+    version,
     address,
     entryPointSelector,
     calldataHash,
@@ -45,6 +54,11 @@ BigInt calculateTransactionHashCommon({
     chainId,
     ...additionalData,
   ];
+
+  for (BigInt d in dataToHash){
+    print("wtf-1 ${Felt(d).toHexString()}");
+  }
+
   return computeHashOnElements(dataToHash);
 }
 
@@ -70,12 +84,21 @@ List<Felt> functionCallsToCalldata({
     return functionCallsToCalldataLegacy(functionCalls: functionCalls);
   }
 
-  List<Felt> calldata = [Felt.fromInt(functionCalls.length)];
+  /// 原始方法
+  // List<Felt> calldata = [Felt.fromInt(functionCalls.length)];
+  // for (final call in functionCalls) {
+  //   calldata.addAll([
+  //     call.contractAddress, // to
+  //     call.entryPointSelector, // selector
+  //     Felt.fromInt(call.calldata.length), // calldata length
+  //     ...call.calldata,
+  //   ]);
+  // }
+
+  /// 根据 rust sdk 修改的 方法
+  List<Felt> calldata = [];
   for (final call in functionCalls) {
     calldata.addAll([
-      call.contractAddress, // to
-      call.entryPointSelector, // selector
-      Felt.fromInt(call.calldata.length), // calldata length
       ...call.calldata,
     ]);
   }

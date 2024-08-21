@@ -158,8 +158,10 @@ void main() {
         expect(accountClassHash, equals(Felt.fromInt(0)));
         // account address requires token to pay deploy fees
         final txSend = await account0.send(
-            recipient: accountAddress,
-            amount: Uint256(low: maxFee, high: Felt.fromInt(0)));
+          recipient: accountAddress,
+          amount: Uint256(low: maxFee, high: Felt.fromInt(0)),
+          erc20ContractAddress: ethAddress,
+        );
         bool success = await waitForAcceptance(
             transactionHash: txSend, provider: account0.provider);
         expect(success, equals(true));
@@ -196,8 +198,10 @@ void main() {
       test('send', () async {
         final previousBalance = await account1.balance();
         final txHash = await account0.send(
-            recipient: account1.accountAddress,
-            amount: Uint256(low: Felt.fromInt(100), high: Felt.fromInt(0)));
+          recipient: account1.accountAddress,
+          amount: Uint256(low: Felt.fromInt(100), high: Felt.fromInt(0)),
+          erc20ContractAddress: ethAddress,
+        );
         final success = await waitForAcceptance(
             transactionHash: txHash, provider: account1.provider);
         expect(success, equals(true));
@@ -213,8 +217,10 @@ void main() {
       test('send without enough amount', () async {
         final previousBalance = await account1.balance();
         final txHash = await account0.send(
-            recipient: account1.accountAddress,
-            amount: Uint256(low: Felt.fromInt(0), high: Felt.fromInt(100)));
+          recipient: account1.accountAddress,
+          amount: Uint256(low: Felt.fromInt(0), high: Felt.fromInt(100)),
+          erc20ContractAddress: ethAddress,
+        );
         final success = await waitForAcceptance(
             transactionHash: txHash, provider: account1.provider);
         expect(success, equals(false));

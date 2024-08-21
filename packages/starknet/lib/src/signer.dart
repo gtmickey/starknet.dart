@@ -16,6 +16,7 @@ class Signer {
     required Felt senderAddress,
     required Felt chainId,
     required Felt nonce,
+    Felt? version,
     Felt? maxFee,
     bool useLegacyCalldata = false,
   }) {
@@ -29,23 +30,20 @@ class Signer {
     final transactionHash = calculateTransactionHashCommon(
       txHashPrefix: TransactionHashPrefix.invoke.toBigInt(),
       address: senderAddress.toBigInt(),
-      version: 1,
+      version: version?.toBigInt() ?? Felt.fromInt(1).toBigInt(),
       entryPointSelector: BigInt.parse("0"),
       calldata: toBigIntList(calldata),
       maxFee: maxFee.toBigInt(),
       chainId: chainId.toBigInt(),
       additionalData: [nonce.toBigInt()],
     );
-    print("transactionHash: ${Felt(transactionHash).toHexString()}");
 
+    print("wtf messageHash =${Felt(transactionHash).toHexString()}");
     final signature = starknet_sign(
       privateKey: privateKey.toBigInt(),
       messageHash: transactionHash,
-      seed: BigInt.from(32),
+      // seed: BigInt.from(32),
     );
-    print(
-        "signature: ${Felt(signature.r).toHexString()} ${Felt(signature.s).toHexString()}");
-
     return [Felt(signature.r), Felt(signature.s)];
   }
 
@@ -64,7 +62,7 @@ class Signer {
     final transactionHash = calculateTransactionHashCommon(
       txHashPrefix: TransactionHashPrefix.invoke.toBigInt(),
       address: contractAddress.toBigInt(),
-      version: 0,
+      version: Felt.fromInt(0).toBigInt(),
       entryPointSelector: getSelectorByName(entryPointSelectorName).toBigInt(),
       calldata: toBigIntList(calldata),
       maxFee: maxFee.toBigInt(),
@@ -89,6 +87,8 @@ class Signer {
     Felt? maxFee,
     String entryPointSelectorName = "__execute__",
     bool useLegacyCalldata = false,
+    bool isBraavos = true,
+    bool queryOnly = false,
   }) {
     switch (version) {
       case 0:
@@ -108,6 +108,9 @@ class Signer {
             senderAddress: contractAddress,
             chainId: chainId,
             nonce: nonce,
+            version: queryOnly
+                ? Felt.fromHexString("0x100000000000000000000000000000001")
+                : Felt.fromInt(1),
             maxFee: maxFee,
             useLegacyCalldata: useLegacyCalldata);
       default:
@@ -199,20 +202,14 @@ class Signer {
   }) {
     maxFee = maxFee ?? defaultMaxFee;
     nonce = nonce ?? defaultNonce;
-    print("classHash: ${classHash.toHexString()}");
-    print("calldata: ${constructorCalldata.map((e) => e.toHexString())}");
-    print("salt: ${contractAddressSalt.toHexString()}");
     final contractAddress = Contract.computeAddress(
       classHash: classHash,
       calldata: constructorCalldata,
       salt: contractAddressSalt,
     );
-    print(
-        "[signDeployAccountTransactionV1] Contract address: ${contractAddress.toHexString()}");
-
     final transactionHash = calculateTransactionHashCommon(
       txHashPrefix: TransactionHashPrefix.deployAccount.toBigInt(),
-      version: 1,
+      version: Felt.fromInt(1).toBigInt(),
       address: contractAddress.toBigInt(),
       entryPointSelector: BigInt.from(0),
       calldata: toBigIntList([
@@ -252,7 +249,7 @@ class Signer {
 
     final transactionHash = calculateTransactionHashCommon(
       txHashPrefix: TransactionHashPrefix.deployAccount.toBigInt(),
-      version: 1,
+      version: Felt.fromInt(1).toBigInt(),
       address: contractAddress.toBigInt(),
       entryPointSelector: BigInt.from(0),
       calldata: toBigIntList([

@@ -3,6 +3,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'json_rpc_api_error.freezed.dart';
+
 part 'json_rpc_api_error.g.dart';
 
 @freezed
@@ -22,6 +23,8 @@ enum JsonRpcApiErrorCode {
   DEVNET_WILDCARD_ERROR, // not in JSON-RPC API specs
   @JsonValue(1)
   FAILED_TO_RECEIVE_TXN,
+  @JsonValue(10)
+  NO_TRACE_AVAILABLE,
   @JsonValue(20)
   CONTRACT_NOT_FOUND,
   @JsonValue(21)
@@ -48,6 +51,8 @@ enum JsonRpcApiErrorCode {
   TOO_MANY_KEYS_IN_FILTER, // new in spec 0.3.0
   @JsonValue(40)
   CONTRACT_ERROR,
+  @JsonValue(41)
+  TRANSACTION_EXECUTION_ERROR,
   @JsonValue(50)
   INVALID_CONTRACT_CLASS, // from pathfinder code
   @JsonValue(51)
@@ -67,7 +72,7 @@ enum JsonRpcApiErrorCode {
   @JsonValue(58)
   NON_ACCOUNT, // from pathfinder code
   @JsonValue(59)
-  DUPLICATE_TRANSACTION, // from pathfinder code
+  DUPLICATE_TX, // from pathfinder code
   @JsonValue(60)
   COMPILED_CLASS_HASH_MISMATCH, // from pathfinder code
   @JsonValue(61)
