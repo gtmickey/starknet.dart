@@ -65,4 +65,23 @@ class Contract {
     );
     return trx;
   }
+
+  /// Execute contract given [selector] with [calldata]
+  Future<InvokeTransactionRequest> executeSignOnly(
+      String selector,
+      List<Felt> calldata,
+      Felt? maxFee,
+      ) async {
+    final signed = await account.executeSignOnly(
+      functionCalls: [
+        FunctionCall(
+          contractAddress: address,
+          entryPointSelector: getSelectorByName(selector),
+          calldata: calldata,
+        ),
+      ],
+      maxFee: maxFee,
+    );
+    return signed;
+  }
 }

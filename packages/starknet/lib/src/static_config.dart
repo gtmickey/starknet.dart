@@ -26,6 +26,9 @@ final ethAddress = Felt.fromHexString(
   "0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7",
 );
 
+final transferSelector = Felt.fromHexString(
+    "0x83afd3f4caedc6eebf44246fe54e38c95e3179a5ec9ea81740eca5b482d12e");
+
 // from starknet-devnet 0.5.1
 final devnetOpenZeppelinAccountClassHash = Felt.fromHexString(
   "0x4D07E40E93398ED3C76981E72DD1FD22557A78CE36C0515F679E27F0BB5BC5F",

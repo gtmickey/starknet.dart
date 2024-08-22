@@ -16,15 +16,30 @@ void main() async {
   );
   final receiverAddress = Felt.fromHexString(
       "0x0261b745499c44af9e29138525025e988ad1d90d6d53cf0d2f91510073283bb5");
-  final tx = await account.send(
+  /// 签名并发送
+  // final tx = await account.send(
+  //   recipient: receiverAddress,
+  //   amount: Uint256(
+  //     low: Felt.fromInt(123455),
+  //     high: Felt.fromInt(0),
+  //   ),
+  //   // maxFee: Felt.fromHexString("0x28fd0548848"),
+  //   erc20ContractAddress: strkAddress,
+  // );
+  // print("tx = ${tx}");
+
+
+  /// 仅签名
+  final signed = await account.transferSign(
     recipient: receiverAddress,
     amount: Uint256(
       low: Felt.fromInt(123455),
       high: Felt.fromInt(0),
     ),
     // maxFee: Felt.fromHexString("0x28fd0548848"),
-    erc20ContractAddress: strkAddress,
+    erc20ContractAddress: ethAddress,
   );
 
-  print("transfer hash = $tx");
+
+  print("signed = ${signed.toJson()}");
 }

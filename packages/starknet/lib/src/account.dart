@@ -360,6 +360,63 @@ class Account {
     }
   }
 
+  /// Call account contract `__execute__` with given [functionCalls]
+  Future<InvokeTransactionRequest> executeSignOnly({
+    required List<FunctionCall> functionCalls,
+    bool useLegacyCalldata = false,
+    Felt? maxFee,
+    Felt? nonce,
+  }) async {
+    nonce = nonce ?? await getNonce();
+    maxFee = maxFee ??
+        await getEstimateMaxFeeForBraavosInvokeTx(
+            nonce: nonce, functionCalls: functionCalls);
+
+    final signature = signer.signTransactions(
+      transactions: functionCalls,
+      contractAddress: accountAddress,
+      version: supportedTxVersion == AccountSupportedTxVersion.v1 ? 1 : 0,
+      chainId: chainId,
+      entryPointSelectorName: "__execute__",
+      nonce: nonce,
+      useLegacyCalldata: useLegacyCalldata,
+      maxFee: maxFee,
+    );
+
+    switch (supportedTxVersion) {
+      // ignore: deprecated_member_use_from_same_package
+      case AccountSupportedTxVersion.v0:
+        final calldata =
+            functionCallsToCalldataLegacy(functionCalls: functionCalls) +
+                [nonce];
+
+        return InvokeTransactionRequest(
+          invokeTransaction: InvokeTransactionV0(
+            contractAddress: accountAddress,
+            entryPointSelector: getSelectorByName('__execute__'),
+            calldata: calldata,
+            maxFee: maxFee,
+            signature: signature,
+          ),
+        );
+      case AccountSupportedTxVersion.v1:
+        final calldata = functionCallsToCalldata(
+          functionCalls: functionCalls,
+          useLegacyCalldata: useLegacyCalldata,
+        );
+
+        return InvokeTransactionRequest(
+          invokeTransaction: InvokeTransactionV1(
+            senderAddress: accountAddress,
+            calldata: calldata,
+            signature: signature,
+            maxFee: maxFee,
+            nonce: nonce,
+          ),
+        );
+    }
+  }
+
   /// Declares a [compiledContract]
   Future<DeclareTransactionResponse> declare({
     required ICompiledContract compiledContract,
@@ -460,6 +517,18 @@ class Account {
     return txHash;
   }
 
+  /// same as send but only sign
+  Future<InvokeTransactionRequest> transferSign({
+    required Felt recipient,
+    required Uint256 amount,
+    required Felt erc20ContractAddress,
+    Felt? maxFee,
+  }) async {
+    final signed = await ERC20(account: this, address: erc20ContractAddress)
+        .transferSign(recipient, amount, maxFee: maxFee);
+    return signed;
+  }
+
   /// Returns `true` if account is a valid one
   ///
   /// As a simple rule, we assume a contract is valid if class hash is not none
@@ -558,6 +627,47 @@ class Account {
           contractAddressSalt: contractAddressSalt,
           constructorCalldata: constructorCalldata,
         ),
+      ),
+    );
+  }
+
+  static Future<DeployAccountTransactionRequest> signDeployBraavosAccount({
+    required Signer signer,
+    required Provider provider,
+    required List<Felt> constructorCalldata,
+    required Felt classHash,
+    required Felt baseClassHash,
+    Felt? contractAddressSalt,
+    Felt? maxFee,
+    Felt? nonce,
+  }) async {
+    final chainId = (await provider.chainId()).when(
+      result: (result) => Felt.fromHexString(result),
+      error: (error) => StarknetChainId.testNet,
+    );
+
+    maxFee = maxFee ?? defaultMaxFee;
+    nonce = nonce ?? defaultNonce;
+    contractAddressSalt = contractAddressSalt ?? signer.publicKey;
+
+    final signature = signer.signBraavosDeployAccountTransactionV1(
+      contractAddressSalt: contractAddressSalt,
+      classHash: classHash,
+      baseClassHash: baseClassHash,
+      constructorCalldata: constructorCalldata,
+      chainId: chainId,
+      nonce: nonce,
+      maxFee: maxFee,
+    );
+
+    return DeployAccountTransactionRequest(
+      deployAccountTransaction: DeployAccountTransactionV1(
+        classHash: baseClassHash,
+        signature: signature,
+        maxFee: maxFee,
+        nonce: nonce,
+        contractAddressSalt: contractAddressSalt,
+        constructorCalldata: constructorCalldata,
       ),
     );
   }
@@ -805,6 +915,23 @@ class BraavosAccountDerivation extends AccountDerivation {
       },
     );
     return deployTxHash;
+  }
+
+  Future<DeployAccountTransactionRequest> deploySigned(
+      {required Account account}) async {
+    final signed = await Account.signDeployBraavosAccount(
+      signer: account.signer,
+      provider: account.provider,
+      constructorCalldata: constructorCalldata(
+        publicKey: account.signer.publicKey,
+      ),
+      classHash: classHash,
+      baseClassHash: baseClassHash,
+      contractAddressSalt: account.signer.publicKey,
+      nonce: Felt.fromInt(0),
+    );
+
+    return signed;
   }
 
   @override

@@ -57,8 +57,7 @@ class ERC20 extends Contract {
       [
         Felt.fromHexString('0x1'),
         address,
-        Felt.fromHexString(
-            '0x83afd3f4caedc6eebf44246fe54e38c95e3179a5ec9ea81740eca5b482d12e'),
+        transferSelector,
         Felt.fromHexString('0x3'),
         recipient,
         value.low,
@@ -74,6 +73,23 @@ class ERC20 extends Contract {
         throw Exception("Error transfer (${error.code}): ${error.message}");
       },
     ));
+  }
+
+  Future<InvokeTransactionRequest> transferSign(Felt recipient, Uint256 value, {Felt? maxFee}) async {
+    final InvokeTransactionRequest signed = await executeSignOnly(
+      "transfer",
+      [
+        Felt.fromHexString('0x1'),
+        address,
+        transferSelector,
+        Felt.fromHexString('0x3'),
+        recipient,
+        value.low,
+        value.high
+      ],
+      maxFee,
+    );
+    return signed;
   }
 
   /// Moves `amount` tokens from `sender` to `recipient` using the allowance mechanism.

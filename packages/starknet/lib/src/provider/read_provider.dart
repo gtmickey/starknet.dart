@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:starknet/starknet.dart';
 
 abstract class ReadProvider {

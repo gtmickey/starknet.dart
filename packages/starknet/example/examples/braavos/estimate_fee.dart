@@ -12,7 +12,7 @@ void main() async {
       mnemonic: testMnemonic.split(" "),
       provider: provider,
       chainId: chainId,
-      index: 4,
+      index: 5,
     );
 
     late Felt nonce;
@@ -57,8 +57,7 @@ void main() async {
           // eth 代币 合约地址
           ethAddress,
           // selector name transfer 16 进制
-          Felt.fromHexString(
-              '0x83afd3f4caedc6eebf44246fe54e38c95e3179a5ec9ea81740eca5b482d12e'),
+          transferSelector,
           // 未知， 默认3
           Felt.fromHexString('0x3'),
           // 接受方地址
@@ -78,7 +77,7 @@ void main() async {
     print("transfer fee * 1.2 = ${fee.toBigInt()}");
   }
 
-  transferFee();
+  // transferFee();
 
   // void transferFee() async {
   //   final account = Account.fromMnemonic(

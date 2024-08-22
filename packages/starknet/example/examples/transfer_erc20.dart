@@ -6,10 +6,10 @@ final privateKey = Felt.fromHexString(
 final accountAddress = Felt.fromHexString(
     "0x6c2a560e3a2a1303699e24a6a9249ecb6e9a51163dada01b2ab0b8a43e24905");
 
-final ethAddress = Felt.fromHexString(
+final ethContractAddress = Felt.fromHexString(
     "0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7");
 
-final strkAddress = Felt.fromHexString(
+final strkContractAddress = Felt.fromHexString(
     "0x4718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d");
 
 final receiverAddress = Felt.fromHexString(
