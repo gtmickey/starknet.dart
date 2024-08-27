@@ -4,7 +4,6 @@ import '../transfer_erc20.dart';
 import '../config.dart';
 
 void main() async {
-
   final provider = JsonRpcProvider(nodeUri: infurasepoliaTestnetUri);
   final chainId = StarknetChainId.testNet;
 
@@ -13,12 +12,16 @@ void main() async {
     provider: provider,
     chainId: chainId,
     index: 0,
+    accountDerivation:
+        ArgentXAccountDerivation(provider: provider, chainId: chainId),
   );
   final receiverAddress = Felt.fromHexString(
       "0x03f0bdad05d78b1136ad2c6f37142e5c8c78b7022baa93dcbb008b27840a88bb");
-  /// 签名并发送
 
+  /// 签名并发送
   final nonce = await account.getNonce();
+  print("wtf nonce $nonce");
+
   final functionCall = FunctionCall(
       contractAddress: ethAddress,
       entryPointSelector: getSelectorByName("transfer"),
@@ -34,27 +37,25 @@ void main() async {
         // 接受方地址
         receiverAddress,
         // amount low
-        Felt.fromInt(1000),
+        Felt.fromInt(12344),
         // amount high
         Felt.fromInt(0),
       ]);
 
-  final fee = await account.getEstimateMaxFeeForBraavosInvokeTx(
+  final fee = await account.getEstimateMaxFeeForArgentInvokeTx(
     nonce: nonce,
     functionCalls: [functionCall],
   );
   final tx = await account.send(
     recipient: receiverAddress,
     amount: Uint256(
-      low: Felt.fromInt(1000000000000000),
+      low: Felt.fromInt(12344),
       high: Felt.fromInt(0),
     ),
-    // maxFee: Felt.fromHexString("0x28fd0548848"),
-    erc20ContractAddress: ethAddress,
     maxFee: fee,
+    erc20ContractAddress: ethAddress,
   );
   print("tx = ${tx}");
-
 
   /// 仅签名
   // final signed = await account.transferSign(

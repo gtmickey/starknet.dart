@@ -161,6 +161,7 @@ void main() {
           recipient: accountAddress,
           amount: Uint256(low: maxFee, high: Felt.fromInt(0)),
           erc20ContractAddress: ethAddress,
+          maxFee: defaultMaxFee,
         );
         bool success = await waitForAcceptance(
             transactionHash: txSend, provider: account0.provider);
@@ -201,6 +202,7 @@ void main() {
           recipient: account1.accountAddress,
           amount: Uint256(low: Felt.fromInt(100), high: Felt.fromInt(0)),
           erc20ContractAddress: ethAddress,
+          maxFee: defaultMaxFee,
         );
         final success = await waitForAcceptance(
             transactionHash: txHash, provider: account1.provider);
@@ -220,6 +222,7 @@ void main() {
           recipient: account1.accountAddress,
           amount: Uint256(low: Felt.fromInt(0), high: Felt.fromInt(100)),
           erc20ContractAddress: ethAddress,
+          maxFee: defaultMaxFee,
         );
         final success = await waitForAcceptance(
             transactionHash: txHash, provider: account1.provider);
@@ -231,8 +234,7 @@ void main() {
 
     group('recovery from seed phrase', () {
       final mnemonic =
-          "toward antenna indicate reject must artist expect angry fit easy cupboard require"
-              .split(" ");
+          "toward antenna indicate reject must artist expect angry fit easy cupboard require";
       final provider = JsonRpcProvider(nodeUri: devnetUri);
       final chainId = StarknetChainId.testNet;
       test('braavos account private key', () async {
@@ -267,8 +269,9 @@ void main() {
             )));
       });
       test('argentX account private key', () async {
-        final signer = ArgentXAccountDerivation()
-            .deriveSigner(mnemonic: mnemonic, index: 0);
+        final signer =
+            ArgentXAccountDerivation(provider: provider, chainId: chainId)
+                .deriveSigner(mnemonic: mnemonic, index: 0);
         expect(
             signer.privateKey,
             equals(Felt.fromHexString(
@@ -276,10 +279,12 @@ void main() {
             )));
       });
       test('argentX account address', () async {
-        final signer = ArgentXAccountDerivation()
-            .deriveSigner(mnemonic: mnemonic, index: 0);
-        final accountAddress = ArgentXAccountDerivation()
-            .computeAddress(publicKey: signer.publicKey);
+        final signer =
+            ArgentXAccountDerivation(provider: provider, chainId: chainId)
+                .deriveSigner(mnemonic: mnemonic, index: 0);
+        final accountAddress =
+            ArgentXAccountDerivation(provider: provider, chainId: chainId)
+                .computeAddress(publicKey: signer.publicKey);
         expect(
             accountAddress,
             equals(Felt.fromHexString(

@@ -51,7 +51,7 @@ class ERC20 extends Contract {
   /// Moves `amount` tokens from the caller’s account to `recipient`.
   ///
   /// Returns transaction hash.
-  Future<String> transfer(Felt recipient, Uint256 value, {Felt? maxFee}) async {
+  Future<String> transfer(Felt recipient, Uint256 value, Felt maxFee) async {
     final InvokeTransactionResponse trx = await execute(
       "transfer",
       [
@@ -75,7 +75,8 @@ class ERC20 extends Contract {
     ));
   }
 
-  Future<InvokeTransactionRequest> transferSign(Felt recipient, Uint256 value, {Felt? maxFee}) async {
+  Future<InvokeTransactionRequest> transferSign(Felt recipient, Uint256 value,
+      {Felt? maxFee}) async {
     final InvokeTransactionRequest signed = await executeSignOnly(
       "transfer",
       [
@@ -96,8 +97,12 @@ class ERC20 extends Contract {
   /// amount is then deducted from the caller’s allowance.
   ///
   /// Returns transaction hash.
-  Future<String> transferFrom(Felt from, Felt to, Uint256 value,
-      {Felt? maxFee}) async {
+  Future<String> transferFrom(
+    Felt from,
+    Felt to,
+    Uint256 value,
+    Felt maxFee,
+  ) async {
     final InvokeTransactionResponse trx = await execute(
       "transferFrom",
       [from, to, value.low, value.high],
@@ -116,7 +121,7 @@ class ERC20 extends Contract {
   /// Sets `amount` as the allowance of `spender` over the caller’s tokens.
   ///
   /// Returns transaction hash.
-  Future<String> approve(Felt spender, Uint256 amount, {Felt? maxFee}) async {
+  Future<String> approve(Felt spender, Uint256 amount, Felt maxFee) async {
     final InvokeTransactionResponse trx = await execute(
       "approve",
       [spender, amount.low, amount.high],

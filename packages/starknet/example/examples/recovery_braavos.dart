@@ -4,8 +4,7 @@ import 'deploy_openzeppelin.dart';
 
 // test random mnemonic
 final mnemonic =
-    "fiscal document grain ecology wheat around sport nice guitar topple add north"
-        .split(" ");
+    "fiscal document grain ecology wheat around sport nice guitar topple add north";
 
 void main() async {
   final provider = JsonRpcProvider(nodeUri: infurasepoliaTestnetUri);
@@ -37,7 +36,7 @@ void main() async {
     print(account.signer.publicKey.toHexString());
     print(account.accountAddress.toHexString());
     valid = await account.isValid;
-final nonce = await account.getNonce(BlockId.latest);
+    final nonce = await account.getNonce(BlockId.latest);
     print("nonce = ${nonce.toHexString()}");
     // if (valid) {
     //   print("account deployed");
@@ -47,7 +46,6 @@ final nonce = await account.getNonce(BlockId.latest);
     print("deploy");
     final braavosAccount =
         BraavosAccountDerivation(provider: provider, chainId: chainId);
-
 
     final aa = await account.getEstimateMaxFeeForDeployAccountTx(
         nonce: nonce,

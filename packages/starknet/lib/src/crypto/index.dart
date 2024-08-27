@@ -55,10 +55,6 @@ BigInt calculateTransactionHashCommon({
     ...additionalData,
   ];
 
-  for (BigInt d in dataToHash){
-    print("wtf-1 ${Felt(d).toHexString()}");
-  }
-
   return computeHashOnElements(dataToHash);
 }
 

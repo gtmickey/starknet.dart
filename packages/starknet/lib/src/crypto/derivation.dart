@@ -49,14 +49,5 @@ Felt derivePrivateKey({
   return privateKey;
 }
 
-Map<String, Uint8List> getExtendedPrivateKey(String mnemonic) {
-  final seed = bip39.mnemonicToSeed(mnemonic);
-  final nodeFromSeed = bip32.BIP32.fromSeed(seed);
-
-  return {
-    "chainKey": nodeFromSeed.privateKey!,
-    "chainCode": nodeFromSeed.chainCode,
-  };
-}
 
 

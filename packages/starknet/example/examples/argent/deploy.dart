@@ -13,7 +13,9 @@ void main() async {
     mnemonic: testMnemonic,
     provider: provider,
     chainId: chainId,
-    index: 4,
+    index: 3,
+      accountDerivation:
+      ArgentXAccountDerivation(provider: provider, chainId: chainId)
   );
 
   final valid = await account.isValid;
@@ -22,12 +24,10 @@ void main() async {
     return;
   }
   print("address = ${account.accountAddress.toJson()}");
-  final braavosAccount =
-      BraavosAccountDerivation(provider: provider, chainId: chainId);
+  final argentAccountDerivation =
+      ArgentXAccountDerivation(provider: provider, chainId: chainId);
 
-  // final deployTxHash = await braavosAccount.deploy(account: account);
-  // print("deployTxHash: ${deployTxHash.toHexString()}");
 
-  final signed = await braavosAccount.deploySigned(account: account);
-  print("signed: ${json.encode(signed.toJson())}");
+  final txHash = await argentAccountDerivation.deploy(account: account);
+  print("tx hash: ${json.encode(txHash.toJson())}");
 }

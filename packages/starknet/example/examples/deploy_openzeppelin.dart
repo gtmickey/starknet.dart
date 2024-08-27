@@ -19,7 +19,7 @@ void main() async {
   // for testnet
   final recoveryMnemonic =
       "toward antenna indicate reject must artist expect angry fit easy cupboard require"
-          .split(" ");
+         ;
   final provider = JsonRpcProvider(nodeUri: infuraGoerliTestnetUri);
   final chainId = StarknetChainId.testNet;
   final fundingAccount = Account.fromMnemonic(
@@ -42,7 +42,7 @@ void main() async {
     implementationClassHash: implementationClassHash,
   );
   final account = Account.fromMnemonic(
-    mnemonic: mnemonic.split(" "),
+    mnemonic: mnemonic,
     provider: provider,
     chainId: StarknetChainId.testNet,
     accountDerivation: accountDerivation,
@@ -57,6 +57,7 @@ void main() async {
     amount:
         Uint256(low: Felt(BigInt.from(0.005 * 1e18)), high: Felt.fromInt(0)),
     erc20ContractAddress: ethAddress,
+    maxFee: defaultMaxFee,
   );
   bool isAccepted =
       await waitForAcceptance(transactionHash: txHash, provider: provider);

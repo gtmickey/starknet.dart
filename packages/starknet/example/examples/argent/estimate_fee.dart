@@ -8,11 +8,12 @@ void main() async {
 
   void deployFee() async {
     final account = Account.fromMnemonic(
-      mnemonic: testMnemonic,
-      provider: provider,
-      chainId: chainId,
-      index: 5,
-    );
+        mnemonic: testMnemonic,
+        provider: provider,
+        chainId: chainId,
+        index: 4,
+        accountDerivation:
+            ArgentXAccountDerivation(provider: provider, chainId: chainId));
 
     late Felt nonce;
     try {
@@ -20,14 +21,18 @@ void main() async {
     } catch (_) {
       nonce = Felt.fromInt(0);
     }
-    print("address = ${account.accountAddress.toHexString()}");
-    final fee = await account.getEstimateMaxFeeForBraavosDeployAccountTx(
+
+    print("wtf account address = ${account.accountAddress.toHexString()}");
+    final fee = await account.getEstimateMaxFeeForArgentDeployAccountTx(
       nonce: nonce,
-      constructorCalldata: [account.signer.publicKey],
+      constructorCalldata: [
+        Felt.fromInt(0),
+        account.signer.publicKey,
+        Felt.fromInt(1)
+      ],
       contractAddressSalt: account.signer.publicKey,
-      classHash: BraavosAccountDerivation.classHash,
-      baseClassHash: BraavosAccountDerivation.baseClassHash,
-      version: "0x1",
+      classHash: ArgentXAccountDerivation.classHash,
+      version: "0x100000000000000000000000000000001",
     );
 
     print("deploy fee * 1.2 = ${fee.toBigInt()}");
@@ -40,13 +45,16 @@ void main() async {
       mnemonic: testMnemonic,
       provider: provider,
       chainId: chainId,
-      index: 1,
+      index: 0,
+      accountDerivation:
+          ArgentXAccountDerivation(provider: provider, chainId: chainId),
     );
 
     print("wtf privatekey = ${account.signer.privateKey.toHexString()}");
-    final nonce = await account.getNonce();
+
     final receiverAddress = Felt.fromHexString(
         "0x0261b745499c44af9e29138525025e988ad1d90d6d53cf0d2f91510073283bb5");
+    final nonce = await account.getNonce();
     print("wtf nonce $nonce");
 
     final functionCall = FunctionCall(
@@ -69,7 +77,7 @@ void main() async {
           Felt.fromInt(0),
         ]);
 
-    final fee = await account.getEstimateMaxFeeForBraavosInvokeTx(
+    final fee = await account.getEstimateMaxFeeForArgentInvokeTx(
       nonce: nonce,
       functionCalls: [functionCall],
     );

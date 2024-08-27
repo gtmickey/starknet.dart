@@ -101,7 +101,7 @@ void main() async {
 
   var trx = await erc20.transfer(
     walletAddress,
-    Uint256(low: Felt.fromInt(2), high: Felt.fromInt(0)),
+    Uint256(low: Felt.fromInt(2), high: Felt.fromInt(0)),defaultMaxFee,
   );
   print('Transfer Transaction: $trx');
   var accepted = await waitForAcceptance(
@@ -114,7 +114,7 @@ void main() async {
   final new_allowance = Felt(allowance.low.toBigInt() + BigInt.from(1));
   trx = await erc20.approve(
     walletAddress,
-    Uint256(low: new_allowance, high: Felt.fromInt(0)),
+    Uint256(low: new_allowance, high: Felt.fromInt(0)),defaultMaxFee,
   );
   print('Approve transaction: $trx');
   accepted = await waitForAcceptance(

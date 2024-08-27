@@ -25,7 +25,7 @@ class Udc extends Contract {
     final trx = await execute(
       'deployContract',
       params,
-      maxFee,
+      maxFee ?? defaultMaxFee,
     );
     final trxHash = trx.when(
       result: (result) => result.transaction_hash,

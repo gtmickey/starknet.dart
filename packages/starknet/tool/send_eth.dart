@@ -15,6 +15,7 @@ void main(List<String> args) async {
       low: Felt(BigInt.from(amount * 1e18)),
     ),
     erc20ContractAddress: ethAddress,
+    maxFee: defaultMaxFee,
   );
   print("Transaction: $txHash");
 

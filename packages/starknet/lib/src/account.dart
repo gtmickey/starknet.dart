@@ -168,6 +168,70 @@ class Account {
     return maxFee;
   }
 
+  /// Get Estimate max fee for Invoke Tx
+  Future<Felt> getEstimateMaxFeeForArgentInvokeTx({
+    BlockId blockId = BlockId.latest,
+    String version = "0x1",
+    required List<FunctionCall> functionCalls,
+    bool useLegacyCalldata = false,
+    required Felt nonce,
+    double feeMultiplier = 1.2,
+  }) async {
+    final signature = signer.signTransactions(
+      transactions: functionCalls,
+      contractAddress: accountAddress,
+      version: supportedTxVersion == AccountSupportedTxVersion.v1 ? 1 : 0,
+      chainId: chainId,
+      entryPointSelectorName: "__execute__",
+      nonce: nonce,
+      queryOnly: true,
+      useLegacyCalldata: useLegacyCalldata,
+      maxFee: Felt.fromInt(0),
+    );
+
+    print("wtf signature r = ${signature.first.toHexString()}");
+    print("wtf signature s = ${signature.last.toHexString()}");
+
+    BroadcastedTxn broadcastedTxn;
+
+    if (version == "0x1") {
+      final calldata = functionCallsToCalldata(
+        functionCalls: functionCalls,
+        useLegacyCalldata: useLegacyCalldata,
+      );
+      broadcastedTxn = BroadcastedInvokeTxnV1(
+          type: "INVOKE",
+          maxFee: defaultMaxFee,
+          version: "0x100000000000000000000000000000001",
+          // queryOnly
+          signature: signature,
+          nonce: nonce,
+          senderAddress: accountAddress,
+          calldata: calldata);
+
+      for (Felt call in calldata) {
+        print("wtf call data  = ${call.toHexString()}");
+      }
+    } else {
+      final calldata =
+          functionCallsToCalldataLegacy(functionCalls: functionCalls) + [nonce];
+      broadcastedTxn = BroadcastedInvokeTxnV0(
+          type: "INVOKE",
+          maxFee: Felt.fromInt(0),
+          version: version,
+          signature: signature,
+          nonce: nonce,
+          contractAddress: accountAddress,
+          entryPointSelector: getSelectorByName('__execute__'),
+          calldata: calldata);
+    }
+
+    final maxFee = await getMaxFeeFromBroadcastedTxn(
+        broadcastedTxn, blockId, feeMultiplier);
+
+    return maxFee;
+  }
+
   /// Get Estimate max fee for Declare Tx
   Future<Felt> getEstimateMaxFeeForDeclareTx({
     BlockId blockId = BlockId.latest,
@@ -238,6 +302,41 @@ class Account {
     return maxFee;
   }
 
+  Future<Felt> getEstimateMaxFeeForArgentDeployAccountTx({
+    BlockId blockId = BlockId.latest,
+    String version = "0x1",
+    required Felt nonce,
+    required List<Felt> constructorCalldata,
+    required Felt contractAddressSalt,
+    required Felt classHash,
+    double feeMultiplier = 1.2,
+  }) async {
+    final signature = signer.signArgentDeployAccountTransactionV1(
+      contractAddressSalt: contractAddressSalt,
+      classHash: classHash,
+      constructorCalldata: constructorCalldata,
+      chainId: chainId,
+      nonce: nonce,
+      maxFee: Felt.fromInt(0),
+    );
+
+    final broadcastedTxn = BroadcastedDeployAccountTxn(
+      type: "DEPLOY_ACCOUNT",
+      version: version,
+      contractAddressSalt: contractAddressSalt,
+      constructorCalldata: constructorCalldata,
+      maxFee: Felt.fromInt(0),
+      nonce: nonce,
+      signature: signature,
+      classHash: classHash,
+    );
+
+    final maxFee = await getMaxFeeFromBroadcastedTxn(
+        broadcastedTxn, blockId, feeMultiplier);
+
+    return maxFee;
+  }
+
   Future<Felt> getEstimateMaxFeeForBraavosDeployAccountTx({
     BlockId blockId = BlockId.latest,
     String version = "0x1",
@@ -258,6 +357,9 @@ class Account {
       maxFee: Felt.fromInt(0),
     );
 
+    for (Felt x in signature) {
+      print("signature = ${x.toHexString()}");
+    }
     final broadcastedTxn = BroadcastedDeployAccountTxn(
         type: "DEPLOY_ACCOUNT",
         version: version,
@@ -303,13 +405,10 @@ class Account {
   Future<InvokeTransactionResponse> execute({
     required List<FunctionCall> functionCalls,
     bool useLegacyCalldata = false,
-    Felt? maxFee,
+    required Felt maxFee,
     Felt? nonce,
   }) async {
     nonce = nonce ?? await getNonce();
-    maxFee = maxFee ??
-        await getEstimateMaxFeeForBraavosInvokeTx(
-            nonce: nonce, functionCalls: functionCalls);
 
     final signature = signer.signTransactions(
       transactions: functionCalls,
@@ -510,10 +609,10 @@ class Account {
     required Felt recipient,
     required Uint256 amount,
     required Felt erc20ContractAddress,
-    Felt? maxFee,
+    required Felt maxFee,
   }) async {
     final txHash = await ERC20(account: this, address: erc20ContractAddress)
-        .transfer(recipient, amount, maxFee: maxFee);
+        .transfer(recipient, amount, maxFee);
     return txHash;
   }
 
@@ -574,6 +673,47 @@ class Account {
       nonce: nonce,
       maxFee: maxFee,
     );
+    return provider.addDeployAccountTransaction(
+      DeployAccountTransactionRequest(
+        deployAccountTransaction: DeployAccountTransactionV1(
+          classHash: classHash,
+          signature: signature,
+          maxFee: maxFee,
+          nonce: nonce,
+          contractAddressSalt: contractAddressSalt,
+          constructorCalldata: constructorCalldata,
+        ),
+      ),
+    );
+  }
+
+  static Future<DeployAccountTransactionResponse> deployArgentAccount({
+    required Signer signer,
+    required Provider provider,
+    required List<Felt> constructorCalldata,
+    required Felt classHash,
+    Felt? contractAddressSalt,
+    Felt? maxFee,
+    Felt? nonce,
+  }) async {
+    final chainId = (await provider.chainId()).when(
+      result: (result) => Felt.fromHexString(result),
+      error: (error) => StarknetChainId.testNet,
+    );
+
+    maxFee = maxFee ?? defaultMaxFee;
+    nonce = nonce ?? defaultNonce;
+    contractAddressSalt = contractAddressSalt ?? signer.publicKey;
+
+    final signature = signer.signArgentDeployAccountTransactionV1(
+      contractAddressSalt: contractAddressSalt,
+      classHash: classHash,
+      constructorCalldata: constructorCalldata,
+      chainId: chainId,
+      nonce: nonce,
+      maxFee: maxFee,
+    );
+
     return provider.addDeployAccountTransaction(
       DeployAccountTransactionRequest(
         deployAccountTransaction: DeployAccountTransactionV1(
@@ -676,7 +816,7 @@ class Account {
   ///
   /// Default [accountDerivation] is [BraavosAccountDerivation]
   factory Account.fromMnemonic({
-    required List<String> mnemonic,
+    required String mnemonic,
     required Provider provider,
     required Felt chainId,
     int index = 0,
@@ -740,7 +880,7 @@ Felt? getDeployedContractAddress(GetTransactionReceipt txReceipt) {
 /// Account derivation interface
 abstract class AccountDerivation {
   /// Derive [Signer] from given [mnemonic] and [index]
-  Signer deriveSigner({required List<String> mnemonic, int index = 0});
+  Signer deriveSigner({required String mnemonic, int index = 0});
 
   /// Returns expected constructor call data
   List<Felt> constructorCalldata({required Felt publicKey});
@@ -763,9 +903,8 @@ class OpenzeppelinAccountDerivation implements AccountDerivation {
   }
 
   @override
-  Signer deriveSigner({required List<String> mnemonic, int index = 0}) {
-    final privateKey =
-        derivePrivateKey(mnemonic: mnemonic.join(' '), index: index);
+  Signer deriveSigner({required String mnemonic, int index = 0}) {
+    final privateKey = derivePrivateKey(mnemonic: mnemonic, index: index);
     return Signer(privateKey: privateKey);
   }
 
@@ -840,6 +979,16 @@ class BraavosAccountDerivation extends AccountDerivation {
     required this.chainId,
   });
 
+  static Map<String, Uint8List> getExtendedPrivateKey(String mnemonic) {
+    final seed = bip39.mnemonicToSeed(mnemonic);
+    final nodeFromSeed = bip32.BIP32.fromSeed(seed);
+
+    return {
+      "chainKey": nodeFromSeed.privateKey!,
+      "chainCode": nodeFromSeed.chainCode,
+    };
+  }
+
   static AccountInfo getAccountInfoFromMnemonic(String mnemonic, int index) {
     final privateKey = derivePrivateKey(mnemonic: mnemonic, index: index);
     final signer = Signer(privateKey: privateKey);
@@ -878,9 +1027,8 @@ class BraavosAccountDerivation extends AccountDerivation {
   }
 
   @override
-  Signer deriveSigner({required List<String> mnemonic, int index = 0}) {
-    final privateKey =
-        derivePrivateKey(mnemonic: mnemonic.join(' '), index: index);
+  Signer deriveSigner({required String mnemonic, int index = 0}) {
+    final privateKey = derivePrivateKey(mnemonic: mnemonic, index: index);
     return Signer(privateKey: privateKey);
   }
 
@@ -948,22 +1096,89 @@ class BraavosAccountDerivation extends AccountDerivation {
 }
 
 class ArgentXAccountDerivation extends AccountDerivation {
-  final String masterPrefix = "m/44'/60'/0'/0/0";
-  final String pathPrefix = "m/44'/9004'/0'/0";
+  final Provider provider;
+  final Felt chainId;
 
-  // FIXME: hardcoded value for testnet 2023-02-24
-  final classHash = Felt.fromHexString(
+  ArgentXAccountDerivation({
+    required this.provider,
+    required this.chainId,
+  });
+
+  static final String masterPrefix = "m/44'/60'/0'/0/0";
+  static final String pathPrefix = "m/44'/9004'/0'/0";
+
+  static final classHash = Felt.fromHexString(
     "0x036078334509b514626504edc9fb252328d1a240e4e948bef8d0c08dff45927f",
   );
 
-  /// FIXME: implementation address should be retrieved at runtime
-  final implementationAddress = Felt.fromHexString(
-    "0x33434ad846cdd5f23eb73ff09fe6fddd568284a0fb7d1be20ee482f044dabe2",
-  );
+  static Map<String, Uint8List> getExtendedPrivateKey(String mnemonic) {
+    final seed = bip39.mnemonicToSeed(mnemonic);
+    final hdNodeSingleSeed = bip32.BIP32.fromSeed(seed);
+    final hdNodeDoubleSeed = bip32.BIP32
+        .fromSeed(hdNodeSingleSeed.derivePath(masterPrefix).privateKey!);
+
+    return {
+      "chainKey": hdNodeDoubleSeed.privateKey!,
+      "chainCode": hdNodeDoubleSeed.chainCode,
+    };
+  }
+
+  Future<Felt> deploy({required Account account}) async {
+    final tx = await Account.deployArgentAccount(
+      signer: account.signer,
+      provider: account.provider,
+      constructorCalldata: constructorCalldata(
+        publicKey: account.signer.publicKey,
+      ),
+      classHash: classHash,
+      contractAddressSalt: account.signer.publicKey,
+      nonce: Felt.fromInt(0),
+    );
+    final deployTxHash = tx.when(
+      result: (result) {
+        print(
+          "Account is deployed at ${result.contractAddress.toHexString()} (tx: ${result.transactionHash.toHexString()})",
+        );
+        return result.transactionHash;
+      },
+      error: (error) {
+        throw Exception(
+          "Account deploy failed: ${error.code} ${error.message}",
+        );
+      },
+    );
+    return deployTxHash;
+  }
+
+  static AccountInfo getAccountInfoFromMnemonic(String mnemonic, int index) {
+    final seed = bip39.mnemonicToSeed(mnemonic);
+    final hdNodeSingleSeed = bip32.BIP32.fromSeed(seed);
+    final hdNodeDoubleSeed = bip32.BIP32
+        .fromSeed(hdNodeSingleSeed.derivePath(masterPrefix).privateKey!);
+    final child = hdNodeDoubleSeed.derivePath('$pathPrefix/$index');
+    Uint8List key = child.privateKey!;
+    key = grindKey(key);
+    final privateKey = Felt(bytesToUnsignedInt(key));
+    final signer = Signer(privateKey: privateKey);
+    final accountAddress = Contract.computeAddress(
+      classHash: classHash,
+      calldata: [
+        Felt.fromInt(0),
+        signer.publicKey,
+        Felt.fromInt(1),
+      ],
+      salt: signer.publicKey,
+    );
+    return AccountInfo(
+      privateKey,
+      signer.publicKey,
+      accountAddress,
+    );
+  }
 
   @override
-  Signer deriveSigner({required List<String> mnemonic, int index = 0}) {
-    final seed = bip39.mnemonicToSeed(mnemonic.join(" "));
+  Signer deriveSigner({required String mnemonic, int index = 0}) {
+    final seed = bip39.mnemonicToSeed(mnemonic);
     final hdNodeSingleSeed = bip32.BIP32.fromSeed(seed);
     final hdNodeDoubleSeed = bip32.BIP32
         .fromSeed(hdNodeSingleSeed.derivePath(masterPrefix).privateKey!);
@@ -976,13 +1191,52 @@ class ArgentXAccountDerivation extends AccountDerivation {
 
   @override
   List<Felt> constructorCalldata({required Felt publicKey}) {
+    /// 项目方反应 0.4.0账户的calldata有变动， 对应到dart则是以下值
+    ///const ownerSigner = new CairoCustomEnum({
+    ///     Starknet: { signer: ownerPubKey },
+    ///     Secp256k1: undefined,
+    ///     Secp256r1: undefined,
+    ///     Eip191: undefined,
+    ///     Webauthn: undefined,
+    /// });
+    ///
+    /// const guardian = new CairoOption(CairoOptionVariant.None);
+    ///
+    /// const calculatedAddress = hash.calculateContractAddressFromHash(
+    ///   ownerPubKey, // salt
+    ///   classHash,
+    ///   CallData.compile({ owner: ownerSigner, guardian }), // constructor calldata
+    ///   0 // deployer address
+    /// );
     return [
-      // implementationAddress,
-      // getSelectorByName("initialize"),
-      // Felt.fromInt(2),
-      publicKey,
       Felt.fromInt(0),
+      publicKey,
+      Felt.fromInt(1),
     ];
+  }
+
+  static AccountInfo getAccountInfoFromExtendedPrivateKey(
+      Uint8List chainKey, Uint8List chainCode, int index) {
+    final node = bip32.BIP32.fromPrivateKey(chainKey, chainCode);
+    final child = node.derivePath("$pathPrefix/$index");
+    Uint8List key = child.privateKey!;
+    key = grindKey(key);
+    final privateKey = Felt(bytesToUnsignedInt(key));
+    final signer = Signer(privateKey: privateKey);
+    final accountAddress = Contract.computeAddress(
+      classHash: classHash,
+      calldata: [
+        Felt.fromInt(0),
+        signer.publicKey,
+        Felt.fromInt(1),
+      ],
+      salt: signer.publicKey,
+    );
+    return AccountInfo(
+      privateKey,
+      signer.publicKey,
+      accountAddress,
+    );
   }
 
   @override
@@ -995,5 +1249,48 @@ class ArgentXAccountDerivation extends AccountDerivation {
       salt: salt,
     );
     return accountAddress;
+  }
+
+  static Future<DeployAccountTransactionResponse> deployAccount({
+    required Signer signer,
+    required Provider provider,
+    required List<Felt> constructorCalldata,
+    required Felt classHash,
+    required Felt baseClassHash,
+    Felt? contractAddressSalt,
+    Felt? maxFee,
+    Felt? nonce,
+  }) async {
+    final chainId = (await provider.chainId()).when(
+      result: (result) => Felt.fromHexString(result),
+      error: (error) => StarknetChainId.testNet,
+    );
+
+    maxFee = maxFee ?? defaultMaxFee;
+    nonce = nonce ?? defaultNonce;
+    contractAddressSalt = contractAddressSalt ?? signer.publicKey;
+
+    final signature = signer.signBraavosDeployAccountTransactionV1(
+      contractAddressSalt: contractAddressSalt,
+      classHash: classHash,
+      baseClassHash: baseClassHash,
+      constructorCalldata: constructorCalldata,
+      chainId: chainId,
+      nonce: nonce,
+      maxFee: maxFee,
+    );
+
+    return provider.addDeployAccountTransaction(
+      DeployAccountTransactionRequest(
+        deployAccountTransaction: DeployAccountTransactionV1(
+          classHash: baseClassHash,
+          signature: signature,
+          maxFee: maxFee,
+          nonce: nonce,
+          contractAddressSalt: contractAddressSalt,
+          constructorCalldata: constructorCalldata,
+        ),
+      ),
+    );
   }
 }
