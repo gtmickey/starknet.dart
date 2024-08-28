@@ -36,14 +36,6 @@ BigInt calculateTransactionHashCommon({
 }) {
   final calldataHash = computeHashOnElements(calldata);
 
-
-  for (BigInt c in calldata){
-    print("wtf execute_calldata = ${Felt(c).toHexString()}");
-  }
-
-
-  print("wtf call dataHash = ${Felt(calldataHash).toHexString()}");
-
   final List<BigInt> dataToHash = [
     txHashPrefix,
     version,
