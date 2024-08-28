@@ -16,7 +16,7 @@ void main() async {
 
   final accountInfo0 = ArgentXAccountDerivation.getAccountInfoFromMnemonic(
     testMnemonic,
-    3,
+    0,
   );
   // final accountInfo1 = ArgentXAccountDerivation.getAccountInfoFromMnemonic(
   //   testMnemonic,
@@ -27,15 +27,15 @@ void main() async {
   //   2,
   // );
   // 从扩展私钥生成的账户
-  // final accountInfo11 =
-  // ArgentXAccountDerivation.getAccountInfoFromExtendedPrivateKey(
-  //   chain["chainKey"]!,
-  //   chain["chainCode"]!,
-  //   1,
-  // );
+  final accountInfo11 =
+  ArgentXAccountDerivation.getAccountInfoFromExtendedPrivateKey(
+    chain["key"]!,
+    chain["chainCode"]!,
+    3,
+  );
 
   printAccountInfo(accountInfo0);
   // printAccountInfo(accountInfo1);
   // printAccountInfo(accountInfo2);
-  // printAccountInfo(accountInfo11);
+  printAccountInfo(accountInfo11);
 }

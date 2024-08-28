@@ -1018,7 +1018,7 @@ class BraavosAccountDerivation extends AccountDerivation {
     final nodeFromSeed = bip32.BIP32.fromSeed(seed);
 
     return {
-      "chainKey": nodeFromSeed.privateKey!,
+      "key": nodeFromSeed.privateKey!,
       "chainCode": nodeFromSeed.chainCode,
     };
   }
@@ -1154,7 +1154,7 @@ class ArgentXAccountDerivation extends AccountDerivation {
         .fromSeed(hdNodeSingleSeed.derivePath(masterPrefix).privateKey!);
 
     return {
-      "chainKey": hdNodeDoubleSeed.privateKey!,
+      "key": hdNodeDoubleSeed.privateKey!,
       "chainCode": hdNodeDoubleSeed.chainCode,
     };
   }

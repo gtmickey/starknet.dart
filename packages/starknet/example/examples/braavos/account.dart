@@ -31,7 +31,7 @@ void main() async {
   // 从扩展私钥生成的账户
   final accountInfo11 =
       BraavosAccountDerivation.getAccountInfoFromExtendedPrivateKey(
-    chain["chainKey"]!,
+    chain["key"]!,
     chain["chainCode"]!,
     1,
   );
