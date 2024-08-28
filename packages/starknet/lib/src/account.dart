@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:bip32/bip32.dart' as bip32;
@@ -124,10 +125,6 @@ class Account {
       useLegacyCalldata: useLegacyCalldata,
       maxFee: Felt.fromInt(0),
     );
-
-    print("wtf signature r = ${signature.first.toHexString()}");
-    print("wtf signature s = ${signature.last.toHexString()}");
-
     BroadcastedTxn broadcastedTxn;
 
     if (version == "0x1") {
@@ -144,10 +141,6 @@ class Account {
           nonce: nonce,
           senderAddress: accountAddress,
           calldata: calldata);
-
-      for (Felt call in calldata) {
-        print("wtf call data  = ${call.toHexString()}");
-      }
     } else {
       final calldata =
           functionCallsToCalldataLegacy(functionCalls: functionCalls) + [nonce];
@@ -189,9 +182,6 @@ class Account {
       maxFee: Felt.fromInt(0),
     );
 
-    print("wtf signature r = ${signature.first.toHexString()}");
-    print("wtf signature s = ${signature.last.toHexString()}");
-
     BroadcastedTxn broadcastedTxn;
 
     if (version == "0x1") {
@@ -208,10 +198,6 @@ class Account {
           nonce: nonce,
           senderAddress: accountAddress,
           calldata: calldata);
-
-      for (Felt call in calldata) {
-        print("wtf call data  = ${call.toHexString()}");
-      }
     } else {
       final calldata =
           functionCallsToCalldataLegacy(functionCalls: functionCalls) + [nonce];
@@ -611,21 +597,29 @@ class Account {
     required Felt erc20ContractAddress,
     required Felt maxFee,
   }) async {
-    final txHash = await ERC20(account: this, address: erc20ContractAddress)
-        .transfer(recipient, amount, maxFee);
+    final txHash =
+        await ERC20(account: this, address: erc20ContractAddress).transfer(
+      recipient,
+      amount,
+      maxFee,
+    );
     return txHash;
   }
 
   /// same as send but only sign
-  Future<InvokeTransactionRequest> transferSign({
+  Future<String> transferSign({
     required Felt recipient,
     required Uint256 amount,
     required Felt erc20ContractAddress,
-    Felt? maxFee,
+    required Felt maxFee,
   }) async {
-    final signed = await ERC20(account: this, address: erc20ContractAddress)
-        .transferSign(recipient, amount, maxFee: maxFee);
-    return signed;
+    final signed =
+        await ERC20(account: this, address: erc20ContractAddress).transferSign(
+      recipient,
+      amount,
+      maxFee,
+    );
+    return json.encode(signed.toJson());
   }
 
   /// Returns `true` if account is a valid one
@@ -728,6 +722,46 @@ class Account {
     );
   }
 
+  static Future<String> signDeployArgentAccount({
+    required Signer signer,
+    required Provider provider,
+    required List<Felt> constructorCalldata,
+    required Felt classHash,
+    Felt? contractAddressSalt,
+    Felt? maxFee,
+    Felt? nonce,
+  }) async {
+    final chainId = (await provider.chainId()).when(
+      result: (result) => Felt.fromHexString(result),
+      error: (error) => StarknetChainId.testNet,
+    );
+
+    maxFee = maxFee ?? defaultMaxFee;
+    nonce = nonce ?? defaultNonce;
+    contractAddressSalt = contractAddressSalt ?? signer.publicKey;
+
+    final signature = signer.signArgentDeployAccountTransactionV1(
+      contractAddressSalt: contractAddressSalt,
+      classHash: classHash,
+      constructorCalldata: constructorCalldata,
+      chainId: chainId,
+      nonce: nonce,
+      maxFee: maxFee,
+    );
+
+    final request = DeployAccountTransactionRequest(
+        deployAccountTransaction: DeployAccountTransactionV1(
+      classHash: classHash,
+      signature: signature,
+      maxFee: maxFee,
+      nonce: nonce,
+      contractAddressSalt: contractAddressSalt,
+      constructorCalldata: constructorCalldata,
+    ));
+
+    return jsonEncode(request.toJson());
+  }
+
   static Future<DeployAccountTransactionResponse> deployBraavosAccount({
     required Signer signer,
     required Provider provider,
@@ -771,7 +805,7 @@ class Account {
     );
   }
 
-  static Future<DeployAccountTransactionRequest> signDeployBraavosAccount({
+  static Future<String> signDeployBraavosAccount({
     required Signer signer,
     required Provider provider,
     required List<Felt> constructorCalldata,
@@ -799,8 +833,7 @@ class Account {
       nonce: nonce,
       maxFee: maxFee,
     );
-
-    return DeployAccountTransactionRequest(
+    final request = DeployAccountTransactionRequest(
       deployAccountTransaction: DeployAccountTransactionV1(
         classHash: baseClassHash,
         signature: signature,
@@ -810,6 +843,7 @@ class Account {
         constructorCalldata: constructorCalldata,
       ),
     );
+    return json.encode(request.toJson());
   }
 
   /// Retrieves an account from given [mnemonic], [provider] and [chainId]
@@ -1037,7 +1071,7 @@ class BraavosAccountDerivation extends AccountDerivation {
     return [publicKey];
   }
 
-  Future<Felt> deploy({required Account account}) async {
+  Future<Felt> deploy({required Account account, required Felt maxFee}) async {
     final tx = await Account.deployBraavosAccount(
       signer: account.signer,
       provider: account.provider,
@@ -1048,6 +1082,7 @@ class BraavosAccountDerivation extends AccountDerivation {
       baseClassHash: baseClassHash,
       contractAddressSalt: account.signer.publicKey,
       nonce: Felt.fromInt(0),
+      maxFee: maxFee,
     );
     final deployTxHash = tx.when(
       result: (result) {
@@ -1065,8 +1100,8 @@ class BraavosAccountDerivation extends AccountDerivation {
     return deployTxHash;
   }
 
-  Future<DeployAccountTransactionRequest> deploySigned(
-      {required Account account}) async {
+  Future<String> deploySigned(
+      {required Account account, required Felt maxFee}) async {
     final signed = await Account.signDeployBraavosAccount(
       signer: account.signer,
       provider: account.provider,
@@ -1077,6 +1112,7 @@ class BraavosAccountDerivation extends AccountDerivation {
       baseClassHash: baseClassHash,
       contractAddressSalt: account.signer.publicKey,
       nonce: Felt.fromInt(0),
+      maxFee: maxFee,
     );
 
     return signed;
@@ -1123,7 +1159,10 @@ class ArgentXAccountDerivation extends AccountDerivation {
     };
   }
 
-  Future<Felt> deploy({required Account account}) async {
+  Future<Felt> deploy({
+    required Account account,
+    required Felt maxFee,
+  }) async {
     final tx = await Account.deployArgentAccount(
       signer: account.signer,
       provider: account.provider,
@@ -1133,12 +1172,10 @@ class ArgentXAccountDerivation extends AccountDerivation {
       classHash: classHash,
       contractAddressSalt: account.signer.publicKey,
       nonce: Felt.fromInt(0),
+      maxFee: maxFee,
     );
     final deployTxHash = tx.when(
       result: (result) {
-        print(
-          "Account is deployed at ${result.contractAddress.toHexString()} (tx: ${result.transactionHash.toHexString()})",
-        );
         return result.transactionHash;
       },
       error: (error) {
@@ -1148,6 +1185,25 @@ class ArgentXAccountDerivation extends AccountDerivation {
       },
     );
     return deployTxHash;
+  }
+
+  Future<String> deploySigned({
+    required Account account,
+    required Felt maxFee,
+  }) async {
+    final request = await Account.signDeployArgentAccount(
+      signer: account.signer,
+      provider: account.provider,
+      constructorCalldata: constructorCalldata(
+        publicKey: account.signer.publicKey,
+      ),
+      classHash: classHash,
+      contractAddressSalt: account.signer.publicKey,
+      nonce: Felt.fromInt(0),
+      maxFee: maxFee,
+    );
+
+    return request;
   }
 
   static AccountInfo getAccountInfoFromMnemonic(String mnemonic, int index) {

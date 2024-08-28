@@ -46,10 +46,11 @@ void main() async {
     nonce: nonce,
     functionCalls: [functionCall],
   );
+  print("wtf fee $fee");
   final tx = await account.send(
     recipient: receiverAddress,
     amount: Uint256(
-      low: Felt.fromInt(12344),
+      low: Felt.fromInt(222344),
       high: Felt.fromInt(0),
     ),
     maxFee: fee,
@@ -61,13 +62,14 @@ void main() async {
   // final signed = await account.transferSign(
   //   recipient: receiverAddress,
   //   amount: Uint256(
-  //     low: Felt.fromInt(001000000000000000),
+  //     low: Felt.fromInt(1000000000000000),
   //     high: Felt.fromInt(0),
   //   ),
   //   // maxFee: Felt.fromHexString("0x28fd0548848"),
   //   erc20ContractAddress: ethAddress,
+  //   maxFee: fee,
   // );
   //
   //
-  // print("signed = ${signed.toJson()}");
+  // print("signed = $signed");
 }

@@ -38,7 +38,6 @@ class Signer {
       additionalData: [nonce.toBigInt()],
     );
 
-    print("wtf messageHash =${Felt(transactionHash).toHexString()}");
     final signature = starknet_sign(
       privateKey: privateKey.toBigInt(),
       messageHash: transactionHash,
@@ -102,7 +101,6 @@ class Signer {
           maxFee: maxFee,
         );
       case 1:
-        print("Signing invoke transaction v1");
         return signInvokeTransactionsV1(
             transactions: transactions,
             senderAddress: contractAddress,

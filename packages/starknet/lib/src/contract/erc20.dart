@@ -75,8 +75,11 @@ class ERC20 extends Contract {
     ));
   }
 
-  Future<InvokeTransactionRequest> transferSign(Felt recipient, Uint256 value,
-      {Felt? maxFee}) async {
+  Future<InvokeTransactionRequest> transferSign(
+    Felt recipient,
+    Uint256 value,
+    Felt maxFee,
+  ) async {
     final InvokeTransactionRequest signed = await executeSignOnly(
       "transfer",
       [

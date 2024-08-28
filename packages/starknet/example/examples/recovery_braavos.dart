@@ -56,7 +56,7 @@ void main() async {
     print("aa = ${aa.toHexString()}");
     // return;
 
-    final deployTxHash = await braavosAccount.deploy(account: account);
+    final deployTxHash = await braavosAccount.deploy(account: account, maxFee: defaultMaxFee);
     print("deployTxHash: ${deployTxHash.toHexString()}");
     final isAccepted = await waitForAcceptance(
       transactionHash: deployTxHash.toHexString(),
