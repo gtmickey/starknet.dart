@@ -12,7 +12,7 @@ part of 'poseidon_params.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 PoseidonParams _$PoseidonParamsFromJson(Map<String, dynamic> json) {
   return _PoseidonParams.fromJson(json);
@@ -28,8 +28,12 @@ mixin _$PoseidonParams {
   List<List<BigInt>> get mds => throw _privateConstructorUsedError;
   List<List<BigInt>> get roundKeys => throw _privateConstructorUsedError;
 
+  /// Serializes this PoseidonParams to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PoseidonParams
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PoseidonParamsCopyWith<PoseidonParams> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -60,6 +64,8 @@ class _$PoseidonParamsCopyWithImpl<$Res, $Val extends PoseidonParams>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PoseidonParams
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -105,11 +111,11 @@ class _$PoseidonParamsCopyWithImpl<$Res, $Val extends PoseidonParams>
 }
 
 /// @nodoc
-abstract class _$$_PoseidonParamsCopyWith<$Res>
+abstract class _$$PoseidonParamsImplCopyWith<$Res>
     implements $PoseidonParamsCopyWith<$Res> {
-  factory _$$_PoseidonParamsCopyWith(
-          _$_PoseidonParams value, $Res Function(_$_PoseidonParams) then) =
-      __$$_PoseidonParamsCopyWithImpl<$Res>;
+  factory _$$PoseidonParamsImplCopyWith(_$PoseidonParamsImpl value,
+          $Res Function(_$PoseidonParamsImpl) then) =
+      __$$PoseidonParamsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -123,13 +129,15 @@ abstract class _$$_PoseidonParamsCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PoseidonParamsCopyWithImpl<$Res>
-    extends _$PoseidonParamsCopyWithImpl<$Res, _$_PoseidonParams>
-    implements _$$_PoseidonParamsCopyWith<$Res> {
-  __$$_PoseidonParamsCopyWithImpl(
-      _$_PoseidonParams _value, $Res Function(_$_PoseidonParams) _then)
+class __$$PoseidonParamsImplCopyWithImpl<$Res>
+    extends _$PoseidonParamsCopyWithImpl<$Res, _$PoseidonParamsImpl>
+    implements _$$PoseidonParamsImplCopyWith<$Res> {
+  __$$PoseidonParamsImplCopyWithImpl(
+      _$PoseidonParamsImpl _value, $Res Function(_$PoseidonParamsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PoseidonParams
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -141,7 +149,7 @@ class __$$_PoseidonParamsCopyWithImpl<$Res>
     Object? mds = null,
     Object? roundKeys = null,
   }) {
-    return _then(_$_PoseidonParams(
+    return _then(_$PoseidonParamsImpl(
       fieldPrime: null == fieldPrime
           ? _value.fieldPrime
           : fieldPrime // ignore: cast_nullable_to_non_nullable
@@ -177,8 +185,8 @@ class __$$_PoseidonParamsCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.screamingSnake)
-class _$_PoseidonParams implements _PoseidonParams {
-  const _$_PoseidonParams(
+class _$PoseidonParamsImpl implements _PoseidonParams {
+  const _$PoseidonParamsImpl(
       {required this.fieldPrime,
       required this.rate,
       required this.capacity,
@@ -189,8 +197,8 @@ class _$_PoseidonParams implements _PoseidonParams {
       : _mds = mds,
         _roundKeys = roundKeys;
 
-  factory _$_PoseidonParams.fromJson(Map<String, dynamic> json) =>
-      _$$_PoseidonParamsFromJson(json);
+  factory _$PoseidonParamsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PoseidonParamsImplFromJson(json);
 
   @override
   final BigInt fieldPrime;
@@ -224,10 +232,10 @@ class _$_PoseidonParams implements _PoseidonParams {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PoseidonParams &&
+            other is _$PoseidonParamsImpl &&
             (identical(other.fieldPrime, fieldPrime) ||
                 other.fieldPrime == fieldPrime) &&
             (identical(other.rate, rate) || other.rate == rate) &&
@@ -242,7 +250,7 @@ class _$_PoseidonParams implements _PoseidonParams {
                 .equals(other._roundKeys, _roundKeys));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -254,15 +262,18 @@ class _$_PoseidonParams implements _PoseidonParams {
       const DeepCollectionEquality().hash(_mds),
       const DeepCollectionEquality().hash(_roundKeys));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PoseidonParams
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PoseidonParamsCopyWith<_$_PoseidonParams> get copyWith =>
-      __$$_PoseidonParamsCopyWithImpl<_$_PoseidonParams>(this, _$identity);
+  _$$PoseidonParamsImplCopyWith<_$PoseidonParamsImpl> get copyWith =>
+      __$$PoseidonParamsImplCopyWithImpl<_$PoseidonParamsImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PoseidonParamsToJson(
+    return _$$PoseidonParamsImplToJson(
       this,
     );
   }
@@ -276,10 +287,10 @@ abstract class _PoseidonParams implements PoseidonParams {
       required final BigInt fullRounds,
       required final BigInt partialRounds,
       required final List<List<BigInt>> mds,
-      required final List<List<BigInt>> roundKeys}) = _$_PoseidonParams;
+      required final List<List<BigInt>> roundKeys}) = _$PoseidonParamsImpl;
 
   factory _PoseidonParams.fromJson(Map<String, dynamic> json) =
-      _$_PoseidonParams.fromJson;
+      _$PoseidonParamsImpl.fromJson;
 
   @override
   BigInt get fieldPrime;
@@ -295,8 +306,11 @@ abstract class _PoseidonParams implements PoseidonParams {
   List<List<BigInt>> get mds;
   @override
   List<List<BigInt>> get roundKeys;
+
+  /// Create a copy of PoseidonParams
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$_PoseidonParamsCopyWith<_$_PoseidonParams> get copyWith =>
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$PoseidonParamsImplCopyWith<_$PoseidonParamsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

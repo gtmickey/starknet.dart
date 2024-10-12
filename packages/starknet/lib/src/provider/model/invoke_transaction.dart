@@ -62,6 +62,36 @@ class InvokeTransactionV1
 }
 
 @freezed
+class InvokeTransactionV3
+    with _$InvokeTransactionV3
+    implements InvokeTransaction {
+  const factory InvokeTransactionV3({
+    // For future use.
+    // Currently this value is always empty.
+    required List<Felt> accountDeploymentData,
+    required List<Felt> calldata,
+    // For future use. Currently this value is always 0.
+    required String feeDataAvailabilityMode,
+    required Felt nonce,
+    // For future use. Currently this value is always 0.
+    required String nonceDataAvailabilityMode,
+    // For future use. Currently this value is always empty.
+    required List<Felt> paymasterData,
+    required Map<String, dynamic> resourceBounds,
+    required Felt senderAddress,
+    required List<Felt> signature,
+
+    // For future use. Currently this value is always 0.
+    required Felt tip,
+    @Default('0x03') String version,
+    @Default('INVOKE') String type,
+  }) = _InvokeTransactionV3;
+
+  factory InvokeTransactionV3.fromJson(Map<String, Object?> json) =>
+      _$InvokeTransactionV3FromJson(json);
+}
+
+@freezed
 class InvokeTransactionResponse with _$InvokeTransactionResponse {
   const factory InvokeTransactionResponse.result({
     required InvokeTransactionResponseResult result,

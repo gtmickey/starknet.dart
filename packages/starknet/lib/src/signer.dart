@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:starknet/src/crypto/poseidon.dart';
 import 'package:starknet/starknet.dart';
 
@@ -339,10 +341,143 @@ class Signer {
       messageHash: transactionHash,
     );
 
+    return [Felt(signature.r), Felt(signature.s)];
+  }
+
+  List<Felt> signArgentDeployAccountTransactionV3({
+    required Felt address,
+    required Felt contractAddressSalt,
+    required Felt classHash,
+    required List<Felt> constructorCalldata,
+    required Felt chainId,
+    required Felt version,
+    required Felt nonce,
+    int gas = 0,
+    int gasPrice = 0,
+  }) {
+    ///dart impl, starknet-accounts/src/factory/mod.rs, v3 [transaction_hash]  line ~980 ,
+    final hasher = newPoseidonHasher();
+
+    hasher.update(TransactionHashPrefix.deployAccount.toBigInt());
+    hasher.update(version.toBigInt());
+    hasher.update(address.toBigInt());
+
+    final feeHasher = newPoseidonHasher();
+    feeHasher.update(BigInt.zero);
+
+    Uint8List resourceBufferL1 = Uint8List(32);
+    resourceBufferL1.setAll(0, [
+      0,
+      0,
+      'L'.codeUnitAt(0),
+      '1'.codeUnitAt(0),
+      '_'.codeUnitAt(0),
+      'G'.codeUnitAt(0),
+      'A'.codeUnitAt(0),
+      'S'.codeUnitAt(0),
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+    ]);
+    // 转换 gas 为字节并填充
+    ByteData gasData = ByteData(8);
+    gasData.setInt64(0, gas);
+    Uint8List gasBytes = gasData.buffer.asUint8List();
+    resourceBufferL1.setRange(8, 16, gasBytes);
+
+    // 转换 gasPrice 为字节并填充
+    ByteData gasPriceData = ByteData(16);
+    gasPriceData.setInt64(0, gasPrice);
+    Uint8List gasPriceBytes = gasPriceData.buffer.asUint8List();
+    resourceBufferL1.setRange(16, 32, gasPriceBytes);
+    feeHasher.update(Felt.fromBytes(resourceBufferL1).toBigInt());
+
+    Uint8List resourceBufferL2 = Uint8List(32);
+    resourceBufferL2.setAll(0, [
+      0,
+      0,
+      'L'.codeUnitAt(0),
+      '2'.codeUnitAt(0),
+      '_'.codeUnitAt(0),
+      'G'.codeUnitAt(0),
+      'A'.codeUnitAt(0),
+      'S'.codeUnitAt(0),
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+    ]);
+
+    feeHasher.update(Felt.fromBytes(resourceBufferL2).toBigInt());
+    final feeHash = feeHasher.finalize();
+    hasher.update(feeHash);
+
+    // Hard-coded empty `paymaster_data`
+    hasher.update(newPoseidonHasher().finalize());
+
+    hasher.update(chainId.toBigInt());
+    hasher.update(nonce.toBigInt());
 
 
+    // Hard-coded L1 DA mode for nonce and fee
+    hasher.update(BigInt.zero);
+
+    final callDataHasher = newPoseidonHasher();
+    for (Felt c in constructorCalldata) {
+      callDataHasher.update(c.toBigInt());
+    }
+    final calldatahash = callDataHasher.finalize();
+
+    hasher.update(calldatahash);
+
+    hasher.update(classHash.toBigInt());
+    hasher.update(contractAddressSalt.toBigInt());
+    final signature = starknet_sign(
+      privateKey: privateKey.toBigInt(),
+      messageHash: hasher.finalize(),
+    );
 
     return [Felt(signature.r), Felt(signature.s)];
-
   }
 }

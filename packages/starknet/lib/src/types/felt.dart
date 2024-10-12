@@ -44,9 +44,14 @@ class Felt {
     return Felt.fromHexString(json);
   }
 
+  // String toJson() {
+  //   return '0x${_bigInt.toRadixString(16).padLeft(64, "0")}';
+  // }
+
   String toJson() {
-    return '0x${_bigInt.toRadixString(16).padLeft(64, "0")}';
+    return '0x${_bigInt.toRadixString(16)}';
   }
+
 
   String toHexString() {
     return bigIntToHexString(_bigInt);

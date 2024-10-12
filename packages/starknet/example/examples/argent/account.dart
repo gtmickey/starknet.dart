@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:starknet/starknet.dart';
 
 import '../config.dart';
@@ -26,6 +28,10 @@ void main() async {
   //   testMnemonic,
   //   2,
   // );
+  final aa = ArgentXAccountDerivation.getAccountInfoFromPrivateKey(bigIntToBytes(accountInfo0.privateKey.toBigInt()));
+
+  print("aa");
+  printAccountInfo(aa);
   // 从扩展私钥生成的账户
   final accountInfo11 =
   ArgentXAccountDerivation.getAccountInfoFromExtendedPrivateKey(
@@ -34,8 +40,15 @@ void main() async {
     3,
   );
 
+  final accountInfo15 =
+  ArgentXAccountDerivation.getAccountInfoFromExtendedPrivateKey(
+    chain["key"]!,
+    chain["chainCode"]!,
+    5,
+  );
+
   printAccountInfo(accountInfo0);
   // printAccountInfo(accountInfo1);
   // printAccountInfo(accountInfo2);
-  printAccountInfo(accountInfo11);
+  printAccountInfo(accountInfo15);
 }

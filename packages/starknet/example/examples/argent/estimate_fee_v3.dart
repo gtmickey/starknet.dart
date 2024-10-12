@@ -1,3 +1,4 @@
+import 'package:starknet/src/crypto/poseidon.dart';
 import 'package:starknet/starknet.dart';
 
 import '../config.dart';
@@ -11,7 +12,7 @@ void main() async {
         mnemonic: testMnemonic,
         provider: provider,
         chainId: chainId,
-        index: 4,
+        index: 5,
         accountDerivation:
             ArgentXAccountDerivation(provider: provider, chainId: chainId));
 
@@ -23,7 +24,8 @@ void main() async {
     }
 
     print("wtf account address = ${account.accountAddress.toHexString()}");
-    final fee = await account.getEstimateMaxFeeForArgentDeployAccountTx(
+    final fee = await account.getEstimateMaxFeeForArgentDeployAccountV3Tx(
+      address: account.accountAddress,
       nonce: nonce,
       constructorCalldata: [
         Felt.fromInt(0),
@@ -32,7 +34,6 @@ void main() async {
       ],
       contractAddressSalt: account.signer.publicKey,
       classHash: ArgentXAccountDerivation.classHash,
-      version: "0x100000000000000000000000000000001",
     );
 
     print("deploy fee * 1.2 = ${fee.toBigInt()}");
@@ -47,7 +48,7 @@ void main() async {
       chainId: chainId,
       index: 0,
       accountDerivation:
-          ArgentXAccountDerivation(provider: provider, chainId: chainId),
+      ArgentXAccountDerivation(provider: provider, chainId: chainId),
     );
 
     print("wtf privatekey = ${account.signer.privateKey.toHexString()}");
@@ -80,11 +81,16 @@ void main() async {
     final fee = await account.getEstimateMaxFeeForArgentInvokeTx(
       nonce: nonce,
       functionCalls: [functionCall],
-      version: '0x1'
+      version: '0x3',
+      feeMultiplier: 1.5
     );
-
     print("transfer fee * 1.2 = ${fee.toBigInt()}");
   }
 
   transferFee();
+  //公式来源  starknet-accounts/src/account/execution.rs 文件  469行和484行
+  /// v3 gas 费用计算
+  /// gas = (overall_fee + gas_price - 1) / gas_price * 1.5
+  /// gas_price = gas_price * 1.5
+
 }

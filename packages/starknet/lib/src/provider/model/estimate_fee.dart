@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:starknet/starknet.dart';
 
 part 'estimate_fee.freezed.dart';
+
 part 'estimate_fee.g.dart';
 
 @freezed
@@ -11,6 +12,7 @@ class EstimateFee with _$EstimateFee {
   const factory EstimateFee.result({
     required List<FeeEstimate> result,
   }) = EstimateFeeResult;
+
   const factory EstimateFee.error({
     required JsonRpcApiError error,
   }) = EstimateFeeError;
@@ -49,6 +51,7 @@ class EstimateFeeRequest {
   final List<BroadcastedTxn> request;
   final BlockId blockId;
   final List<SimulationFlag> simulation_flags;
+
   EstimateFeeRequest({
     required this.request,
     required this.blockId,
@@ -57,6 +60,7 @@ class EstimateFeeRequest {
 
   factory EstimateFeeRequest.fromJson(Map<String, dynamic> json) =>
       _$EstimateFeeRequestFromJson(json);
+
   Map<String, dynamic> toJson() => _$EstimateFeeRequestToJson(this);
 }
 
@@ -94,6 +98,29 @@ class BroadcastedTxn with _$BroadcastedTxn {
     required List<Felt> calldata,
     // end of INVOKE_TXN_V1
   }) = BroadcastedInvokeTxnV1;
+
+  @JsonSerializable(includeIfNull: false)
+  const factory BroadcastedTxn.broadcastedInvokeTxnV3({
+    // For future use.
+    // Currently this value is always empty.
+    required List<Felt> accountDeploymentData,
+    required List<Felt> calldata,
+    // For future use. Currently this value is always 0.
+    required String feeDataAvailabilityMode,
+    required Felt nonce,
+    // For future use. Currently this value is always 0.
+    required String nonceDataAvailabilityMode,
+    // For future use. Currently this value is always empty.
+    required List<Felt> paymasterData,
+    required Map<String, dynamic> resourceBounds,
+    required Felt senderAddress,
+    required List<Felt> signature,
+
+    // For future use. Currently this value is always 0.
+    required Felt tip,
+    required String version,
+    required String type,
+  }) = BroadcastedInvokeTxnV3;
 
   @JsonSerializable(includeIfNull: false)
   const factory BroadcastedTxn.broadcastedDeclareTxn({
@@ -135,6 +162,29 @@ class BroadcastedTxn with _$BroadcastedTxn {
     // end of BROADCASTED_TXN_COMMON_PROPERTIES
   }) = BroadcastedDeployAccountTxn;
 
+  @JsonSerializable(includeIfNull: false)
+  const factory BroadcastedTxn.broadcastedDeployAccountTxnV3({
+    required Felt contractAddressSalt,
+    required Felt classHash,
+    required List<Felt> constructorCalldata,
+    required String
+        feeDataAvailabilityMode, // For future use. Currently this value is always 0.
+    required String
+        nonceDataAvailabilityMode, // For future use. Currently this value is always 0.
+    required List<Felt>
+        paymasterData, // For future use. Currently this value is always empty.
+
+    required Map<String, dynamic> resourceBounds,
+    required Felt tip, // For future use. Currently this value is always 0.
+
+    // start of BROADCASTED_TXN_COMMON_PROPERTIES
+    required String type,
+    required String version,
+    required List<Felt> signature,
+    required Felt nonce,
+    // end of BROADCASTED_TXN_COMMON_PROPERTIES
+  }) = BroadcastedDeployAccountTxnV3;
+
   factory BroadcastedTxn.fromJson(Map<String, Object?> json) =>
       json['type'] == 'DECLARE'
           ? BroadcastedDeclareTxn.fromJson(json)
@@ -144,5 +194,5 @@ class BroadcastedTxn with _$BroadcastedTxn {
                   ? json['version'] == '0x1'
                       ? BroadcastedInvokeTxnV1.fromJson(json)
                       : BroadcastedInvokeTxnV0.fromJson(json)
-                  : BroadcastedDeployAccountTxn.fromJson(json);
+                  : BroadcastedDeployAccountTxnV3.fromJson(json);
 }

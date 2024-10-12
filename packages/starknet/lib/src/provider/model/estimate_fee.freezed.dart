@@ -70,6 +70,8 @@ mixin _$EstimateFee {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Serializes this EstimateFee to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
@@ -89,6 +91,9 @@ class _$EstimateFeeCopyWithImpl<$Res, $Val extends EstimateFee>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of EstimateFee
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -108,6 +113,8 @@ class __$$EstimateFeeResultImplCopyWithImpl<$Res>
       $Res Function(_$EstimateFeeResultImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EstimateFee
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -157,12 +164,14 @@ class _$EstimateFeeResultImpl implements EstimateFeeResult {
             const DeepCollectionEquality().equals(other._result, _result));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_result));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EstimateFee
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EstimateFeeResultImplCopyWith<_$EstimateFeeResultImpl> get copyWith =>
@@ -247,7 +256,10 @@ abstract class EstimateFeeResult implements EstimateFee {
       _$EstimateFeeResultImpl.fromJson;
 
   List<FeeEstimate> get result;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of EstimateFee
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EstimateFeeResultImplCopyWith<_$EstimateFeeResultImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -271,6 +283,8 @@ class __$$EstimateFeeErrorImplCopyWithImpl<$Res>
       $Res Function(_$EstimateFeeErrorImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EstimateFee
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -284,6 +298,8 @@ class __$$EstimateFeeErrorImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of EstimateFee
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $JsonRpcApiErrorCopyWith<$Res> get error {
@@ -321,11 +337,13 @@ class _$EstimateFeeErrorImpl implements EstimateFeeError {
             (identical(other.error, error) || other.error == error));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, error);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EstimateFee
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EstimateFeeErrorImplCopyWith<_$EstimateFeeErrorImpl> get copyWith =>
@@ -410,7 +428,10 @@ abstract class EstimateFeeError implements EstimateFee {
       _$EstimateFeeErrorImpl.fromJson;
 
   JsonRpcApiError get error;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of EstimateFee
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EstimateFeeErrorImplCopyWith<_$EstimateFeeErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -471,6 +492,8 @@ mixin _$SimulationFlag {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Serializes this SimulationFlag to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
@@ -490,6 +513,9 @@ class _$SimulationFlagCopyWithImpl<$Res, $Val extends SimulationFlag>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of SimulationFlag
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -506,6 +532,9 @@ class __$$SkipValidateImplCopyWithImpl<$Res>
   __$$SkipValidateImplCopyWithImpl(
       _$SkipValidateImpl _value, $Res Function(_$SkipValidateImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SimulationFlag
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -532,7 +561,7 @@ class _$SkipValidateImpl implements SkipValidate {
         (other.runtimeType == runtimeType && other is _$SkipValidateImpl);
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => runtimeType.hashCode;
 
@@ -627,6 +656,9 @@ class __$$SkipFeeChargeImplCopyWithImpl<$Res>
   __$$SkipFeeChargeImplCopyWithImpl(
       _$SkipFeeChargeImpl _value, $Res Function(_$SkipFeeChargeImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SimulationFlag
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -653,7 +685,7 @@ class _$SkipFeeChargeImpl implements SkipFeeCharge {
         (other.runtimeType == runtimeType && other is _$SkipFeeChargeImpl);
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => runtimeType.hashCode;
 
@@ -740,12 +772,16 @@ BroadcastedTxn _$BroadcastedTxnFromJson(Map<String, dynamic> json) {
       return BroadcastedInvokeTxnV0.fromJson(json);
     case 'broadcastedInvokeTxnV1':
       return BroadcastedInvokeTxnV1.fromJson(json);
+    case 'broadcastedInvokeTxnV3':
+      return BroadcastedInvokeTxnV3.fromJson(json);
     case 'broadcastedDeclareTxn':
       return BroadcastedDeclareTxn.fromJson(json);
     case 'broadcastedDeployTxn':
       return BroadcastedDeployTxn.fromJson(json);
     case 'broadcastedDeployAccountTxn':
       return BroadcastedDeployAccountTxn.fromJson(json);
+    case 'broadcastedDeployAccountTxnV3':
+      return BroadcastedDeployAccountTxnV3.fromJson(json);
 
     default:
       throw CheckedFromJsonException(
@@ -783,6 +819,20 @@ mixin _$BroadcastedTxn {
             List<Felt> calldata)
         broadcastedInvokeTxnV1,
     required TResult Function(
+            List<Felt> accountDeploymentData,
+            List<Felt> calldata,
+            String feeDataAvailabilityMode,
+            Felt nonce,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt senderAddress,
+            List<Felt> signature,
+            Felt tip,
+            String version,
+            String type)
+        broadcastedInvokeTxnV3,
+    required TResult Function(
             String type,
             @JsonKey(toJson: maxFeeToJson) Felt maxFee,
             String version,
@@ -808,6 +858,20 @@ mixin _$BroadcastedTxn {
             List<Felt> signature,
             Felt nonce)
         broadcastedDeployAccountTxn,
+    required TResult Function(
+            Felt contractAddressSalt,
+            Felt classHash,
+            List<Felt> constructorCalldata,
+            String feeDataAvailabilityMode,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt tip,
+            String type,
+            String version,
+            List<Felt> signature,
+            Felt nonce)
+        broadcastedDeployAccountTxnV3,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -832,6 +896,20 @@ mixin _$BroadcastedTxn {
             List<Felt> calldata)?
         broadcastedInvokeTxnV1,
     TResult? Function(
+            List<Felt> accountDeploymentData,
+            List<Felt> calldata,
+            String feeDataAvailabilityMode,
+            Felt nonce,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt senderAddress,
+            List<Felt> signature,
+            Felt tip,
+            String version,
+            String type)?
+        broadcastedInvokeTxnV3,
+    TResult? Function(
             String type,
             @JsonKey(toJson: maxFeeToJson) Felt maxFee,
             String version,
@@ -857,6 +935,20 @@ mixin _$BroadcastedTxn {
             List<Felt> signature,
             Felt nonce)?
         broadcastedDeployAccountTxn,
+    TResult? Function(
+            Felt contractAddressSalt,
+            Felt classHash,
+            List<Felt> constructorCalldata,
+            String feeDataAvailabilityMode,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt tip,
+            String type,
+            String version,
+            List<Felt> signature,
+            Felt nonce)?
+        broadcastedDeployAccountTxnV3,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -881,6 +973,20 @@ mixin _$BroadcastedTxn {
             List<Felt> calldata)?
         broadcastedInvokeTxnV1,
     TResult Function(
+            List<Felt> accountDeploymentData,
+            List<Felt> calldata,
+            String feeDataAvailabilityMode,
+            Felt nonce,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt senderAddress,
+            List<Felt> signature,
+            Felt tip,
+            String version,
+            String type)?
+        broadcastedInvokeTxnV3,
+    TResult Function(
             String type,
             @JsonKey(toJson: maxFeeToJson) Felt maxFee,
             String version,
@@ -906,6 +1012,20 @@ mixin _$BroadcastedTxn {
             List<Felt> signature,
             Felt nonce)?
         broadcastedDeployAccountTxn,
+    TResult Function(
+            Felt contractAddressSalt,
+            Felt classHash,
+            List<Felt> constructorCalldata,
+            String feeDataAvailabilityMode,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt tip,
+            String type,
+            String version,
+            List<Felt> signature,
+            Felt nonce)?
+        broadcastedDeployAccountTxnV3,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -915,36 +1035,51 @@ mixin _$BroadcastedTxn {
         broadcastedInvokeTxnV0,
     required TResult Function(BroadcastedInvokeTxnV1 value)
         broadcastedInvokeTxnV1,
+    required TResult Function(BroadcastedInvokeTxnV3 value)
+        broadcastedInvokeTxnV3,
     required TResult Function(BroadcastedDeclareTxn value)
         broadcastedDeclareTxn,
     required TResult Function(BroadcastedDeployTxn value) broadcastedDeployTxn,
     required TResult Function(BroadcastedDeployAccountTxn value)
         broadcastedDeployAccountTxn,
+    required TResult Function(BroadcastedDeployAccountTxnV3 value)
+        broadcastedDeployAccountTxnV3,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(BroadcastedInvokeTxnV0 value)? broadcastedInvokeTxnV0,
     TResult? Function(BroadcastedInvokeTxnV1 value)? broadcastedInvokeTxnV1,
+    TResult? Function(BroadcastedInvokeTxnV3 value)? broadcastedInvokeTxnV3,
     TResult? Function(BroadcastedDeclareTxn value)? broadcastedDeclareTxn,
     TResult? Function(BroadcastedDeployTxn value)? broadcastedDeployTxn,
     TResult? Function(BroadcastedDeployAccountTxn value)?
         broadcastedDeployAccountTxn,
+    TResult? Function(BroadcastedDeployAccountTxnV3 value)?
+        broadcastedDeployAccountTxnV3,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(BroadcastedInvokeTxnV0 value)? broadcastedInvokeTxnV0,
     TResult Function(BroadcastedInvokeTxnV1 value)? broadcastedInvokeTxnV1,
+    TResult Function(BroadcastedInvokeTxnV3 value)? broadcastedInvokeTxnV3,
     TResult Function(BroadcastedDeclareTxn value)? broadcastedDeclareTxn,
     TResult Function(BroadcastedDeployTxn value)? broadcastedDeployTxn,
     TResult Function(BroadcastedDeployAccountTxn value)?
         broadcastedDeployAccountTxn,
+    TResult Function(BroadcastedDeployAccountTxnV3 value)?
+        broadcastedDeployAccountTxnV3,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Serializes this BroadcastedTxn to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BroadcastedTxn
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BroadcastedTxnCopyWith<BroadcastedTxn> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -968,6 +1103,8 @@ class _$BroadcastedTxnCopyWithImpl<$Res, $Val extends BroadcastedTxn>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BroadcastedTxn
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1016,6 +1153,8 @@ class __$$BroadcastedInvokeTxnV0ImplCopyWithImpl<$Res>
       $Res Function(_$BroadcastedInvokeTxnV0Impl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BroadcastedTxn
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1144,7 +1283,7 @@ class _$BroadcastedInvokeTxnV0Impl implements BroadcastedInvokeTxnV0 {
             const DeepCollectionEquality().equals(other._calldata, _calldata));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1157,7 +1296,9 @@ class _$BroadcastedInvokeTxnV0Impl implements BroadcastedInvokeTxnV0 {
       entryPointSelector,
       const DeepCollectionEquality().hash(_calldata));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BroadcastedTxn
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BroadcastedInvokeTxnV0ImplCopyWith<_$BroadcastedInvokeTxnV0Impl>
@@ -1187,6 +1328,20 @@ class _$BroadcastedInvokeTxnV0Impl implements BroadcastedInvokeTxnV0 {
             List<Felt> calldata)
         broadcastedInvokeTxnV1,
     required TResult Function(
+            List<Felt> accountDeploymentData,
+            List<Felt> calldata,
+            String feeDataAvailabilityMode,
+            Felt nonce,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt senderAddress,
+            List<Felt> signature,
+            Felt tip,
+            String version,
+            String type)
+        broadcastedInvokeTxnV3,
+    required TResult Function(
             String type,
             @JsonKey(toJson: maxFeeToJson) Felt maxFee,
             String version,
@@ -1212,6 +1367,20 @@ class _$BroadcastedInvokeTxnV0Impl implements BroadcastedInvokeTxnV0 {
             List<Felt> signature,
             Felt nonce)
         broadcastedDeployAccountTxn,
+    required TResult Function(
+            Felt contractAddressSalt,
+            Felt classHash,
+            List<Felt> constructorCalldata,
+            String feeDataAvailabilityMode,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt tip,
+            String type,
+            String version,
+            List<Felt> signature,
+            Felt nonce)
+        broadcastedDeployAccountTxnV3,
   }) {
     return broadcastedInvokeTxnV0(type, maxFee, version, signature, nonce,
         contractAddress, entryPointSelector, calldata);
@@ -1240,6 +1409,20 @@ class _$BroadcastedInvokeTxnV0Impl implements BroadcastedInvokeTxnV0 {
             List<Felt> calldata)?
         broadcastedInvokeTxnV1,
     TResult? Function(
+            List<Felt> accountDeploymentData,
+            List<Felt> calldata,
+            String feeDataAvailabilityMode,
+            Felt nonce,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt senderAddress,
+            List<Felt> signature,
+            Felt tip,
+            String version,
+            String type)?
+        broadcastedInvokeTxnV3,
+    TResult? Function(
             String type,
             @JsonKey(toJson: maxFeeToJson) Felt maxFee,
             String version,
@@ -1265,6 +1448,20 @@ class _$BroadcastedInvokeTxnV0Impl implements BroadcastedInvokeTxnV0 {
             List<Felt> signature,
             Felt nonce)?
         broadcastedDeployAccountTxn,
+    TResult? Function(
+            Felt contractAddressSalt,
+            Felt classHash,
+            List<Felt> constructorCalldata,
+            String feeDataAvailabilityMode,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt tip,
+            String type,
+            String version,
+            List<Felt> signature,
+            Felt nonce)?
+        broadcastedDeployAccountTxnV3,
   }) {
     return broadcastedInvokeTxnV0?.call(type, maxFee, version, signature, nonce,
         contractAddress, entryPointSelector, calldata);
@@ -1293,6 +1490,20 @@ class _$BroadcastedInvokeTxnV0Impl implements BroadcastedInvokeTxnV0 {
             List<Felt> calldata)?
         broadcastedInvokeTxnV1,
     TResult Function(
+            List<Felt> accountDeploymentData,
+            List<Felt> calldata,
+            String feeDataAvailabilityMode,
+            Felt nonce,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt senderAddress,
+            List<Felt> signature,
+            Felt tip,
+            String version,
+            String type)?
+        broadcastedInvokeTxnV3,
+    TResult Function(
             String type,
             @JsonKey(toJson: maxFeeToJson) Felt maxFee,
             String version,
@@ -1318,6 +1529,20 @@ class _$BroadcastedInvokeTxnV0Impl implements BroadcastedInvokeTxnV0 {
             List<Felt> signature,
             Felt nonce)?
         broadcastedDeployAccountTxn,
+    TResult Function(
+            Felt contractAddressSalt,
+            Felt classHash,
+            List<Felt> constructorCalldata,
+            String feeDataAvailabilityMode,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt tip,
+            String type,
+            String version,
+            List<Felt> signature,
+            Felt nonce)?
+        broadcastedDeployAccountTxnV3,
     required TResult orElse(),
   }) {
     if (broadcastedInvokeTxnV0 != null) {
@@ -1334,11 +1559,15 @@ class _$BroadcastedInvokeTxnV0Impl implements BroadcastedInvokeTxnV0 {
         broadcastedInvokeTxnV0,
     required TResult Function(BroadcastedInvokeTxnV1 value)
         broadcastedInvokeTxnV1,
+    required TResult Function(BroadcastedInvokeTxnV3 value)
+        broadcastedInvokeTxnV3,
     required TResult Function(BroadcastedDeclareTxn value)
         broadcastedDeclareTxn,
     required TResult Function(BroadcastedDeployTxn value) broadcastedDeployTxn,
     required TResult Function(BroadcastedDeployAccountTxn value)
         broadcastedDeployAccountTxn,
+    required TResult Function(BroadcastedDeployAccountTxnV3 value)
+        broadcastedDeployAccountTxnV3,
   }) {
     return broadcastedInvokeTxnV0(this);
   }
@@ -1348,10 +1577,13 @@ class _$BroadcastedInvokeTxnV0Impl implements BroadcastedInvokeTxnV0 {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(BroadcastedInvokeTxnV0 value)? broadcastedInvokeTxnV0,
     TResult? Function(BroadcastedInvokeTxnV1 value)? broadcastedInvokeTxnV1,
+    TResult? Function(BroadcastedInvokeTxnV3 value)? broadcastedInvokeTxnV3,
     TResult? Function(BroadcastedDeclareTxn value)? broadcastedDeclareTxn,
     TResult? Function(BroadcastedDeployTxn value)? broadcastedDeployTxn,
     TResult? Function(BroadcastedDeployAccountTxn value)?
         broadcastedDeployAccountTxn,
+    TResult? Function(BroadcastedDeployAccountTxnV3 value)?
+        broadcastedDeployAccountTxnV3,
   }) {
     return broadcastedInvokeTxnV0?.call(this);
   }
@@ -1361,10 +1593,13 @@ class _$BroadcastedInvokeTxnV0Impl implements BroadcastedInvokeTxnV0 {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(BroadcastedInvokeTxnV0 value)? broadcastedInvokeTxnV0,
     TResult Function(BroadcastedInvokeTxnV1 value)? broadcastedInvokeTxnV1,
+    TResult Function(BroadcastedInvokeTxnV3 value)? broadcastedInvokeTxnV3,
     TResult Function(BroadcastedDeclareTxn value)? broadcastedDeclareTxn,
     TResult Function(BroadcastedDeployTxn value)? broadcastedDeployTxn,
     TResult Function(BroadcastedDeployAccountTxn value)?
         broadcastedDeployAccountTxn,
+    TResult Function(BroadcastedDeployAccountTxnV3 value)?
+        broadcastedDeployAccountTxnV3,
     required TResult orElse(),
   }) {
     if (broadcastedInvokeTxnV0 != null) {
@@ -1395,7 +1630,8 @@ abstract class BroadcastedInvokeTxnV0 implements BroadcastedTxn {
   factory BroadcastedInvokeTxnV0.fromJson(Map<String, dynamic> json) =
       _$BroadcastedInvokeTxnV0Impl.fromJson;
 
-  @override // start of BROADCASTED_TXN_COMMON_PROPERTIES
+// start of BROADCASTED_TXN_COMMON_PROPERTIES
+  @override
   String get type;
   @JsonKey(toJson: maxFeeToJson)
   Felt get maxFee;
@@ -1407,8 +1643,11 @@ abstract class BroadcastedInvokeTxnV0 implements BroadcastedTxn {
   Felt get contractAddress;
   Felt get entryPointSelector;
   List<Felt> get calldata;
+
+  /// Create a copy of BroadcastedTxn
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BroadcastedInvokeTxnV0ImplCopyWith<_$BroadcastedInvokeTxnV0Impl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1441,6 +1680,8 @@ class __$$BroadcastedInvokeTxnV1ImplCopyWithImpl<$Res>
       $Res Function(_$BroadcastedInvokeTxnV1Impl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BroadcastedTxn
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1559,7 +1800,7 @@ class _$BroadcastedInvokeTxnV1Impl implements BroadcastedInvokeTxnV1 {
             const DeepCollectionEquality().equals(other._calldata, _calldata));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1571,7 +1812,9 @@ class _$BroadcastedInvokeTxnV1Impl implements BroadcastedInvokeTxnV1 {
       senderAddress,
       const DeepCollectionEquality().hash(_calldata));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BroadcastedTxn
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BroadcastedInvokeTxnV1ImplCopyWith<_$BroadcastedInvokeTxnV1Impl>
@@ -1601,6 +1844,20 @@ class _$BroadcastedInvokeTxnV1Impl implements BroadcastedInvokeTxnV1 {
             List<Felt> calldata)
         broadcastedInvokeTxnV1,
     required TResult Function(
+            List<Felt> accountDeploymentData,
+            List<Felt> calldata,
+            String feeDataAvailabilityMode,
+            Felt nonce,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt senderAddress,
+            List<Felt> signature,
+            Felt tip,
+            String version,
+            String type)
+        broadcastedInvokeTxnV3,
+    required TResult Function(
             String type,
             @JsonKey(toJson: maxFeeToJson) Felt maxFee,
             String version,
@@ -1626,6 +1883,20 @@ class _$BroadcastedInvokeTxnV1Impl implements BroadcastedInvokeTxnV1 {
             List<Felt> signature,
             Felt nonce)
         broadcastedDeployAccountTxn,
+    required TResult Function(
+            Felt contractAddressSalt,
+            Felt classHash,
+            List<Felt> constructorCalldata,
+            String feeDataAvailabilityMode,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt tip,
+            String type,
+            String version,
+            List<Felt> signature,
+            Felt nonce)
+        broadcastedDeployAccountTxnV3,
   }) {
     return broadcastedInvokeTxnV1(
         type, maxFee, version, signature, nonce, senderAddress, calldata);
@@ -1654,6 +1925,20 @@ class _$BroadcastedInvokeTxnV1Impl implements BroadcastedInvokeTxnV1 {
             List<Felt> calldata)?
         broadcastedInvokeTxnV1,
     TResult? Function(
+            List<Felt> accountDeploymentData,
+            List<Felt> calldata,
+            String feeDataAvailabilityMode,
+            Felt nonce,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt senderAddress,
+            List<Felt> signature,
+            Felt tip,
+            String version,
+            String type)?
+        broadcastedInvokeTxnV3,
+    TResult? Function(
             String type,
             @JsonKey(toJson: maxFeeToJson) Felt maxFee,
             String version,
@@ -1679,6 +1964,20 @@ class _$BroadcastedInvokeTxnV1Impl implements BroadcastedInvokeTxnV1 {
             List<Felt> signature,
             Felt nonce)?
         broadcastedDeployAccountTxn,
+    TResult? Function(
+            Felt contractAddressSalt,
+            Felt classHash,
+            List<Felt> constructorCalldata,
+            String feeDataAvailabilityMode,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt tip,
+            String type,
+            String version,
+            List<Felt> signature,
+            Felt nonce)?
+        broadcastedDeployAccountTxnV3,
   }) {
     return broadcastedInvokeTxnV1?.call(
         type, maxFee, version, signature, nonce, senderAddress, calldata);
@@ -1707,6 +2006,20 @@ class _$BroadcastedInvokeTxnV1Impl implements BroadcastedInvokeTxnV1 {
             List<Felt> calldata)?
         broadcastedInvokeTxnV1,
     TResult Function(
+            List<Felt> accountDeploymentData,
+            List<Felt> calldata,
+            String feeDataAvailabilityMode,
+            Felt nonce,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt senderAddress,
+            List<Felt> signature,
+            Felt tip,
+            String version,
+            String type)?
+        broadcastedInvokeTxnV3,
+    TResult Function(
             String type,
             @JsonKey(toJson: maxFeeToJson) Felt maxFee,
             String version,
@@ -1732,6 +2045,20 @@ class _$BroadcastedInvokeTxnV1Impl implements BroadcastedInvokeTxnV1 {
             List<Felt> signature,
             Felt nonce)?
         broadcastedDeployAccountTxn,
+    TResult Function(
+            Felt contractAddressSalt,
+            Felt classHash,
+            List<Felt> constructorCalldata,
+            String feeDataAvailabilityMode,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt tip,
+            String type,
+            String version,
+            List<Felt> signature,
+            Felt nonce)?
+        broadcastedDeployAccountTxnV3,
     required TResult orElse(),
   }) {
     if (broadcastedInvokeTxnV1 != null) {
@@ -1748,11 +2075,15 @@ class _$BroadcastedInvokeTxnV1Impl implements BroadcastedInvokeTxnV1 {
         broadcastedInvokeTxnV0,
     required TResult Function(BroadcastedInvokeTxnV1 value)
         broadcastedInvokeTxnV1,
+    required TResult Function(BroadcastedInvokeTxnV3 value)
+        broadcastedInvokeTxnV3,
     required TResult Function(BroadcastedDeclareTxn value)
         broadcastedDeclareTxn,
     required TResult Function(BroadcastedDeployTxn value) broadcastedDeployTxn,
     required TResult Function(BroadcastedDeployAccountTxn value)
         broadcastedDeployAccountTxn,
+    required TResult Function(BroadcastedDeployAccountTxnV3 value)
+        broadcastedDeployAccountTxnV3,
   }) {
     return broadcastedInvokeTxnV1(this);
   }
@@ -1762,10 +2093,13 @@ class _$BroadcastedInvokeTxnV1Impl implements BroadcastedInvokeTxnV1 {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(BroadcastedInvokeTxnV0 value)? broadcastedInvokeTxnV0,
     TResult? Function(BroadcastedInvokeTxnV1 value)? broadcastedInvokeTxnV1,
+    TResult? Function(BroadcastedInvokeTxnV3 value)? broadcastedInvokeTxnV3,
     TResult? Function(BroadcastedDeclareTxn value)? broadcastedDeclareTxn,
     TResult? Function(BroadcastedDeployTxn value)? broadcastedDeployTxn,
     TResult? Function(BroadcastedDeployAccountTxn value)?
         broadcastedDeployAccountTxn,
+    TResult? Function(BroadcastedDeployAccountTxnV3 value)?
+        broadcastedDeployAccountTxnV3,
   }) {
     return broadcastedInvokeTxnV1?.call(this);
   }
@@ -1775,10 +2109,13 @@ class _$BroadcastedInvokeTxnV1Impl implements BroadcastedInvokeTxnV1 {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(BroadcastedInvokeTxnV0 value)? broadcastedInvokeTxnV0,
     TResult Function(BroadcastedInvokeTxnV1 value)? broadcastedInvokeTxnV1,
+    TResult Function(BroadcastedInvokeTxnV3 value)? broadcastedInvokeTxnV3,
     TResult Function(BroadcastedDeclareTxn value)? broadcastedDeclareTxn,
     TResult Function(BroadcastedDeployTxn value)? broadcastedDeployTxn,
     TResult Function(BroadcastedDeployAccountTxn value)?
         broadcastedDeployAccountTxn,
+    TResult Function(BroadcastedDeployAccountTxnV3 value)?
+        broadcastedDeployAccountTxnV3,
     required TResult orElse(),
   }) {
     if (broadcastedInvokeTxnV1 != null) {
@@ -1808,7 +2145,8 @@ abstract class BroadcastedInvokeTxnV1 implements BroadcastedTxn {
   factory BroadcastedInvokeTxnV1.fromJson(Map<String, dynamic> json) =
       _$BroadcastedInvokeTxnV1Impl.fromJson;
 
-  @override // start of BROADCASTED_TXN_COMMON_PROPERTIES
+// start of BROADCASTED_TXN_COMMON_PROPERTIES
+  @override
   String get type;
   @JsonKey(toJson: maxFeeToJson)
   Felt get maxFee;
@@ -1819,9 +2157,659 @@ abstract class BroadcastedInvokeTxnV1 implements BroadcastedTxn {
 // start of INVOKE_TXN_V1
   Felt get senderAddress;
   List<Felt> get calldata;
+
+  /// Create a copy of BroadcastedTxn
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BroadcastedInvokeTxnV1ImplCopyWith<_$BroadcastedInvokeTxnV1Impl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$BroadcastedInvokeTxnV3ImplCopyWith<$Res>
+    implements $BroadcastedTxnCopyWith<$Res> {
+  factory _$$BroadcastedInvokeTxnV3ImplCopyWith(
+          _$BroadcastedInvokeTxnV3Impl value,
+          $Res Function(_$BroadcastedInvokeTxnV3Impl) then) =
+      __$$BroadcastedInvokeTxnV3ImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {List<Felt> accountDeploymentData,
+      List<Felt> calldata,
+      String feeDataAvailabilityMode,
+      Felt nonce,
+      String nonceDataAvailabilityMode,
+      List<Felt> paymasterData,
+      Map<String, dynamic> resourceBounds,
+      Felt senderAddress,
+      List<Felt> signature,
+      Felt tip,
+      String version,
+      String type});
+}
+
+/// @nodoc
+class __$$BroadcastedInvokeTxnV3ImplCopyWithImpl<$Res>
+    extends _$BroadcastedTxnCopyWithImpl<$Res, _$BroadcastedInvokeTxnV3Impl>
+    implements _$$BroadcastedInvokeTxnV3ImplCopyWith<$Res> {
+  __$$BroadcastedInvokeTxnV3ImplCopyWithImpl(
+      _$BroadcastedInvokeTxnV3Impl _value,
+      $Res Function(_$BroadcastedInvokeTxnV3Impl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of BroadcastedTxn
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? accountDeploymentData = null,
+    Object? calldata = null,
+    Object? feeDataAvailabilityMode = null,
+    Object? nonce = null,
+    Object? nonceDataAvailabilityMode = null,
+    Object? paymasterData = null,
+    Object? resourceBounds = null,
+    Object? senderAddress = null,
+    Object? signature = null,
+    Object? tip = null,
+    Object? version = null,
+    Object? type = null,
+  }) {
+    return _then(_$BroadcastedInvokeTxnV3Impl(
+      accountDeploymentData: null == accountDeploymentData
+          ? _value._accountDeploymentData
+          : accountDeploymentData // ignore: cast_nullable_to_non_nullable
+              as List<Felt>,
+      calldata: null == calldata
+          ? _value._calldata
+          : calldata // ignore: cast_nullable_to_non_nullable
+              as List<Felt>,
+      feeDataAvailabilityMode: null == feeDataAvailabilityMode
+          ? _value.feeDataAvailabilityMode
+          : feeDataAvailabilityMode // ignore: cast_nullable_to_non_nullable
+              as String,
+      nonce: null == nonce
+          ? _value.nonce
+          : nonce // ignore: cast_nullable_to_non_nullable
+              as Felt,
+      nonceDataAvailabilityMode: null == nonceDataAvailabilityMode
+          ? _value.nonceDataAvailabilityMode
+          : nonceDataAvailabilityMode // ignore: cast_nullable_to_non_nullable
+              as String,
+      paymasterData: null == paymasterData
+          ? _value._paymasterData
+          : paymasterData // ignore: cast_nullable_to_non_nullable
+              as List<Felt>,
+      resourceBounds: null == resourceBounds
+          ? _value._resourceBounds
+          : resourceBounds // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      senderAddress: null == senderAddress
+          ? _value.senderAddress
+          : senderAddress // ignore: cast_nullable_to_non_nullable
+              as Felt,
+      signature: null == signature
+          ? _value._signature
+          : signature // ignore: cast_nullable_to_non_nullable
+              as List<Felt>,
+      tip: null == tip
+          ? _value.tip
+          : tip // ignore: cast_nullable_to_non_nullable
+              as Felt,
+      version: null == version
+          ? _value.version
+          : version // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(includeIfNull: false)
+class _$BroadcastedInvokeTxnV3Impl implements BroadcastedInvokeTxnV3 {
+  const _$BroadcastedInvokeTxnV3Impl(
+      {required final List<Felt> accountDeploymentData,
+      required final List<Felt> calldata,
+      required this.feeDataAvailabilityMode,
+      required this.nonce,
+      required this.nonceDataAvailabilityMode,
+      required final List<Felt> paymasterData,
+      required final Map<String, dynamic> resourceBounds,
+      required this.senderAddress,
+      required final List<Felt> signature,
+      required this.tip,
+      required this.version,
+      required this.type,
+      final String? $type})
+      : _accountDeploymentData = accountDeploymentData,
+        _calldata = calldata,
+        _paymasterData = paymasterData,
+        _resourceBounds = resourceBounds,
+        _signature = signature,
+        $type = $type ?? 'broadcastedInvokeTxnV3';
+
+  factory _$BroadcastedInvokeTxnV3Impl.fromJson(Map<String, dynamic> json) =>
+      _$$BroadcastedInvokeTxnV3ImplFromJson(json);
+
+// For future use.
+// Currently this value is always empty.
+  final List<Felt> _accountDeploymentData;
+// For future use.
+// Currently this value is always empty.
+  @override
+  List<Felt> get accountDeploymentData {
+    if (_accountDeploymentData is EqualUnmodifiableListView)
+      return _accountDeploymentData;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_accountDeploymentData);
+  }
+
+  final List<Felt> _calldata;
+  @override
+  List<Felt> get calldata {
+    if (_calldata is EqualUnmodifiableListView) return _calldata;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_calldata);
+  }
+
+// For future use. Currently this value is always 0.
+  @override
+  final String feeDataAvailabilityMode;
+  @override
+  final Felt nonce;
+// For future use. Currently this value is always 0.
+  @override
+  final String nonceDataAvailabilityMode;
+// For future use. Currently this value is always empty.
+  final List<Felt> _paymasterData;
+// For future use. Currently this value is always empty.
+  @override
+  List<Felt> get paymasterData {
+    if (_paymasterData is EqualUnmodifiableListView) return _paymasterData;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_paymasterData);
+  }
+
+  final Map<String, dynamic> _resourceBounds;
+  @override
+  Map<String, dynamic> get resourceBounds {
+    if (_resourceBounds is EqualUnmodifiableMapView) return _resourceBounds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_resourceBounds);
+  }
+
+  @override
+  final Felt senderAddress;
+  final List<Felt> _signature;
+  @override
+  List<Felt> get signature {
+    if (_signature is EqualUnmodifiableListView) return _signature;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_signature);
+  }
+
+// For future use. Currently this value is always 0.
+  @override
+  final Felt tip;
+  @override
+  final String version;
+  @override
+  final String type;
+
+  @JsonKey(name: 'starkNetRuntimeTypeToRemove')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'BroadcastedTxn.broadcastedInvokeTxnV3(accountDeploymentData: $accountDeploymentData, calldata: $calldata, feeDataAvailabilityMode: $feeDataAvailabilityMode, nonce: $nonce, nonceDataAvailabilityMode: $nonceDataAvailabilityMode, paymasterData: $paymasterData, resourceBounds: $resourceBounds, senderAddress: $senderAddress, signature: $signature, tip: $tip, version: $version, type: $type)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BroadcastedInvokeTxnV3Impl &&
+            const DeepCollectionEquality()
+                .equals(other._accountDeploymentData, _accountDeploymentData) &&
+            const DeepCollectionEquality().equals(other._calldata, _calldata) &&
+            (identical(
+                    other.feeDataAvailabilityMode, feeDataAvailabilityMode) ||
+                other.feeDataAvailabilityMode == feeDataAvailabilityMode) &&
+            (identical(other.nonce, nonce) || other.nonce == nonce) &&
+            (identical(other.nonceDataAvailabilityMode,
+                    nonceDataAvailabilityMode) ||
+                other.nonceDataAvailabilityMode == nonceDataAvailabilityMode) &&
+            const DeepCollectionEquality()
+                .equals(other._paymasterData, _paymasterData) &&
+            const DeepCollectionEquality()
+                .equals(other._resourceBounds, _resourceBounds) &&
+            (identical(other.senderAddress, senderAddress) ||
+                other.senderAddress == senderAddress) &&
+            const DeepCollectionEquality()
+                .equals(other._signature, _signature) &&
+            (identical(other.tip, tip) || other.tip == tip) &&
+            (identical(other.version, version) || other.version == version) &&
+            (identical(other.type, type) || other.type == type));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_accountDeploymentData),
+      const DeepCollectionEquality().hash(_calldata),
+      feeDataAvailabilityMode,
+      nonce,
+      nonceDataAvailabilityMode,
+      const DeepCollectionEquality().hash(_paymasterData),
+      const DeepCollectionEquality().hash(_resourceBounds),
+      senderAddress,
+      const DeepCollectionEquality().hash(_signature),
+      tip,
+      version,
+      type);
+
+  /// Create a copy of BroadcastedTxn
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BroadcastedInvokeTxnV3ImplCopyWith<_$BroadcastedInvokeTxnV3Impl>
+      get copyWith => __$$BroadcastedInvokeTxnV3ImplCopyWithImpl<
+          _$BroadcastedInvokeTxnV3Impl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String type,
+            @JsonKey(toJson: maxFeeToJson) Felt maxFee,
+            String version,
+            List<Felt> signature,
+            Felt? nonce,
+            Felt contractAddress,
+            Felt entryPointSelector,
+            List<Felt> calldata)
+        broadcastedInvokeTxnV0,
+    required TResult Function(
+            String type,
+            @JsonKey(toJson: maxFeeToJson) Felt maxFee,
+            String version,
+            List<Felt> signature,
+            Felt nonce,
+            Felt senderAddress,
+            List<Felt> calldata)
+        broadcastedInvokeTxnV1,
+    required TResult Function(
+            List<Felt> accountDeploymentData,
+            List<Felt> calldata,
+            String feeDataAvailabilityMode,
+            Felt nonce,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt senderAddress,
+            List<Felt> signature,
+            Felt tip,
+            String version,
+            String type)
+        broadcastedInvokeTxnV3,
+    required TResult Function(
+            String type,
+            @JsonKey(toJson: maxFeeToJson) Felt maxFee,
+            String version,
+            List<Felt> signature,
+            Felt nonce,
+            DeprecatedContractClass contractClass,
+            Felt senderAddress)
+        broadcastedDeclareTxn,
+    required TResult Function(
+            DeprecatedContractClass contractClass,
+            String version,
+            String type,
+            Felt contractAddressSalt,
+            List<Felt> constructorCalldata)
+        broadcastedDeployTxn,
+    required TResult Function(
+            Felt contractAddressSalt,
+            Felt classHash,
+            List<Felt> constructorCalldata,
+            String type,
+            @JsonKey(toJson: maxFeeToJson) Felt maxFee,
+            String version,
+            List<Felt> signature,
+            Felt nonce)
+        broadcastedDeployAccountTxn,
+    required TResult Function(
+            Felt contractAddressSalt,
+            Felt classHash,
+            List<Felt> constructorCalldata,
+            String feeDataAvailabilityMode,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt tip,
+            String type,
+            String version,
+            List<Felt> signature,
+            Felt nonce)
+        broadcastedDeployAccountTxnV3,
+  }) {
+    return broadcastedInvokeTxnV3(
+        accountDeploymentData,
+        calldata,
+        feeDataAvailabilityMode,
+        nonce,
+        nonceDataAvailabilityMode,
+        paymasterData,
+        resourceBounds,
+        senderAddress,
+        signature,
+        tip,
+        version,
+        type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            String type,
+            @JsonKey(toJson: maxFeeToJson) Felt maxFee,
+            String version,
+            List<Felt> signature,
+            Felt? nonce,
+            Felt contractAddress,
+            Felt entryPointSelector,
+            List<Felt> calldata)?
+        broadcastedInvokeTxnV0,
+    TResult? Function(
+            String type,
+            @JsonKey(toJson: maxFeeToJson) Felt maxFee,
+            String version,
+            List<Felt> signature,
+            Felt nonce,
+            Felt senderAddress,
+            List<Felt> calldata)?
+        broadcastedInvokeTxnV1,
+    TResult? Function(
+            List<Felt> accountDeploymentData,
+            List<Felt> calldata,
+            String feeDataAvailabilityMode,
+            Felt nonce,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt senderAddress,
+            List<Felt> signature,
+            Felt tip,
+            String version,
+            String type)?
+        broadcastedInvokeTxnV3,
+    TResult? Function(
+            String type,
+            @JsonKey(toJson: maxFeeToJson) Felt maxFee,
+            String version,
+            List<Felt> signature,
+            Felt nonce,
+            DeprecatedContractClass contractClass,
+            Felt senderAddress)?
+        broadcastedDeclareTxn,
+    TResult? Function(
+            DeprecatedContractClass contractClass,
+            String version,
+            String type,
+            Felt contractAddressSalt,
+            List<Felt> constructorCalldata)?
+        broadcastedDeployTxn,
+    TResult? Function(
+            Felt contractAddressSalt,
+            Felt classHash,
+            List<Felt> constructorCalldata,
+            String type,
+            @JsonKey(toJson: maxFeeToJson) Felt maxFee,
+            String version,
+            List<Felt> signature,
+            Felt nonce)?
+        broadcastedDeployAccountTxn,
+    TResult? Function(
+            Felt contractAddressSalt,
+            Felt classHash,
+            List<Felt> constructorCalldata,
+            String feeDataAvailabilityMode,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt tip,
+            String type,
+            String version,
+            List<Felt> signature,
+            Felt nonce)?
+        broadcastedDeployAccountTxnV3,
+  }) {
+    return broadcastedInvokeTxnV3?.call(
+        accountDeploymentData,
+        calldata,
+        feeDataAvailabilityMode,
+        nonce,
+        nonceDataAvailabilityMode,
+        paymasterData,
+        resourceBounds,
+        senderAddress,
+        signature,
+        tip,
+        version,
+        type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            String type,
+            @JsonKey(toJson: maxFeeToJson) Felt maxFee,
+            String version,
+            List<Felt> signature,
+            Felt? nonce,
+            Felt contractAddress,
+            Felt entryPointSelector,
+            List<Felt> calldata)?
+        broadcastedInvokeTxnV0,
+    TResult Function(
+            String type,
+            @JsonKey(toJson: maxFeeToJson) Felt maxFee,
+            String version,
+            List<Felt> signature,
+            Felt nonce,
+            Felt senderAddress,
+            List<Felt> calldata)?
+        broadcastedInvokeTxnV1,
+    TResult Function(
+            List<Felt> accountDeploymentData,
+            List<Felt> calldata,
+            String feeDataAvailabilityMode,
+            Felt nonce,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt senderAddress,
+            List<Felt> signature,
+            Felt tip,
+            String version,
+            String type)?
+        broadcastedInvokeTxnV3,
+    TResult Function(
+            String type,
+            @JsonKey(toJson: maxFeeToJson) Felt maxFee,
+            String version,
+            List<Felt> signature,
+            Felt nonce,
+            DeprecatedContractClass contractClass,
+            Felt senderAddress)?
+        broadcastedDeclareTxn,
+    TResult Function(
+            DeprecatedContractClass contractClass,
+            String version,
+            String type,
+            Felt contractAddressSalt,
+            List<Felt> constructorCalldata)?
+        broadcastedDeployTxn,
+    TResult Function(
+            Felt contractAddressSalt,
+            Felt classHash,
+            List<Felt> constructorCalldata,
+            String type,
+            @JsonKey(toJson: maxFeeToJson) Felt maxFee,
+            String version,
+            List<Felt> signature,
+            Felt nonce)?
+        broadcastedDeployAccountTxn,
+    TResult Function(
+            Felt contractAddressSalt,
+            Felt classHash,
+            List<Felt> constructorCalldata,
+            String feeDataAvailabilityMode,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt tip,
+            String type,
+            String version,
+            List<Felt> signature,
+            Felt nonce)?
+        broadcastedDeployAccountTxnV3,
+    required TResult orElse(),
+  }) {
+    if (broadcastedInvokeTxnV3 != null) {
+      return broadcastedInvokeTxnV3(
+          accountDeploymentData,
+          calldata,
+          feeDataAvailabilityMode,
+          nonce,
+          nonceDataAvailabilityMode,
+          paymasterData,
+          resourceBounds,
+          senderAddress,
+          signature,
+          tip,
+          version,
+          type);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(BroadcastedInvokeTxnV0 value)
+        broadcastedInvokeTxnV0,
+    required TResult Function(BroadcastedInvokeTxnV1 value)
+        broadcastedInvokeTxnV1,
+    required TResult Function(BroadcastedInvokeTxnV3 value)
+        broadcastedInvokeTxnV3,
+    required TResult Function(BroadcastedDeclareTxn value)
+        broadcastedDeclareTxn,
+    required TResult Function(BroadcastedDeployTxn value) broadcastedDeployTxn,
+    required TResult Function(BroadcastedDeployAccountTxn value)
+        broadcastedDeployAccountTxn,
+    required TResult Function(BroadcastedDeployAccountTxnV3 value)
+        broadcastedDeployAccountTxnV3,
+  }) {
+    return broadcastedInvokeTxnV3(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(BroadcastedInvokeTxnV0 value)? broadcastedInvokeTxnV0,
+    TResult? Function(BroadcastedInvokeTxnV1 value)? broadcastedInvokeTxnV1,
+    TResult? Function(BroadcastedInvokeTxnV3 value)? broadcastedInvokeTxnV3,
+    TResult? Function(BroadcastedDeclareTxn value)? broadcastedDeclareTxn,
+    TResult? Function(BroadcastedDeployTxn value)? broadcastedDeployTxn,
+    TResult? Function(BroadcastedDeployAccountTxn value)?
+        broadcastedDeployAccountTxn,
+    TResult? Function(BroadcastedDeployAccountTxnV3 value)?
+        broadcastedDeployAccountTxnV3,
+  }) {
+    return broadcastedInvokeTxnV3?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(BroadcastedInvokeTxnV0 value)? broadcastedInvokeTxnV0,
+    TResult Function(BroadcastedInvokeTxnV1 value)? broadcastedInvokeTxnV1,
+    TResult Function(BroadcastedInvokeTxnV3 value)? broadcastedInvokeTxnV3,
+    TResult Function(BroadcastedDeclareTxn value)? broadcastedDeclareTxn,
+    TResult Function(BroadcastedDeployTxn value)? broadcastedDeployTxn,
+    TResult Function(BroadcastedDeployAccountTxn value)?
+        broadcastedDeployAccountTxn,
+    TResult Function(BroadcastedDeployAccountTxnV3 value)?
+        broadcastedDeployAccountTxnV3,
+    required TResult orElse(),
+  }) {
+    if (broadcastedInvokeTxnV3 != null) {
+      return broadcastedInvokeTxnV3(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BroadcastedInvokeTxnV3ImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class BroadcastedInvokeTxnV3 implements BroadcastedTxn {
+  const factory BroadcastedInvokeTxnV3(
+      {required final List<Felt> accountDeploymentData,
+      required final List<Felt> calldata,
+      required final String feeDataAvailabilityMode,
+      required final Felt nonce,
+      required final String nonceDataAvailabilityMode,
+      required final List<Felt> paymasterData,
+      required final Map<String, dynamic> resourceBounds,
+      required final Felt senderAddress,
+      required final List<Felt> signature,
+      required final Felt tip,
+      required final String version,
+      required final String type}) = _$BroadcastedInvokeTxnV3Impl;
+
+  factory BroadcastedInvokeTxnV3.fromJson(Map<String, dynamic> json) =
+      _$BroadcastedInvokeTxnV3Impl.fromJson;
+
+// For future use.
+// Currently this value is always empty.
+  List<Felt> get accountDeploymentData;
+  List<Felt> get calldata; // For future use. Currently this value is always 0.
+  String get feeDataAvailabilityMode;
+  Felt get nonce; // For future use. Currently this value is always 0.
+  String
+      get nonceDataAvailabilityMode; // For future use. Currently this value is always empty.
+  List<Felt> get paymasterData;
+  Map<String, dynamic> get resourceBounds;
+  Felt get senderAddress;
+  List<Felt> get signature; // For future use. Currently this value is always 0.
+  Felt get tip;
+  @override
+  String get version;
+  @override
+  String get type;
+
+  /// Create a copy of BroadcastedTxn
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$BroadcastedInvokeTxnV3ImplCopyWith<_$BroadcastedInvokeTxnV3Impl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1854,6 +2842,8 @@ class __$$BroadcastedDeclareTxnImplCopyWithImpl<$Res>
       $Res Function(_$BroadcastedDeclareTxnImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BroadcastedTxn
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1897,6 +2887,8 @@ class __$$BroadcastedDeclareTxnImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of BroadcastedTxn
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $DeprecatedContractClassCopyWith<$Res> get contractClass {
@@ -1975,7 +2967,7 @@ class _$BroadcastedDeclareTxnImpl implements BroadcastedDeclareTxn {
                 other.senderAddress == senderAddress));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1987,7 +2979,9 @@ class _$BroadcastedDeclareTxnImpl implements BroadcastedDeclareTxn {
       contractClass,
       senderAddress);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BroadcastedTxn
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BroadcastedDeclareTxnImplCopyWith<_$BroadcastedDeclareTxnImpl>
@@ -2017,6 +3011,20 @@ class _$BroadcastedDeclareTxnImpl implements BroadcastedDeclareTxn {
             List<Felt> calldata)
         broadcastedInvokeTxnV1,
     required TResult Function(
+            List<Felt> accountDeploymentData,
+            List<Felt> calldata,
+            String feeDataAvailabilityMode,
+            Felt nonce,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt senderAddress,
+            List<Felt> signature,
+            Felt tip,
+            String version,
+            String type)
+        broadcastedInvokeTxnV3,
+    required TResult Function(
             String type,
             @JsonKey(toJson: maxFeeToJson) Felt maxFee,
             String version,
@@ -2042,6 +3050,20 @@ class _$BroadcastedDeclareTxnImpl implements BroadcastedDeclareTxn {
             List<Felt> signature,
             Felt nonce)
         broadcastedDeployAccountTxn,
+    required TResult Function(
+            Felt contractAddressSalt,
+            Felt classHash,
+            List<Felt> constructorCalldata,
+            String feeDataAvailabilityMode,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt tip,
+            String type,
+            String version,
+            List<Felt> signature,
+            Felt nonce)
+        broadcastedDeployAccountTxnV3,
   }) {
     return broadcastedDeclareTxn(
         type, maxFee, version, signature, nonce, contractClass, senderAddress);
@@ -2070,6 +3092,20 @@ class _$BroadcastedDeclareTxnImpl implements BroadcastedDeclareTxn {
             List<Felt> calldata)?
         broadcastedInvokeTxnV1,
     TResult? Function(
+            List<Felt> accountDeploymentData,
+            List<Felt> calldata,
+            String feeDataAvailabilityMode,
+            Felt nonce,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt senderAddress,
+            List<Felt> signature,
+            Felt tip,
+            String version,
+            String type)?
+        broadcastedInvokeTxnV3,
+    TResult? Function(
             String type,
             @JsonKey(toJson: maxFeeToJson) Felt maxFee,
             String version,
@@ -2095,6 +3131,20 @@ class _$BroadcastedDeclareTxnImpl implements BroadcastedDeclareTxn {
             List<Felt> signature,
             Felt nonce)?
         broadcastedDeployAccountTxn,
+    TResult? Function(
+            Felt contractAddressSalt,
+            Felt classHash,
+            List<Felt> constructorCalldata,
+            String feeDataAvailabilityMode,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt tip,
+            String type,
+            String version,
+            List<Felt> signature,
+            Felt nonce)?
+        broadcastedDeployAccountTxnV3,
   }) {
     return broadcastedDeclareTxn?.call(
         type, maxFee, version, signature, nonce, contractClass, senderAddress);
@@ -2123,6 +3173,20 @@ class _$BroadcastedDeclareTxnImpl implements BroadcastedDeclareTxn {
             List<Felt> calldata)?
         broadcastedInvokeTxnV1,
     TResult Function(
+            List<Felt> accountDeploymentData,
+            List<Felt> calldata,
+            String feeDataAvailabilityMode,
+            Felt nonce,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt senderAddress,
+            List<Felt> signature,
+            Felt tip,
+            String version,
+            String type)?
+        broadcastedInvokeTxnV3,
+    TResult Function(
             String type,
             @JsonKey(toJson: maxFeeToJson) Felt maxFee,
             String version,
@@ -2148,6 +3212,20 @@ class _$BroadcastedDeclareTxnImpl implements BroadcastedDeclareTxn {
             List<Felt> signature,
             Felt nonce)?
         broadcastedDeployAccountTxn,
+    TResult Function(
+            Felt contractAddressSalt,
+            Felt classHash,
+            List<Felt> constructorCalldata,
+            String feeDataAvailabilityMode,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt tip,
+            String type,
+            String version,
+            List<Felt> signature,
+            Felt nonce)?
+        broadcastedDeployAccountTxnV3,
     required TResult orElse(),
   }) {
     if (broadcastedDeclareTxn != null) {
@@ -2164,11 +3242,15 @@ class _$BroadcastedDeclareTxnImpl implements BroadcastedDeclareTxn {
         broadcastedInvokeTxnV0,
     required TResult Function(BroadcastedInvokeTxnV1 value)
         broadcastedInvokeTxnV1,
+    required TResult Function(BroadcastedInvokeTxnV3 value)
+        broadcastedInvokeTxnV3,
     required TResult Function(BroadcastedDeclareTxn value)
         broadcastedDeclareTxn,
     required TResult Function(BroadcastedDeployTxn value) broadcastedDeployTxn,
     required TResult Function(BroadcastedDeployAccountTxn value)
         broadcastedDeployAccountTxn,
+    required TResult Function(BroadcastedDeployAccountTxnV3 value)
+        broadcastedDeployAccountTxnV3,
   }) {
     return broadcastedDeclareTxn(this);
   }
@@ -2178,10 +3260,13 @@ class _$BroadcastedDeclareTxnImpl implements BroadcastedDeclareTxn {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(BroadcastedInvokeTxnV0 value)? broadcastedInvokeTxnV0,
     TResult? Function(BroadcastedInvokeTxnV1 value)? broadcastedInvokeTxnV1,
+    TResult? Function(BroadcastedInvokeTxnV3 value)? broadcastedInvokeTxnV3,
     TResult? Function(BroadcastedDeclareTxn value)? broadcastedDeclareTxn,
     TResult? Function(BroadcastedDeployTxn value)? broadcastedDeployTxn,
     TResult? Function(BroadcastedDeployAccountTxn value)?
         broadcastedDeployAccountTxn,
+    TResult? Function(BroadcastedDeployAccountTxnV3 value)?
+        broadcastedDeployAccountTxnV3,
   }) {
     return broadcastedDeclareTxn?.call(this);
   }
@@ -2191,10 +3276,13 @@ class _$BroadcastedDeclareTxnImpl implements BroadcastedDeclareTxn {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(BroadcastedInvokeTxnV0 value)? broadcastedInvokeTxnV0,
     TResult Function(BroadcastedInvokeTxnV1 value)? broadcastedInvokeTxnV1,
+    TResult Function(BroadcastedInvokeTxnV3 value)? broadcastedInvokeTxnV3,
     TResult Function(BroadcastedDeclareTxn value)? broadcastedDeclareTxn,
     TResult Function(BroadcastedDeployTxn value)? broadcastedDeployTxn,
     TResult Function(BroadcastedDeployAccountTxn value)?
         broadcastedDeployAccountTxn,
+    TResult Function(BroadcastedDeployAccountTxnV3 value)?
+        broadcastedDeployAccountTxnV3,
     required TResult orElse(),
   }) {
     if (broadcastedDeclareTxn != null) {
@@ -2224,7 +3312,8 @@ abstract class BroadcastedDeclareTxn implements BroadcastedTxn {
   factory BroadcastedDeclareTxn.fromJson(Map<String, dynamic> json) =
       _$BroadcastedDeclareTxnImpl.fromJson;
 
-  @override // start of BROADCASTED_TXN_COMMON_PROPERTIES
+// start of BROADCASTED_TXN_COMMON_PROPERTIES
+  @override
   String get type;
   @JsonKey(toJson: maxFeeToJson)
   Felt get maxFee;
@@ -2234,8 +3323,11 @@ abstract class BroadcastedDeclareTxn implements BroadcastedTxn {
   Felt get nonce; // end of BROADCASTED_TXN_COMMON_PROPERTIES
   DeprecatedContractClass get contractClass;
   Felt get senderAddress;
+
+  /// Create a copy of BroadcastedTxn
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BroadcastedDeclareTxnImplCopyWith<_$BroadcastedDeclareTxnImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2266,6 +3358,8 @@ class __$$BroadcastedDeployTxnImplCopyWithImpl<$Res>
       $Res Function(_$BroadcastedDeployTxnImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BroadcastedTxn
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2299,6 +3393,8 @@ class __$$BroadcastedDeployTxnImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of BroadcastedTxn
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $DeprecatedContractClassCopyWith<$Res> get contractClass {
@@ -2367,7 +3463,7 @@ class _$BroadcastedDeployTxnImpl implements BroadcastedDeployTxn {
                 .equals(other._constructorCalldata, _constructorCalldata));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2377,7 +3473,9 @@ class _$BroadcastedDeployTxnImpl implements BroadcastedDeployTxn {
       contractAddressSalt,
       const DeepCollectionEquality().hash(_constructorCalldata));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BroadcastedTxn
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BroadcastedDeployTxnImplCopyWith<_$BroadcastedDeployTxnImpl>
@@ -2408,6 +3506,20 @@ class _$BroadcastedDeployTxnImpl implements BroadcastedDeployTxn {
             List<Felt> calldata)
         broadcastedInvokeTxnV1,
     required TResult Function(
+            List<Felt> accountDeploymentData,
+            List<Felt> calldata,
+            String feeDataAvailabilityMode,
+            Felt nonce,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt senderAddress,
+            List<Felt> signature,
+            Felt tip,
+            String version,
+            String type)
+        broadcastedInvokeTxnV3,
+    required TResult Function(
             String type,
             @JsonKey(toJson: maxFeeToJson) Felt maxFee,
             String version,
@@ -2433,6 +3545,20 @@ class _$BroadcastedDeployTxnImpl implements BroadcastedDeployTxn {
             List<Felt> signature,
             Felt nonce)
         broadcastedDeployAccountTxn,
+    required TResult Function(
+            Felt contractAddressSalt,
+            Felt classHash,
+            List<Felt> constructorCalldata,
+            String feeDataAvailabilityMode,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt tip,
+            String type,
+            String version,
+            List<Felt> signature,
+            Felt nonce)
+        broadcastedDeployAccountTxnV3,
   }) {
     return broadcastedDeployTxn(
         contractClass, version, type, contractAddressSalt, constructorCalldata);
@@ -2461,6 +3587,20 @@ class _$BroadcastedDeployTxnImpl implements BroadcastedDeployTxn {
             List<Felt> calldata)?
         broadcastedInvokeTxnV1,
     TResult? Function(
+            List<Felt> accountDeploymentData,
+            List<Felt> calldata,
+            String feeDataAvailabilityMode,
+            Felt nonce,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt senderAddress,
+            List<Felt> signature,
+            Felt tip,
+            String version,
+            String type)?
+        broadcastedInvokeTxnV3,
+    TResult? Function(
             String type,
             @JsonKey(toJson: maxFeeToJson) Felt maxFee,
             String version,
@@ -2486,6 +3626,20 @@ class _$BroadcastedDeployTxnImpl implements BroadcastedDeployTxn {
             List<Felt> signature,
             Felt nonce)?
         broadcastedDeployAccountTxn,
+    TResult? Function(
+            Felt contractAddressSalt,
+            Felt classHash,
+            List<Felt> constructorCalldata,
+            String feeDataAvailabilityMode,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt tip,
+            String type,
+            String version,
+            List<Felt> signature,
+            Felt nonce)?
+        broadcastedDeployAccountTxnV3,
   }) {
     return broadcastedDeployTxn?.call(
         contractClass, version, type, contractAddressSalt, constructorCalldata);
@@ -2514,6 +3668,20 @@ class _$BroadcastedDeployTxnImpl implements BroadcastedDeployTxn {
             List<Felt> calldata)?
         broadcastedInvokeTxnV1,
     TResult Function(
+            List<Felt> accountDeploymentData,
+            List<Felt> calldata,
+            String feeDataAvailabilityMode,
+            Felt nonce,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt senderAddress,
+            List<Felt> signature,
+            Felt tip,
+            String version,
+            String type)?
+        broadcastedInvokeTxnV3,
+    TResult Function(
             String type,
             @JsonKey(toJson: maxFeeToJson) Felt maxFee,
             String version,
@@ -2539,6 +3707,20 @@ class _$BroadcastedDeployTxnImpl implements BroadcastedDeployTxn {
             List<Felt> signature,
             Felt nonce)?
         broadcastedDeployAccountTxn,
+    TResult Function(
+            Felt contractAddressSalt,
+            Felt classHash,
+            List<Felt> constructorCalldata,
+            String feeDataAvailabilityMode,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt tip,
+            String type,
+            String version,
+            List<Felt> signature,
+            Felt nonce)?
+        broadcastedDeployAccountTxnV3,
     required TResult orElse(),
   }) {
     if (broadcastedDeployTxn != null) {
@@ -2555,11 +3737,15 @@ class _$BroadcastedDeployTxnImpl implements BroadcastedDeployTxn {
         broadcastedInvokeTxnV0,
     required TResult Function(BroadcastedInvokeTxnV1 value)
         broadcastedInvokeTxnV1,
+    required TResult Function(BroadcastedInvokeTxnV3 value)
+        broadcastedInvokeTxnV3,
     required TResult Function(BroadcastedDeclareTxn value)
         broadcastedDeclareTxn,
     required TResult Function(BroadcastedDeployTxn value) broadcastedDeployTxn,
     required TResult Function(BroadcastedDeployAccountTxn value)
         broadcastedDeployAccountTxn,
+    required TResult Function(BroadcastedDeployAccountTxnV3 value)
+        broadcastedDeployAccountTxnV3,
   }) {
     return broadcastedDeployTxn(this);
   }
@@ -2569,10 +3755,13 @@ class _$BroadcastedDeployTxnImpl implements BroadcastedDeployTxn {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(BroadcastedInvokeTxnV0 value)? broadcastedInvokeTxnV0,
     TResult? Function(BroadcastedInvokeTxnV1 value)? broadcastedInvokeTxnV1,
+    TResult? Function(BroadcastedInvokeTxnV3 value)? broadcastedInvokeTxnV3,
     TResult? Function(BroadcastedDeclareTxn value)? broadcastedDeclareTxn,
     TResult? Function(BroadcastedDeployTxn value)? broadcastedDeployTxn,
     TResult? Function(BroadcastedDeployAccountTxn value)?
         broadcastedDeployAccountTxn,
+    TResult? Function(BroadcastedDeployAccountTxnV3 value)?
+        broadcastedDeployAccountTxnV3,
   }) {
     return broadcastedDeployTxn?.call(this);
   }
@@ -2582,10 +3771,13 @@ class _$BroadcastedDeployTxnImpl implements BroadcastedDeployTxn {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(BroadcastedInvokeTxnV0 value)? broadcastedInvokeTxnV0,
     TResult Function(BroadcastedInvokeTxnV1 value)? broadcastedInvokeTxnV1,
+    TResult Function(BroadcastedInvokeTxnV3 value)? broadcastedInvokeTxnV3,
     TResult Function(BroadcastedDeclareTxn value)? broadcastedDeclareTxn,
     TResult Function(BroadcastedDeployTxn value)? broadcastedDeployTxn,
     TResult Function(BroadcastedDeployAccountTxn value)?
         broadcastedDeployAccountTxn,
+    TResult Function(BroadcastedDeployAccountTxnV3 value)?
+        broadcastedDeployAccountTxnV3,
     required TResult orElse(),
   }) {
     if (broadcastedDeployTxn != null) {
@@ -2614,15 +3806,18 @@ abstract class BroadcastedDeployTxn implements BroadcastedTxn {
   factory BroadcastedDeployTxn.fromJson(Map<String, dynamic> json) =
       _$BroadcastedDeployTxnImpl.fromJson;
 
-  DeprecatedContractClass get contractClass;
-  @override // start of DEPLOY_TXN_PROPERTIES
+  DeprecatedContractClass get contractClass; // start of DEPLOY_TXN_PROPERTIES
+  @override
   String get version;
   @override
   String get type;
   Felt get contractAddressSalt;
   List<Felt> get constructorCalldata;
+
+  /// Create a copy of BroadcastedTxn
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BroadcastedDeployTxnImplCopyWith<_$BroadcastedDeployTxnImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2657,6 +3852,8 @@ class __$$BroadcastedDeployAccountTxnImplCopyWithImpl<$Res>
       $Res Function(_$BroadcastedDeployAccountTxnImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BroadcastedTxn
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2787,7 +3984,7 @@ class _$BroadcastedDeployAccountTxnImpl implements BroadcastedDeployAccountTxn {
             (identical(other.nonce, nonce) || other.nonce == nonce));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2800,7 +3997,9 @@ class _$BroadcastedDeployAccountTxnImpl implements BroadcastedDeployAccountTxn {
       const DeepCollectionEquality().hash(_signature),
       nonce);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BroadcastedTxn
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BroadcastedDeployAccountTxnImplCopyWith<_$BroadcastedDeployAccountTxnImpl>
@@ -2830,6 +4029,20 @@ class _$BroadcastedDeployAccountTxnImpl implements BroadcastedDeployAccountTxn {
             List<Felt> calldata)
         broadcastedInvokeTxnV1,
     required TResult Function(
+            List<Felt> accountDeploymentData,
+            List<Felt> calldata,
+            String feeDataAvailabilityMode,
+            Felt nonce,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt senderAddress,
+            List<Felt> signature,
+            Felt tip,
+            String version,
+            String type)
+        broadcastedInvokeTxnV3,
+    required TResult Function(
             String type,
             @JsonKey(toJson: maxFeeToJson) Felt maxFee,
             String version,
@@ -2855,6 +4068,20 @@ class _$BroadcastedDeployAccountTxnImpl implements BroadcastedDeployAccountTxn {
             List<Felt> signature,
             Felt nonce)
         broadcastedDeployAccountTxn,
+    required TResult Function(
+            Felt contractAddressSalt,
+            Felt classHash,
+            List<Felt> constructorCalldata,
+            String feeDataAvailabilityMode,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt tip,
+            String type,
+            String version,
+            List<Felt> signature,
+            Felt nonce)
+        broadcastedDeployAccountTxnV3,
   }) {
     return broadcastedDeployAccountTxn(contractAddressSalt, classHash,
         constructorCalldata, type, maxFee, version, signature, nonce);
@@ -2883,6 +4110,20 @@ class _$BroadcastedDeployAccountTxnImpl implements BroadcastedDeployAccountTxn {
             List<Felt> calldata)?
         broadcastedInvokeTxnV1,
     TResult? Function(
+            List<Felt> accountDeploymentData,
+            List<Felt> calldata,
+            String feeDataAvailabilityMode,
+            Felt nonce,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt senderAddress,
+            List<Felt> signature,
+            Felt tip,
+            String version,
+            String type)?
+        broadcastedInvokeTxnV3,
+    TResult? Function(
             String type,
             @JsonKey(toJson: maxFeeToJson) Felt maxFee,
             String version,
@@ -2908,6 +4149,20 @@ class _$BroadcastedDeployAccountTxnImpl implements BroadcastedDeployAccountTxn {
             List<Felt> signature,
             Felt nonce)?
         broadcastedDeployAccountTxn,
+    TResult? Function(
+            Felt contractAddressSalt,
+            Felt classHash,
+            List<Felt> constructorCalldata,
+            String feeDataAvailabilityMode,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt tip,
+            String type,
+            String version,
+            List<Felt> signature,
+            Felt nonce)?
+        broadcastedDeployAccountTxnV3,
   }) {
     return broadcastedDeployAccountTxn?.call(contractAddressSalt, classHash,
         constructorCalldata, type, maxFee, version, signature, nonce);
@@ -2936,6 +4191,20 @@ class _$BroadcastedDeployAccountTxnImpl implements BroadcastedDeployAccountTxn {
             List<Felt> calldata)?
         broadcastedInvokeTxnV1,
     TResult Function(
+            List<Felt> accountDeploymentData,
+            List<Felt> calldata,
+            String feeDataAvailabilityMode,
+            Felt nonce,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt senderAddress,
+            List<Felt> signature,
+            Felt tip,
+            String version,
+            String type)?
+        broadcastedInvokeTxnV3,
+    TResult Function(
             String type,
             @JsonKey(toJson: maxFeeToJson) Felt maxFee,
             String version,
@@ -2961,6 +4230,20 @@ class _$BroadcastedDeployAccountTxnImpl implements BroadcastedDeployAccountTxn {
             List<Felt> signature,
             Felt nonce)?
         broadcastedDeployAccountTxn,
+    TResult Function(
+            Felt contractAddressSalt,
+            Felt classHash,
+            List<Felt> constructorCalldata,
+            String feeDataAvailabilityMode,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt tip,
+            String type,
+            String version,
+            List<Felt> signature,
+            Felt nonce)?
+        broadcastedDeployAccountTxnV3,
     required TResult orElse(),
   }) {
     if (broadcastedDeployAccountTxn != null) {
@@ -2977,11 +4260,15 @@ class _$BroadcastedDeployAccountTxnImpl implements BroadcastedDeployAccountTxn {
         broadcastedInvokeTxnV0,
     required TResult Function(BroadcastedInvokeTxnV1 value)
         broadcastedInvokeTxnV1,
+    required TResult Function(BroadcastedInvokeTxnV3 value)
+        broadcastedInvokeTxnV3,
     required TResult Function(BroadcastedDeclareTxn value)
         broadcastedDeclareTxn,
     required TResult Function(BroadcastedDeployTxn value) broadcastedDeployTxn,
     required TResult Function(BroadcastedDeployAccountTxn value)
         broadcastedDeployAccountTxn,
+    required TResult Function(BroadcastedDeployAccountTxnV3 value)
+        broadcastedDeployAccountTxnV3,
   }) {
     return broadcastedDeployAccountTxn(this);
   }
@@ -2991,10 +4278,13 @@ class _$BroadcastedDeployAccountTxnImpl implements BroadcastedDeployAccountTxn {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(BroadcastedInvokeTxnV0 value)? broadcastedInvokeTxnV0,
     TResult? Function(BroadcastedInvokeTxnV1 value)? broadcastedInvokeTxnV1,
+    TResult? Function(BroadcastedInvokeTxnV3 value)? broadcastedInvokeTxnV3,
     TResult? Function(BroadcastedDeclareTxn value)? broadcastedDeclareTxn,
     TResult? Function(BroadcastedDeployTxn value)? broadcastedDeployTxn,
     TResult? Function(BroadcastedDeployAccountTxn value)?
         broadcastedDeployAccountTxn,
+    TResult? Function(BroadcastedDeployAccountTxnV3 value)?
+        broadcastedDeployAccountTxnV3,
   }) {
     return broadcastedDeployAccountTxn?.call(this);
   }
@@ -3004,10 +4294,13 @@ class _$BroadcastedDeployAccountTxnImpl implements BroadcastedDeployAccountTxn {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(BroadcastedInvokeTxnV0 value)? broadcastedInvokeTxnV0,
     TResult Function(BroadcastedInvokeTxnV1 value)? broadcastedInvokeTxnV1,
+    TResult Function(BroadcastedInvokeTxnV3 value)? broadcastedInvokeTxnV3,
     TResult Function(BroadcastedDeclareTxn value)? broadcastedDeclareTxn,
     TResult Function(BroadcastedDeployTxn value)? broadcastedDeployTxn,
     TResult Function(BroadcastedDeployAccountTxn value)?
         broadcastedDeployAccountTxn,
+    TResult Function(BroadcastedDeployAccountTxnV3 value)?
+        broadcastedDeployAccountTxnV3,
     required TResult orElse(),
   }) {
     if (broadcastedDeployAccountTxn != null) {
@@ -3040,8 +4333,9 @@ abstract class BroadcastedDeployAccountTxn implements BroadcastedTxn {
 
   Felt get contractAddressSalt;
   Felt get classHash;
-  List<Felt> get constructorCalldata;
-  @override // start of BROADCASTED_TXN_COMMON_PROPERTIES
+  List<Felt>
+      get constructorCalldata; // start of BROADCASTED_TXN_COMMON_PROPERTIES
+  @override
   String get type;
   @JsonKey(toJson: maxFeeToJson)
   Felt get maxFee;
@@ -3049,8 +4343,656 @@ abstract class BroadcastedDeployAccountTxn implements BroadcastedTxn {
   String get version;
   List<Felt> get signature;
   Felt get nonce;
+
+  /// Create a copy of BroadcastedTxn
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BroadcastedDeployAccountTxnImplCopyWith<_$BroadcastedDeployAccountTxnImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$BroadcastedDeployAccountTxnV3ImplCopyWith<$Res>
+    implements $BroadcastedTxnCopyWith<$Res> {
+  factory _$$BroadcastedDeployAccountTxnV3ImplCopyWith(
+          _$BroadcastedDeployAccountTxnV3Impl value,
+          $Res Function(_$BroadcastedDeployAccountTxnV3Impl) then) =
+      __$$BroadcastedDeployAccountTxnV3ImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {Felt contractAddressSalt,
+      Felt classHash,
+      List<Felt> constructorCalldata,
+      String feeDataAvailabilityMode,
+      String nonceDataAvailabilityMode,
+      List<Felt> paymasterData,
+      Map<String, dynamic> resourceBounds,
+      Felt tip,
+      String type,
+      String version,
+      List<Felt> signature,
+      Felt nonce});
+}
+
+/// @nodoc
+class __$$BroadcastedDeployAccountTxnV3ImplCopyWithImpl<$Res>
+    extends _$BroadcastedTxnCopyWithImpl<$Res,
+        _$BroadcastedDeployAccountTxnV3Impl>
+    implements _$$BroadcastedDeployAccountTxnV3ImplCopyWith<$Res> {
+  __$$BroadcastedDeployAccountTxnV3ImplCopyWithImpl(
+      _$BroadcastedDeployAccountTxnV3Impl _value,
+      $Res Function(_$BroadcastedDeployAccountTxnV3Impl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of BroadcastedTxn
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? contractAddressSalt = null,
+    Object? classHash = null,
+    Object? constructorCalldata = null,
+    Object? feeDataAvailabilityMode = null,
+    Object? nonceDataAvailabilityMode = null,
+    Object? paymasterData = null,
+    Object? resourceBounds = null,
+    Object? tip = null,
+    Object? type = null,
+    Object? version = null,
+    Object? signature = null,
+    Object? nonce = null,
+  }) {
+    return _then(_$BroadcastedDeployAccountTxnV3Impl(
+      contractAddressSalt: null == contractAddressSalt
+          ? _value.contractAddressSalt
+          : contractAddressSalt // ignore: cast_nullable_to_non_nullable
+              as Felt,
+      classHash: null == classHash
+          ? _value.classHash
+          : classHash // ignore: cast_nullable_to_non_nullable
+              as Felt,
+      constructorCalldata: null == constructorCalldata
+          ? _value._constructorCalldata
+          : constructorCalldata // ignore: cast_nullable_to_non_nullable
+              as List<Felt>,
+      feeDataAvailabilityMode: null == feeDataAvailabilityMode
+          ? _value.feeDataAvailabilityMode
+          : feeDataAvailabilityMode // ignore: cast_nullable_to_non_nullable
+              as String,
+      nonceDataAvailabilityMode: null == nonceDataAvailabilityMode
+          ? _value.nonceDataAvailabilityMode
+          : nonceDataAvailabilityMode // ignore: cast_nullable_to_non_nullable
+              as String,
+      paymasterData: null == paymasterData
+          ? _value._paymasterData
+          : paymasterData // ignore: cast_nullable_to_non_nullable
+              as List<Felt>,
+      resourceBounds: null == resourceBounds
+          ? _value._resourceBounds
+          : resourceBounds // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      tip: null == tip
+          ? _value.tip
+          : tip // ignore: cast_nullable_to_non_nullable
+              as Felt,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      version: null == version
+          ? _value.version
+          : version // ignore: cast_nullable_to_non_nullable
+              as String,
+      signature: null == signature
+          ? _value._signature
+          : signature // ignore: cast_nullable_to_non_nullable
+              as List<Felt>,
+      nonce: null == nonce
+          ? _value.nonce
+          : nonce // ignore: cast_nullable_to_non_nullable
+              as Felt,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(includeIfNull: false)
+class _$BroadcastedDeployAccountTxnV3Impl
+    implements BroadcastedDeployAccountTxnV3 {
+  const _$BroadcastedDeployAccountTxnV3Impl(
+      {required this.contractAddressSalt,
+      required this.classHash,
+      required final List<Felt> constructorCalldata,
+      required this.feeDataAvailabilityMode,
+      required this.nonceDataAvailabilityMode,
+      required final List<Felt> paymasterData,
+      required final Map<String, dynamic> resourceBounds,
+      required this.tip,
+      required this.type,
+      required this.version,
+      required final List<Felt> signature,
+      required this.nonce,
+      final String? $type})
+      : _constructorCalldata = constructorCalldata,
+        _paymasterData = paymasterData,
+        _resourceBounds = resourceBounds,
+        _signature = signature,
+        $type = $type ?? 'broadcastedDeployAccountTxnV3';
+
+  factory _$BroadcastedDeployAccountTxnV3Impl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$BroadcastedDeployAccountTxnV3ImplFromJson(json);
+
+  @override
+  final Felt contractAddressSalt;
+  @override
+  final Felt classHash;
+  final List<Felt> _constructorCalldata;
+  @override
+  List<Felt> get constructorCalldata {
+    if (_constructorCalldata is EqualUnmodifiableListView)
+      return _constructorCalldata;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_constructorCalldata);
+  }
+
+  @override
+  final String feeDataAvailabilityMode;
+// For future use. Currently this value is always 0.
+  @override
+  final String nonceDataAvailabilityMode;
+// For future use. Currently this value is always 0.
+  final List<Felt> _paymasterData;
+// For future use. Currently this value is always 0.
+  @override
+  List<Felt> get paymasterData {
+    if (_paymasterData is EqualUnmodifiableListView) return _paymasterData;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_paymasterData);
+  }
+
+// For future use. Currently this value is always empty.
+  final Map<String, dynamic> _resourceBounds;
+// For future use. Currently this value is always empty.
+  @override
+  Map<String, dynamic> get resourceBounds {
+    if (_resourceBounds is EqualUnmodifiableMapView) return _resourceBounds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_resourceBounds);
+  }
+
+  @override
+  final Felt tip;
+// For future use. Currently this value is always 0.
+// start of BROADCASTED_TXN_COMMON_PROPERTIES
+  @override
+  final String type;
+  @override
+  final String version;
+  final List<Felt> _signature;
+  @override
+  List<Felt> get signature {
+    if (_signature is EqualUnmodifiableListView) return _signature;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_signature);
+  }
+
+  @override
+  final Felt nonce;
+
+  @JsonKey(name: 'starkNetRuntimeTypeToRemove')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'BroadcastedTxn.broadcastedDeployAccountTxnV3(contractAddressSalt: $contractAddressSalt, classHash: $classHash, constructorCalldata: $constructorCalldata, feeDataAvailabilityMode: $feeDataAvailabilityMode, nonceDataAvailabilityMode: $nonceDataAvailabilityMode, paymasterData: $paymasterData, resourceBounds: $resourceBounds, tip: $tip, type: $type, version: $version, signature: $signature, nonce: $nonce)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BroadcastedDeployAccountTxnV3Impl &&
+            (identical(other.contractAddressSalt, contractAddressSalt) ||
+                other.contractAddressSalt == contractAddressSalt) &&
+            (identical(other.classHash, classHash) ||
+                other.classHash == classHash) &&
+            const DeepCollectionEquality()
+                .equals(other._constructorCalldata, _constructorCalldata) &&
+            (identical(
+                    other.feeDataAvailabilityMode, feeDataAvailabilityMode) ||
+                other.feeDataAvailabilityMode == feeDataAvailabilityMode) &&
+            (identical(other.nonceDataAvailabilityMode,
+                    nonceDataAvailabilityMode) ||
+                other.nonceDataAvailabilityMode == nonceDataAvailabilityMode) &&
+            const DeepCollectionEquality()
+                .equals(other._paymasterData, _paymasterData) &&
+            const DeepCollectionEquality()
+                .equals(other._resourceBounds, _resourceBounds) &&
+            (identical(other.tip, tip) || other.tip == tip) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.version, version) || other.version == version) &&
+            const DeepCollectionEquality()
+                .equals(other._signature, _signature) &&
+            (identical(other.nonce, nonce) || other.nonce == nonce));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      contractAddressSalt,
+      classHash,
+      const DeepCollectionEquality().hash(_constructorCalldata),
+      feeDataAvailabilityMode,
+      nonceDataAvailabilityMode,
+      const DeepCollectionEquality().hash(_paymasterData),
+      const DeepCollectionEquality().hash(_resourceBounds),
+      tip,
+      type,
+      version,
+      const DeepCollectionEquality().hash(_signature),
+      nonce);
+
+  /// Create a copy of BroadcastedTxn
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BroadcastedDeployAccountTxnV3ImplCopyWith<
+          _$BroadcastedDeployAccountTxnV3Impl>
+      get copyWith => __$$BroadcastedDeployAccountTxnV3ImplCopyWithImpl<
+          _$BroadcastedDeployAccountTxnV3Impl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String type,
+            @JsonKey(toJson: maxFeeToJson) Felt maxFee,
+            String version,
+            List<Felt> signature,
+            Felt? nonce,
+            Felt contractAddress,
+            Felt entryPointSelector,
+            List<Felt> calldata)
+        broadcastedInvokeTxnV0,
+    required TResult Function(
+            String type,
+            @JsonKey(toJson: maxFeeToJson) Felt maxFee,
+            String version,
+            List<Felt> signature,
+            Felt nonce,
+            Felt senderAddress,
+            List<Felt> calldata)
+        broadcastedInvokeTxnV1,
+    required TResult Function(
+            List<Felt> accountDeploymentData,
+            List<Felt> calldata,
+            String feeDataAvailabilityMode,
+            Felt nonce,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt senderAddress,
+            List<Felt> signature,
+            Felt tip,
+            String version,
+            String type)
+        broadcastedInvokeTxnV3,
+    required TResult Function(
+            String type,
+            @JsonKey(toJson: maxFeeToJson) Felt maxFee,
+            String version,
+            List<Felt> signature,
+            Felt nonce,
+            DeprecatedContractClass contractClass,
+            Felt senderAddress)
+        broadcastedDeclareTxn,
+    required TResult Function(
+            DeprecatedContractClass contractClass,
+            String version,
+            String type,
+            Felt contractAddressSalt,
+            List<Felt> constructorCalldata)
+        broadcastedDeployTxn,
+    required TResult Function(
+            Felt contractAddressSalt,
+            Felt classHash,
+            List<Felt> constructorCalldata,
+            String type,
+            @JsonKey(toJson: maxFeeToJson) Felt maxFee,
+            String version,
+            List<Felt> signature,
+            Felt nonce)
+        broadcastedDeployAccountTxn,
+    required TResult Function(
+            Felt contractAddressSalt,
+            Felt classHash,
+            List<Felt> constructorCalldata,
+            String feeDataAvailabilityMode,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt tip,
+            String type,
+            String version,
+            List<Felt> signature,
+            Felt nonce)
+        broadcastedDeployAccountTxnV3,
+  }) {
+    return broadcastedDeployAccountTxnV3(
+        contractAddressSalt,
+        classHash,
+        constructorCalldata,
+        feeDataAvailabilityMode,
+        nonceDataAvailabilityMode,
+        paymasterData,
+        resourceBounds,
+        tip,
+        type,
+        version,
+        signature,
+        nonce);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            String type,
+            @JsonKey(toJson: maxFeeToJson) Felt maxFee,
+            String version,
+            List<Felt> signature,
+            Felt? nonce,
+            Felt contractAddress,
+            Felt entryPointSelector,
+            List<Felt> calldata)?
+        broadcastedInvokeTxnV0,
+    TResult? Function(
+            String type,
+            @JsonKey(toJson: maxFeeToJson) Felt maxFee,
+            String version,
+            List<Felt> signature,
+            Felt nonce,
+            Felt senderAddress,
+            List<Felt> calldata)?
+        broadcastedInvokeTxnV1,
+    TResult? Function(
+            List<Felt> accountDeploymentData,
+            List<Felt> calldata,
+            String feeDataAvailabilityMode,
+            Felt nonce,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt senderAddress,
+            List<Felt> signature,
+            Felt tip,
+            String version,
+            String type)?
+        broadcastedInvokeTxnV3,
+    TResult? Function(
+            String type,
+            @JsonKey(toJson: maxFeeToJson) Felt maxFee,
+            String version,
+            List<Felt> signature,
+            Felt nonce,
+            DeprecatedContractClass contractClass,
+            Felt senderAddress)?
+        broadcastedDeclareTxn,
+    TResult? Function(
+            DeprecatedContractClass contractClass,
+            String version,
+            String type,
+            Felt contractAddressSalt,
+            List<Felt> constructorCalldata)?
+        broadcastedDeployTxn,
+    TResult? Function(
+            Felt contractAddressSalt,
+            Felt classHash,
+            List<Felt> constructorCalldata,
+            String type,
+            @JsonKey(toJson: maxFeeToJson) Felt maxFee,
+            String version,
+            List<Felt> signature,
+            Felt nonce)?
+        broadcastedDeployAccountTxn,
+    TResult? Function(
+            Felt contractAddressSalt,
+            Felt classHash,
+            List<Felt> constructorCalldata,
+            String feeDataAvailabilityMode,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt tip,
+            String type,
+            String version,
+            List<Felt> signature,
+            Felt nonce)?
+        broadcastedDeployAccountTxnV3,
+  }) {
+    return broadcastedDeployAccountTxnV3?.call(
+        contractAddressSalt,
+        classHash,
+        constructorCalldata,
+        feeDataAvailabilityMode,
+        nonceDataAvailabilityMode,
+        paymasterData,
+        resourceBounds,
+        tip,
+        type,
+        version,
+        signature,
+        nonce);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            String type,
+            @JsonKey(toJson: maxFeeToJson) Felt maxFee,
+            String version,
+            List<Felt> signature,
+            Felt? nonce,
+            Felt contractAddress,
+            Felt entryPointSelector,
+            List<Felt> calldata)?
+        broadcastedInvokeTxnV0,
+    TResult Function(
+            String type,
+            @JsonKey(toJson: maxFeeToJson) Felt maxFee,
+            String version,
+            List<Felt> signature,
+            Felt nonce,
+            Felt senderAddress,
+            List<Felt> calldata)?
+        broadcastedInvokeTxnV1,
+    TResult Function(
+            List<Felt> accountDeploymentData,
+            List<Felt> calldata,
+            String feeDataAvailabilityMode,
+            Felt nonce,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt senderAddress,
+            List<Felt> signature,
+            Felt tip,
+            String version,
+            String type)?
+        broadcastedInvokeTxnV3,
+    TResult Function(
+            String type,
+            @JsonKey(toJson: maxFeeToJson) Felt maxFee,
+            String version,
+            List<Felt> signature,
+            Felt nonce,
+            DeprecatedContractClass contractClass,
+            Felt senderAddress)?
+        broadcastedDeclareTxn,
+    TResult Function(
+            DeprecatedContractClass contractClass,
+            String version,
+            String type,
+            Felt contractAddressSalt,
+            List<Felt> constructorCalldata)?
+        broadcastedDeployTxn,
+    TResult Function(
+            Felt contractAddressSalt,
+            Felt classHash,
+            List<Felt> constructorCalldata,
+            String type,
+            @JsonKey(toJson: maxFeeToJson) Felt maxFee,
+            String version,
+            List<Felt> signature,
+            Felt nonce)?
+        broadcastedDeployAccountTxn,
+    TResult Function(
+            Felt contractAddressSalt,
+            Felt classHash,
+            List<Felt> constructorCalldata,
+            String feeDataAvailabilityMode,
+            String nonceDataAvailabilityMode,
+            List<Felt> paymasterData,
+            Map<String, dynamic> resourceBounds,
+            Felt tip,
+            String type,
+            String version,
+            List<Felt> signature,
+            Felt nonce)?
+        broadcastedDeployAccountTxnV3,
+    required TResult orElse(),
+  }) {
+    if (broadcastedDeployAccountTxnV3 != null) {
+      return broadcastedDeployAccountTxnV3(
+          contractAddressSalt,
+          classHash,
+          constructorCalldata,
+          feeDataAvailabilityMode,
+          nonceDataAvailabilityMode,
+          paymasterData,
+          resourceBounds,
+          tip,
+          type,
+          version,
+          signature,
+          nonce);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(BroadcastedInvokeTxnV0 value)
+        broadcastedInvokeTxnV0,
+    required TResult Function(BroadcastedInvokeTxnV1 value)
+        broadcastedInvokeTxnV1,
+    required TResult Function(BroadcastedInvokeTxnV3 value)
+        broadcastedInvokeTxnV3,
+    required TResult Function(BroadcastedDeclareTxn value)
+        broadcastedDeclareTxn,
+    required TResult Function(BroadcastedDeployTxn value) broadcastedDeployTxn,
+    required TResult Function(BroadcastedDeployAccountTxn value)
+        broadcastedDeployAccountTxn,
+    required TResult Function(BroadcastedDeployAccountTxnV3 value)
+        broadcastedDeployAccountTxnV3,
+  }) {
+    return broadcastedDeployAccountTxnV3(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(BroadcastedInvokeTxnV0 value)? broadcastedInvokeTxnV0,
+    TResult? Function(BroadcastedInvokeTxnV1 value)? broadcastedInvokeTxnV1,
+    TResult? Function(BroadcastedInvokeTxnV3 value)? broadcastedInvokeTxnV3,
+    TResult? Function(BroadcastedDeclareTxn value)? broadcastedDeclareTxn,
+    TResult? Function(BroadcastedDeployTxn value)? broadcastedDeployTxn,
+    TResult? Function(BroadcastedDeployAccountTxn value)?
+        broadcastedDeployAccountTxn,
+    TResult? Function(BroadcastedDeployAccountTxnV3 value)?
+        broadcastedDeployAccountTxnV3,
+  }) {
+    return broadcastedDeployAccountTxnV3?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(BroadcastedInvokeTxnV0 value)? broadcastedInvokeTxnV0,
+    TResult Function(BroadcastedInvokeTxnV1 value)? broadcastedInvokeTxnV1,
+    TResult Function(BroadcastedInvokeTxnV3 value)? broadcastedInvokeTxnV3,
+    TResult Function(BroadcastedDeclareTxn value)? broadcastedDeclareTxn,
+    TResult Function(BroadcastedDeployTxn value)? broadcastedDeployTxn,
+    TResult Function(BroadcastedDeployAccountTxn value)?
+        broadcastedDeployAccountTxn,
+    TResult Function(BroadcastedDeployAccountTxnV3 value)?
+        broadcastedDeployAccountTxnV3,
+    required TResult orElse(),
+  }) {
+    if (broadcastedDeployAccountTxnV3 != null) {
+      return broadcastedDeployAccountTxnV3(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BroadcastedDeployAccountTxnV3ImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class BroadcastedDeployAccountTxnV3 implements BroadcastedTxn {
+  const factory BroadcastedDeployAccountTxnV3(
+      {required final Felt contractAddressSalt,
+      required final Felt classHash,
+      required final List<Felt> constructorCalldata,
+      required final String feeDataAvailabilityMode,
+      required final String nonceDataAvailabilityMode,
+      required final List<Felt> paymasterData,
+      required final Map<String, dynamic> resourceBounds,
+      required final Felt tip,
+      required final String type,
+      required final String version,
+      required final List<Felt> signature,
+      required final Felt nonce}) = _$BroadcastedDeployAccountTxnV3Impl;
+
+  factory BroadcastedDeployAccountTxnV3.fromJson(Map<String, dynamic> json) =
+      _$BroadcastedDeployAccountTxnV3Impl.fromJson;
+
+  Felt get contractAddressSalt;
+  Felt get classHash;
+  List<Felt> get constructorCalldata;
+  String
+      get feeDataAvailabilityMode; // For future use. Currently this value is always 0.
+  String
+      get nonceDataAvailabilityMode; // For future use. Currently this value is always 0.
+  List<Felt>
+      get paymasterData; // For future use. Currently this value is always empty.
+  Map<String, dynamic> get resourceBounds;
+  Felt get tip; // For future use. Currently this value is always 0.
+// start of BROADCASTED_TXN_COMMON_PROPERTIES
+  @override
+  String get type;
+  @override
+  String get version;
+  List<Felt> get signature;
+  Felt get nonce;
+
+  /// Create a copy of BroadcastedTxn
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$BroadcastedDeployAccountTxnV3ImplCopyWith<
+          _$BroadcastedDeployAccountTxnV3Impl>
       get copyWith => throw _privateConstructorUsedError;
 }

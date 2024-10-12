@@ -71,6 +71,8 @@ mixin _$GetTransactionReceipt {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Serializes this GetTransactionReceipt to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
@@ -91,6 +93,9 @@ class _$GetTransactionReceiptCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of GetTransactionReceipt
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -115,6 +120,8 @@ class __$$GetTransactionReceiptResultImplCopyWithImpl<$Res>
       $Res Function(_$GetTransactionReceiptResultImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetTransactionReceipt
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -128,6 +135,8 @@ class __$$GetTransactionReceiptResultImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of GetTransactionReceipt
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TxnReceiptCopyWith<$Res> get result {
@@ -167,11 +176,13 @@ class _$GetTransactionReceiptResultImpl implements GetTransactionReceiptResult {
             (identical(other.result, result) || other.result == result));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, result);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetTransactionReceipt
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetTransactionReceiptResultImplCopyWith<_$GetTransactionReceiptResultImpl>
@@ -256,7 +267,10 @@ abstract class GetTransactionReceiptResult implements GetTransactionReceipt {
       _$GetTransactionReceiptResultImpl.fromJson;
 
   TxnReceipt get result;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GetTransactionReceipt
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetTransactionReceiptResultImplCopyWith<_$GetTransactionReceiptResultImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -283,6 +297,8 @@ class __$$GetTransactionReceiptErrorImplCopyWithImpl<$Res>
       $Res Function(_$GetTransactionReceiptErrorImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetTransactionReceipt
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -296,6 +312,8 @@ class __$$GetTransactionReceiptErrorImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of GetTransactionReceipt
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $JsonRpcApiErrorCopyWith<$Res> get error {
@@ -335,11 +353,13 @@ class _$GetTransactionReceiptErrorImpl implements GetTransactionReceiptError {
             (identical(other.error, error) || other.error == error));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, error);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetTransactionReceipt
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetTransactionReceiptErrorImplCopyWith<_$GetTransactionReceiptErrorImpl>
@@ -425,7 +445,10 @@ abstract class GetTransactionReceiptError implements GetTransactionReceipt {
       _$GetTransactionReceiptErrorImpl.fromJson;
 
   JsonRpcApiError get error;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GetTransactionReceipt
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetTransactionReceiptErrorImplCopyWith<_$GetTransactionReceiptErrorImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -439,8 +462,12 @@ mixin _$ActualFee {
   Felt get amount => throw _privateConstructorUsedError;
   String get unit => throw _privateConstructorUsedError;
 
+  /// Serializes this ActualFee to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ActualFee
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ActualFeeCopyWith<ActualFee> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -463,6 +490,8 @@ class _$ActualFeeCopyWithImpl<$Res, $Val extends ActualFee>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ActualFee
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -501,6 +530,8 @@ class __$$ActualFeeImplCopyWithImpl<$Res>
       _$ActualFeeImpl _value, $Res Function(_$ActualFeeImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ActualFee
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -547,11 +578,13 @@ class _$ActualFeeImpl implements _ActualFee {
             (identical(other.unit, unit) || other.unit == unit));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, amount, unit);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ActualFee
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ActualFeeImplCopyWith<_$ActualFeeImpl> get copyWith =>
@@ -577,8 +610,11 @@ abstract class _ActualFee implements ActualFee {
   Felt get amount;
   @override
   String get unit;
+
+  /// Create a copy of ActualFee
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ActualFeeImplCopyWith<_$ActualFeeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -858,8 +894,13 @@ mixin _$TxnReceipt {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Serializes this TxnReceipt to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TxnReceipt
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TxnReceiptCopyWith<TxnReceipt> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -890,6 +931,8 @@ class _$TxnReceiptCopyWithImpl<$Res, $Val extends TxnReceipt>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TxnReceipt
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -923,6 +966,8 @@ class _$TxnReceiptCopyWithImpl<$Res, $Val extends TxnReceipt>
     ) as $Val);
   }
 
+  /// Create a copy of TxnReceipt
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ActualFeeCopyWith<$Res> get actualFee {
@@ -962,6 +1007,8 @@ class __$$InvokeTxnReceiptImplCopyWithImpl<$Res>
       $Res Function(_$InvokeTxnReceiptImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TxnReceipt
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1088,7 +1135,7 @@ class _$InvokeTxnReceiptImpl implements InvokeTxnReceipt {
             const DeepCollectionEquality().equals(other._events, _events));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1101,7 +1148,9 @@ class _$InvokeTxnReceiptImpl implements InvokeTxnReceipt {
       const DeepCollectionEquality().hash(_messagesSent),
       const DeepCollectionEquality().hash(_events));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TxnReceipt
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$InvokeTxnReceiptImplCopyWith<_$InvokeTxnReceiptImpl> get copyWith =>
@@ -1398,7 +1447,8 @@ abstract class InvokeTxnReceipt implements TxnReceipt {
   factory InvokeTxnReceipt.fromJson(Map<String, dynamic> json) =
       _$InvokeTxnReceiptImpl.fromJson;
 
-  @override // start of COMMON_RECEIPT_PROPERTIES
+// start of COMMON_RECEIPT_PROPERTIES
+  @override
   Felt get transactionHash;
   @override
   ActualFee get actualFee;
@@ -1411,8 +1461,11 @@ abstract class InvokeTxnReceipt implements TxnReceipt {
   List<MsgToL1> get messagesSent;
   @override
   List<Event> get events;
+
+  /// Create a copy of TxnReceipt
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$InvokeTxnReceiptImplCopyWith<_$InvokeTxnReceiptImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1447,6 +1500,8 @@ class __$$DeclareTxnReceiptImplCopyWithImpl<$Res>
       $Res Function(_$DeclareTxnReceiptImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TxnReceipt
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1573,7 +1628,7 @@ class _$DeclareTxnReceiptImpl implements DeclareTxnReceipt {
             const DeepCollectionEquality().equals(other._events, _events));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1586,7 +1641,9 @@ class _$DeclareTxnReceiptImpl implements DeclareTxnReceipt {
       const DeepCollectionEquality().hash(_messagesSent),
       const DeepCollectionEquality().hash(_events));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TxnReceipt
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DeclareTxnReceiptImplCopyWith<_$DeclareTxnReceiptImpl> get copyWith =>
@@ -1883,7 +1940,8 @@ abstract class DeclareTxnReceipt implements TxnReceipt {
   factory DeclareTxnReceipt.fromJson(Map<String, dynamic> json) =
       _$DeclareTxnReceiptImpl.fromJson;
 
-  @override // start of COMMON_RECEIPT_PROPERTIES
+// start of COMMON_RECEIPT_PROPERTIES
+  @override
   Felt get transactionHash;
   @override
   ActualFee get actualFee;
@@ -1896,8 +1954,11 @@ abstract class DeclareTxnReceipt implements TxnReceipt {
   List<MsgToL1> get messagesSent;
   @override
   List<Event> get events;
+
+  /// Create a copy of TxnReceipt
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DeclareTxnReceiptImplCopyWith<_$DeclareTxnReceiptImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1932,6 +1993,8 @@ class __$$L1HandlerTxnReceiptImplCopyWithImpl<$Res>
       $Res Function(_$L1HandlerTxnReceiptImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TxnReceipt
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2058,7 +2121,7 @@ class _$L1HandlerTxnReceiptImpl implements L1HandlerTxnReceipt {
             const DeepCollectionEquality().equals(other._events, _events));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2071,7 +2134,9 @@ class _$L1HandlerTxnReceiptImpl implements L1HandlerTxnReceipt {
       const DeepCollectionEquality().hash(_messagesSent),
       const DeepCollectionEquality().hash(_events));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TxnReceipt
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$L1HandlerTxnReceiptImplCopyWith<_$L1HandlerTxnReceiptImpl> get copyWith =>
@@ -2368,7 +2433,8 @@ abstract class L1HandlerTxnReceipt implements TxnReceipt {
   factory L1HandlerTxnReceipt.fromJson(Map<String, dynamic> json) =
       _$L1HandlerTxnReceiptImpl.fromJson;
 
-  @override // start of COMMON_RECEIPT_PROPERTIES
+// start of COMMON_RECEIPT_PROPERTIES
+  @override
   Felt get transactionHash;
   @override
   ActualFee get actualFee;
@@ -2381,8 +2447,11 @@ abstract class L1HandlerTxnReceipt implements TxnReceipt {
   List<MsgToL1> get messagesSent;
   @override
   List<Event> get events;
+
+  /// Create a copy of TxnReceipt
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$L1HandlerTxnReceiptImplCopyWith<_$L1HandlerTxnReceiptImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2418,6 +2487,8 @@ class __$$DeployTxnReceiptImplCopyWithImpl<$Res>
       $Res Function(_$DeployTxnReceiptImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TxnReceipt
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2556,7 +2627,7 @@ class _$DeployTxnReceiptImpl implements DeployTxnReceipt {
                 other.contractAddress == contractAddress));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2570,7 +2641,9 @@ class _$DeployTxnReceiptImpl implements DeployTxnReceipt {
       const DeepCollectionEquality().hash(_events),
       contractAddress);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TxnReceipt
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DeployTxnReceiptImplCopyWith<_$DeployTxnReceiptImpl> get copyWith =>
@@ -2868,7 +2941,8 @@ abstract class DeployTxnReceipt implements TxnReceipt {
   factory DeployTxnReceipt.fromJson(Map<String, dynamic> json) =
       _$DeployTxnReceiptImpl.fromJson;
 
-  @override // start of COMMON_RECEIPT_PROPERTIES
+// start of COMMON_RECEIPT_PROPERTIES
+  @override
   Felt get transactionHash;
   @override
   ActualFee get actualFee;
@@ -2882,8 +2956,11 @@ abstract class DeployTxnReceipt implements TxnReceipt {
   @override
   List<Event> get events; // end of COMMON_RECEIPT_PROPERTIES
   Felt get contractAddress;
+
+  /// Create a copy of TxnReceipt
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DeployTxnReceiptImplCopyWith<_$DeployTxnReceiptImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2921,6 +2998,8 @@ class __$$DeployAccountTxnReceiptImplCopyWithImpl<$Res>
       $Res Function(_$DeployAccountTxnReceiptImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TxnReceipt
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3059,7 +3138,7 @@ class _$DeployAccountTxnReceiptImpl implements DeployAccountTxnReceipt {
                 other.contractAddress == contractAddress));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3073,7 +3152,9 @@ class _$DeployAccountTxnReceiptImpl implements DeployAccountTxnReceipt {
       const DeepCollectionEquality().hash(_events),
       contractAddress);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TxnReceipt
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DeployAccountTxnReceiptImplCopyWith<_$DeployAccountTxnReceiptImpl>
@@ -3371,7 +3452,8 @@ abstract class DeployAccountTxnReceipt implements TxnReceipt {
   factory DeployAccountTxnReceipt.fromJson(Map<String, dynamic> json) =
       _$DeployAccountTxnReceiptImpl.fromJson;
 
-  @override // start of COMMON_RECEIPT_PROPERTIES
+// start of COMMON_RECEIPT_PROPERTIES
+  @override
   Felt get transactionHash;
   @override
   ActualFee get actualFee;
@@ -3385,8 +3467,11 @@ abstract class DeployAccountTxnReceipt implements TxnReceipt {
   @override
   List<Event> get events; // end of COMMON_RECEIPT_PROPERTIES
   Felt get contractAddress;
+
+  /// Create a copy of TxnReceipt
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DeployAccountTxnReceiptImplCopyWith<_$DeployAccountTxnReceiptImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -3421,6 +3506,8 @@ class __$$PendingDeployTxnReceiptImplCopyWithImpl<$Res>
       $Res Function(_$PendingDeployTxnReceiptImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TxnReceipt
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3530,7 +3617,7 @@ class _$PendingDeployTxnReceiptImpl implements PendingDeployTxnReceipt {
                 other.contractAddress == contractAddress));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3541,7 +3628,9 @@ class _$PendingDeployTxnReceiptImpl implements PendingDeployTxnReceipt {
       const DeepCollectionEquality().hash(_events),
       contractAddress);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TxnReceipt
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PendingDeployTxnReceiptImplCopyWith<_$PendingDeployTxnReceiptImpl>
@@ -3836,7 +3925,8 @@ abstract class PendingDeployTxnReceipt implements TxnReceipt {
   factory PendingDeployTxnReceipt.fromJson(Map<String, dynamic> json) =
       _$PendingDeployTxnReceiptImpl.fromJson;
 
-  @override // start of PENDING_COMMON_RECEIPT_PROPERTIES
+// start of PENDING_COMMON_RECEIPT_PROPERTIES
+  @override
   Felt get transactionHash;
   @override
   ActualFee get actualFee;
@@ -3847,8 +3937,11 @@ abstract class PendingDeployTxnReceipt implements TxnReceipt {
   @override
   List<Event> get events; // end of PENDING_COMMON_RECEIPT_PROPERTIES
   Felt get contractAddress;
+
+  /// Create a copy of TxnReceipt
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PendingDeployTxnReceiptImplCopyWith<_$PendingDeployTxnReceiptImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -3882,6 +3975,8 @@ class __$$PendingCommonReceiptPropertiesImplCopyWithImpl<$Res>
       $Res Function(_$PendingCommonReceiptPropertiesImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TxnReceipt
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3981,7 +4076,7 @@ class _$PendingCommonReceiptPropertiesImpl
             const DeepCollectionEquality().equals(other._events, _events));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3991,7 +4086,9 @@ class _$PendingCommonReceiptPropertiesImpl
       const DeepCollectionEquality().hash(_messagesSent),
       const DeepCollectionEquality().hash(_events));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TxnReceipt
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PendingCommonReceiptPropertiesImplCopyWith<
@@ -4287,7 +4384,8 @@ abstract class PendingCommonReceiptProperties implements TxnReceipt {
   factory PendingCommonReceiptProperties.fromJson(Map<String, dynamic> json) =
       _$PendingCommonReceiptPropertiesImpl.fromJson;
 
-  @override // start of PENDING_COMMON_RECEIPT_PROPERTIES
+// start of PENDING_COMMON_RECEIPT_PROPERTIES
+  @override
   Felt get transactionHash;
   @override
   ActualFee get actualFee;
@@ -4297,8 +4395,11 @@ abstract class PendingCommonReceiptProperties implements TxnReceipt {
   List<MsgToL1> get messagesSent;
   @override
   List<Event> get events;
+
+  /// Create a copy of TxnReceipt
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PendingCommonReceiptPropertiesImplCopyWith<
           _$PendingCommonReceiptPropertiesImpl>
       get copyWith => throw _privateConstructorUsedError;

@@ -82,10 +82,36 @@ List<BigInt> _hadesPermutation({
   return vals;
 }
 
-class _Poseidon {
+class Poseidon {
   final PoseidonParams params;
 
-  _Poseidon(this.params);
+  Poseidon(this.params);
+
+  List<BigInt> state = [BigInt.zero, BigInt.zero, BigInt.zero];
+  BigInt? buffer;
+
+  void update(BigInt msg) {
+    if (buffer != null) {
+      state[0] += buffer!;
+      state[1] += msg;
+      final r = _hadesPermutation(values: [...state], params: params);
+      state = r;
+      buffer = null;
+    } else {
+      buffer = msg;
+    }
+  }
+
+  BigInt finalize() {
+    if (buffer != null) {
+      state[0] += buffer!;
+      state[1] += BigInt.one;
+      buffer = null;
+    } else {
+      state[0] += BigInt.one;
+    }
+    return _hadesPermutation(values: [...state], params: params)[0];
+  }
 
   BigInt hash(BigInt x, BigInt y) =>
       _hadesPermutation(values: [x, y, BigInt.two], params: params)[0];
@@ -123,4 +149,6 @@ class _Poseidon {
   }
 }
 
-final poseidonHasher = _Poseidon(poseidonParams);
+final poseidonHasher = Poseidon(poseidonParams);
+
+Poseidon newPoseidonHasher() => Poseidon(poseidonParams);

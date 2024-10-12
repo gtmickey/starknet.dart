@@ -12,7 +12,7 @@ part of 'entry_points_by_type.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 EntryPointsByType _$EntryPointsByTypeFromJson(Map<String, dynamic> json) {
   return _EntryPointsByType.fromJson(json);
@@ -27,8 +27,12 @@ mixin _$EntryPointsByType {
   @JsonKey(name: 'L1_HANDLER')
   List<SierraEntryPoint> get l1Handler => throw _privateConstructorUsedError;
 
+  /// Serializes this EntryPointsByType to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of EntryPointsByType
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $EntryPointsByTypeCopyWith<EntryPointsByType> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -55,6 +59,8 @@ class _$EntryPointsByTypeCopyWithImpl<$Res, $Val extends EntryPointsByType>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of EntryPointsByType
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -80,11 +86,11 @@ class _$EntryPointsByTypeCopyWithImpl<$Res, $Val extends EntryPointsByType>
 }
 
 /// @nodoc
-abstract class _$$_EntryPointsByTypeCopyWith<$Res>
+abstract class _$$EntryPointsByTypeImplCopyWith<$Res>
     implements $EntryPointsByTypeCopyWith<$Res> {
-  factory _$$_EntryPointsByTypeCopyWith(_$_EntryPointsByType value,
-          $Res Function(_$_EntryPointsByType) then) =
-      __$$_EntryPointsByTypeCopyWithImpl<$Res>;
+  factory _$$EntryPointsByTypeImplCopyWith(_$EntryPointsByTypeImpl value,
+          $Res Function(_$EntryPointsByTypeImpl) then) =
+      __$$EntryPointsByTypeImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -94,13 +100,15 @@ abstract class _$$_EntryPointsByTypeCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_EntryPointsByTypeCopyWithImpl<$Res>
-    extends _$EntryPointsByTypeCopyWithImpl<$Res, _$_EntryPointsByType>
-    implements _$$_EntryPointsByTypeCopyWith<$Res> {
-  __$$_EntryPointsByTypeCopyWithImpl(
-      _$_EntryPointsByType _value, $Res Function(_$_EntryPointsByType) _then)
+class __$$EntryPointsByTypeImplCopyWithImpl<$Res>
+    extends _$EntryPointsByTypeCopyWithImpl<$Res, _$EntryPointsByTypeImpl>
+    implements _$$EntryPointsByTypeImplCopyWith<$Res> {
+  __$$EntryPointsByTypeImplCopyWithImpl(_$EntryPointsByTypeImpl _value,
+      $Res Function(_$EntryPointsByTypeImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EntryPointsByType
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -108,7 +116,7 @@ class __$$_EntryPointsByTypeCopyWithImpl<$Res>
     Object? external = null,
     Object? l1Handler = null,
   }) {
-    return _then(_$_EntryPointsByType(
+    return _then(_$EntryPointsByTypeImpl(
       constructor: null == constructor
           ? _value._constructor
           : constructor // ignore: cast_nullable_to_non_nullable
@@ -127,8 +135,8 @@ class __$$_EntryPointsByTypeCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_EntryPointsByType implements _EntryPointsByType {
-  const _$_EntryPointsByType(
+class _$EntryPointsByTypeImpl implements _EntryPointsByType {
+  const _$EntryPointsByTypeImpl(
       {@JsonKey(name: 'CONSTRUCTOR')
       required final List<SierraEntryPoint> constructor,
       @JsonKey(name: 'EXTERNAL') required final List<SierraEntryPoint> external,
@@ -138,8 +146,8 @@ class _$_EntryPointsByType implements _EntryPointsByType {
         _external = external,
         _l1Handler = l1Handler;
 
-  factory _$_EntryPointsByType.fromJson(Map<String, dynamic> json) =>
-      _$$_EntryPointsByTypeFromJson(json);
+  factory _$EntryPointsByTypeImpl.fromJson(Map<String, dynamic> json) =>
+      _$$EntryPointsByTypeImplFromJson(json);
 
   final List<SierraEntryPoint> _constructor;
   @override
@@ -174,10 +182,10 @@ class _$_EntryPointsByType implements _EntryPointsByType {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_EntryPointsByType &&
+            other is _$EntryPointsByTypeImpl &&
             const DeepCollectionEquality()
                 .equals(other._constructor, _constructor) &&
             const DeepCollectionEquality().equals(other._external, _external) &&
@@ -185,7 +193,7 @@ class _$_EntryPointsByType implements _EntryPointsByType {
                 .equals(other._l1Handler, _l1Handler));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -193,16 +201,18 @@ class _$_EntryPointsByType implements _EntryPointsByType {
       const DeepCollectionEquality().hash(_external),
       const DeepCollectionEquality().hash(_l1Handler));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EntryPointsByType
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_EntryPointsByTypeCopyWith<_$_EntryPointsByType> get copyWith =>
-      __$$_EntryPointsByTypeCopyWithImpl<_$_EntryPointsByType>(
+  _$$EntryPointsByTypeImplCopyWith<_$EntryPointsByTypeImpl> get copyWith =>
+      __$$EntryPointsByTypeImplCopyWithImpl<_$EntryPointsByTypeImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_EntryPointsByTypeToJson(
+    return _$$EntryPointsByTypeImplToJson(
       this,
     );
   }
@@ -214,10 +224,11 @@ abstract class _EntryPointsByType implements EntryPointsByType {
       required final List<SierraEntryPoint> constructor,
       @JsonKey(name: 'EXTERNAL') required final List<SierraEntryPoint> external,
       @JsonKey(name: 'L1_HANDLER')
-      required final List<SierraEntryPoint> l1Handler}) = _$_EntryPointsByType;
+      required final List<SierraEntryPoint>
+          l1Handler}) = _$EntryPointsByTypeImpl;
 
   factory _EntryPointsByType.fromJson(Map<String, dynamic> json) =
-      _$_EntryPointsByType.fromJson;
+      _$EntryPointsByTypeImpl.fromJson;
 
   @override
   @JsonKey(name: 'CONSTRUCTOR')
@@ -228,9 +239,12 @@ abstract class _EntryPointsByType implements EntryPointsByType {
   @override
   @JsonKey(name: 'L1_HANDLER')
   List<SierraEntryPoint> get l1Handler;
+
+  /// Create a copy of EntryPointsByType
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$_EntryPointsByTypeCopyWith<_$_EntryPointsByType> get copyWith =>
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$EntryPointsByTypeImplCopyWith<_$EntryPointsByTypeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -243,8 +257,12 @@ mixin _$SierraEntryPoint {
   Felt get selector => throw _privateConstructorUsedError;
   int get functionIdx => throw _privateConstructorUsedError;
 
+  /// Serializes this SierraEntryPoint to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SierraEntryPoint
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SierraEntryPointCopyWith<SierraEntryPoint> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -268,6 +286,8 @@ class _$SierraEntryPointCopyWithImpl<$Res, $Val extends SierraEntryPoint>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SierraEntryPoint
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -288,31 +308,33 @@ class _$SierraEntryPointCopyWithImpl<$Res, $Val extends SierraEntryPoint>
 }
 
 /// @nodoc
-abstract class _$$_SierraEntryPointCopyWith<$Res>
+abstract class _$$SierraEntryPointImplCopyWith<$Res>
     implements $SierraEntryPointCopyWith<$Res> {
-  factory _$$_SierraEntryPointCopyWith(
-          _$_SierraEntryPoint value, $Res Function(_$_SierraEntryPoint) then) =
-      __$$_SierraEntryPointCopyWithImpl<$Res>;
+  factory _$$SierraEntryPointImplCopyWith(_$SierraEntryPointImpl value,
+          $Res Function(_$SierraEntryPointImpl) then) =
+      __$$SierraEntryPointImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Felt selector, int functionIdx});
 }
 
 /// @nodoc
-class __$$_SierraEntryPointCopyWithImpl<$Res>
-    extends _$SierraEntryPointCopyWithImpl<$Res, _$_SierraEntryPoint>
-    implements _$$_SierraEntryPointCopyWith<$Res> {
-  __$$_SierraEntryPointCopyWithImpl(
-      _$_SierraEntryPoint _value, $Res Function(_$_SierraEntryPoint) _then)
+class __$$SierraEntryPointImplCopyWithImpl<$Res>
+    extends _$SierraEntryPointCopyWithImpl<$Res, _$SierraEntryPointImpl>
+    implements _$$SierraEntryPointImplCopyWith<$Res> {
+  __$$SierraEntryPointImplCopyWithImpl(_$SierraEntryPointImpl _value,
+      $Res Function(_$SierraEntryPointImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SierraEntryPoint
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? selector = null,
     Object? functionIdx = null,
   }) {
-    return _then(_$_SierraEntryPoint(
+    return _then(_$SierraEntryPointImpl(
       selector: null == selector
           ? _value.selector
           : selector // ignore: cast_nullable_to_non_nullable
@@ -327,12 +349,12 @@ class __$$_SierraEntryPointCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_SierraEntryPoint implements _SierraEntryPoint {
-  const _$_SierraEntryPoint(
+class _$SierraEntryPointImpl implements _SierraEntryPoint {
+  const _$SierraEntryPointImpl(
       {required this.selector, required this.functionIdx});
 
-  factory _$_SierraEntryPoint.fromJson(Map<String, dynamic> json) =>
-      _$$_SierraEntryPointFromJson(json);
+  factory _$SierraEntryPointImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SierraEntryPointImplFromJson(json);
 
   @override
   final Felt selector;
@@ -345,29 +367,32 @@ class _$_SierraEntryPoint implements _SierraEntryPoint {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SierraEntryPoint &&
+            other is _$SierraEntryPointImpl &&
             (identical(other.selector, selector) ||
                 other.selector == selector) &&
             (identical(other.functionIdx, functionIdx) ||
                 other.functionIdx == functionIdx));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, selector, functionIdx);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SierraEntryPoint
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SierraEntryPointCopyWith<_$_SierraEntryPoint> get copyWith =>
-      __$$_SierraEntryPointCopyWithImpl<_$_SierraEntryPoint>(this, _$identity);
+  _$$SierraEntryPointImplCopyWith<_$SierraEntryPointImpl> get copyWith =>
+      __$$SierraEntryPointImplCopyWithImpl<_$SierraEntryPointImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SierraEntryPointToJson(
+    return _$$SierraEntryPointImplToJson(
       this,
     );
   }
@@ -376,18 +401,21 @@ class _$_SierraEntryPoint implements _SierraEntryPoint {
 abstract class _SierraEntryPoint implements SierraEntryPoint {
   const factory _SierraEntryPoint(
       {required final Felt selector,
-      required final int functionIdx}) = _$_SierraEntryPoint;
+      required final int functionIdx}) = _$SierraEntryPointImpl;
 
   factory _SierraEntryPoint.fromJson(Map<String, dynamic> json) =
-      _$_SierraEntryPoint.fromJson;
+      _$SierraEntryPointImpl.fromJson;
 
   @override
   Felt get selector;
   @override
   int get functionIdx;
+
+  /// Create a copy of SierraEntryPoint
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$_SierraEntryPointCopyWith<_$_SierraEntryPoint> get copyWith =>
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SierraEntryPointImplCopyWith<_$SierraEntryPointImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -405,8 +433,12 @@ mixin _$CASMEntryPointsByType {
   @JsonKey(name: 'L1_HANDLER')
   List<CASMEntryPoint> get l1Handler => throw _privateConstructorUsedError;
 
+  /// Serializes this CASMEntryPointsByType to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CASMEntryPointsByType
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CASMEntryPointsByTypeCopyWith<CASMEntryPointsByType> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -434,6 +466,8 @@ class _$CASMEntryPointsByTypeCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CASMEntryPointsByType
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -459,11 +493,12 @@ class _$CASMEntryPointsByTypeCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_CASMEntryPointsByTypeCopyWith<$Res>
+abstract class _$$CASMEntryPointsByTypeImplCopyWith<$Res>
     implements $CASMEntryPointsByTypeCopyWith<$Res> {
-  factory _$$_CASMEntryPointsByTypeCopyWith(_$_CASMEntryPointsByType value,
-          $Res Function(_$_CASMEntryPointsByType) then) =
-      __$$_CASMEntryPointsByTypeCopyWithImpl<$Res>;
+  factory _$$CASMEntryPointsByTypeImplCopyWith(
+          _$CASMEntryPointsByTypeImpl value,
+          $Res Function(_$CASMEntryPointsByTypeImpl) then) =
+      __$$CASMEntryPointsByTypeImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -473,13 +508,16 @@ abstract class _$$_CASMEntryPointsByTypeCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_CASMEntryPointsByTypeCopyWithImpl<$Res>
-    extends _$CASMEntryPointsByTypeCopyWithImpl<$Res, _$_CASMEntryPointsByType>
-    implements _$$_CASMEntryPointsByTypeCopyWith<$Res> {
-  __$$_CASMEntryPointsByTypeCopyWithImpl(_$_CASMEntryPointsByType _value,
-      $Res Function(_$_CASMEntryPointsByType) _then)
+class __$$CASMEntryPointsByTypeImplCopyWithImpl<$Res>
+    extends _$CASMEntryPointsByTypeCopyWithImpl<$Res,
+        _$CASMEntryPointsByTypeImpl>
+    implements _$$CASMEntryPointsByTypeImplCopyWith<$Res> {
+  __$$CASMEntryPointsByTypeImplCopyWithImpl(_$CASMEntryPointsByTypeImpl _value,
+      $Res Function(_$CASMEntryPointsByTypeImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CASMEntryPointsByType
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -487,7 +525,7 @@ class __$$_CASMEntryPointsByTypeCopyWithImpl<$Res>
     Object? external = null,
     Object? l1Handler = null,
   }) {
-    return _then(_$_CASMEntryPointsByType(
+    return _then(_$CASMEntryPointsByTypeImpl(
       constructor: null == constructor
           ? _value._constructor
           : constructor // ignore: cast_nullable_to_non_nullable
@@ -506,8 +544,8 @@ class __$$_CASMEntryPointsByTypeCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CASMEntryPointsByType implements _CASMEntryPointsByType {
-  const _$_CASMEntryPointsByType(
+class _$CASMEntryPointsByTypeImpl implements _CASMEntryPointsByType {
+  const _$CASMEntryPointsByTypeImpl(
       {@JsonKey(name: 'CONSTRUCTOR')
       required final List<CASMEntryPoint> constructor,
       @JsonKey(name: 'EXTERNAL') required final List<CASMEntryPoint> external,
@@ -517,8 +555,8 @@ class _$_CASMEntryPointsByType implements _CASMEntryPointsByType {
         _external = external,
         _l1Handler = l1Handler;
 
-  factory _$_CASMEntryPointsByType.fromJson(Map<String, dynamic> json) =>
-      _$$_CASMEntryPointsByTypeFromJson(json);
+  factory _$CASMEntryPointsByTypeImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CASMEntryPointsByTypeImplFromJson(json);
 
   final List<CASMEntryPoint> _constructor;
   @override
@@ -553,10 +591,10 @@ class _$_CASMEntryPointsByType implements _CASMEntryPointsByType {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CASMEntryPointsByType &&
+            other is _$CASMEntryPointsByTypeImpl &&
             const DeepCollectionEquality()
                 .equals(other._constructor, _constructor) &&
             const DeepCollectionEquality().equals(other._external, _external) &&
@@ -564,7 +602,7 @@ class _$_CASMEntryPointsByType implements _CASMEntryPointsByType {
                 .equals(other._l1Handler, _l1Handler));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -572,16 +610,18 @@ class _$_CASMEntryPointsByType implements _CASMEntryPointsByType {
       const DeepCollectionEquality().hash(_external),
       const DeepCollectionEquality().hash(_l1Handler));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CASMEntryPointsByType
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CASMEntryPointsByTypeCopyWith<_$_CASMEntryPointsByType> get copyWith =>
-      __$$_CASMEntryPointsByTypeCopyWithImpl<_$_CASMEntryPointsByType>(
-          this, _$identity);
+  _$$CASMEntryPointsByTypeImplCopyWith<_$CASMEntryPointsByTypeImpl>
+      get copyWith => __$$CASMEntryPointsByTypeImplCopyWithImpl<
+          _$CASMEntryPointsByTypeImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CASMEntryPointsByTypeToJson(
+    return _$$CASMEntryPointsByTypeImplToJson(
       this,
     );
   }
@@ -594,10 +634,10 @@ abstract class _CASMEntryPointsByType implements CASMEntryPointsByType {
       @JsonKey(name: 'EXTERNAL') required final List<CASMEntryPoint> external,
       @JsonKey(name: 'L1_HANDLER')
       required final List<CASMEntryPoint>
-          l1Handler}) = _$_CASMEntryPointsByType;
+          l1Handler}) = _$CASMEntryPointsByTypeImpl;
 
   factory _CASMEntryPointsByType.fromJson(Map<String, dynamic> json) =
-      _$_CASMEntryPointsByType.fromJson;
+      _$CASMEntryPointsByTypeImpl.fromJson;
 
   @override
   @JsonKey(name: 'CONSTRUCTOR')
@@ -608,10 +648,13 @@ abstract class _CASMEntryPointsByType implements CASMEntryPointsByType {
   @override
   @JsonKey(name: 'L1_HANDLER')
   List<CASMEntryPoint> get l1Handler;
+
+  /// Create a copy of CASMEntryPointsByType
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$_CASMEntryPointsByTypeCopyWith<_$_CASMEntryPointsByType> get copyWith =>
-      throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CASMEntryPointsByTypeImplCopyWith<_$CASMEntryPointsByTypeImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 CASMEntryPoint _$CASMEntryPointFromJson(Map<String, dynamic> json) {
@@ -624,8 +667,12 @@ mixin _$CASMEntryPoint {
   int get offset => throw _privateConstructorUsedError;
   List<String> get builtins => throw _privateConstructorUsedError;
 
+  /// Serializes this CASMEntryPoint to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CASMEntryPoint
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CASMEntryPointCopyWith<CASMEntryPoint> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -649,6 +696,8 @@ class _$CASMEntryPointCopyWithImpl<$Res, $Val extends CASMEntryPoint>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CASMEntryPoint
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -674,24 +723,26 @@ class _$CASMEntryPointCopyWithImpl<$Res, $Val extends CASMEntryPoint>
 }
 
 /// @nodoc
-abstract class _$$_CASMEntryPointCopyWith<$Res>
+abstract class _$$CASMEntryPointImplCopyWith<$Res>
     implements $CASMEntryPointCopyWith<$Res> {
-  factory _$$_CASMEntryPointCopyWith(
-          _$_CASMEntryPoint value, $Res Function(_$_CASMEntryPoint) then) =
-      __$$_CASMEntryPointCopyWithImpl<$Res>;
+  factory _$$CASMEntryPointImplCopyWith(_$CASMEntryPointImpl value,
+          $Res Function(_$CASMEntryPointImpl) then) =
+      __$$CASMEntryPointImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Felt selector, int offset, List<String> builtins});
 }
 
 /// @nodoc
-class __$$_CASMEntryPointCopyWithImpl<$Res>
-    extends _$CASMEntryPointCopyWithImpl<$Res, _$_CASMEntryPoint>
-    implements _$$_CASMEntryPointCopyWith<$Res> {
-  __$$_CASMEntryPointCopyWithImpl(
-      _$_CASMEntryPoint _value, $Res Function(_$_CASMEntryPoint) _then)
+class __$$CASMEntryPointImplCopyWithImpl<$Res>
+    extends _$CASMEntryPointCopyWithImpl<$Res, _$CASMEntryPointImpl>
+    implements _$$CASMEntryPointImplCopyWith<$Res> {
+  __$$CASMEntryPointImplCopyWithImpl(
+      _$CASMEntryPointImpl _value, $Res Function(_$CASMEntryPointImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CASMEntryPoint
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -699,7 +750,7 @@ class __$$_CASMEntryPointCopyWithImpl<$Res>
     Object? offset = null,
     Object? builtins = null,
   }) {
-    return _then(_$_CASMEntryPoint(
+    return _then(_$CASMEntryPointImpl(
       selector: null == selector
           ? _value.selector
           : selector // ignore: cast_nullable_to_non_nullable
@@ -718,15 +769,15 @@ class __$$_CASMEntryPointCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CASMEntryPoint implements _CASMEntryPoint {
-  const _$_CASMEntryPoint(
+class _$CASMEntryPointImpl implements _CASMEntryPoint {
+  const _$CASMEntryPointImpl(
       {required this.selector,
       required this.offset,
       required final List<String> builtins})
       : _builtins = builtins;
 
-  factory _$_CASMEntryPoint.fromJson(Map<String, dynamic> json) =>
-      _$$_CASMEntryPointFromJson(json);
+  factory _$CASMEntryPointImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CASMEntryPointImplFromJson(json);
 
   @override
   final Felt selector;
@@ -746,30 +797,33 @@ class _$_CASMEntryPoint implements _CASMEntryPoint {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CASMEntryPoint &&
+            other is _$CASMEntryPointImpl &&
             (identical(other.selector, selector) ||
                 other.selector == selector) &&
             (identical(other.offset, offset) || other.offset == offset) &&
             const DeepCollectionEquality().equals(other._builtins, _builtins));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, selector, offset,
       const DeepCollectionEquality().hash(_builtins));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CASMEntryPoint
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CASMEntryPointCopyWith<_$_CASMEntryPoint> get copyWith =>
-      __$$_CASMEntryPointCopyWithImpl<_$_CASMEntryPoint>(this, _$identity);
+  _$$CASMEntryPointImplCopyWith<_$CASMEntryPointImpl> get copyWith =>
+      __$$CASMEntryPointImplCopyWithImpl<_$CASMEntryPointImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CASMEntryPointToJson(
+    return _$$CASMEntryPointImplToJson(
       this,
     );
   }
@@ -779,10 +833,10 @@ abstract class _CASMEntryPoint implements CASMEntryPoint {
   const factory _CASMEntryPoint(
       {required final Felt selector,
       required final int offset,
-      required final List<String> builtins}) = _$_CASMEntryPoint;
+      required final List<String> builtins}) = _$CASMEntryPointImpl;
 
   factory _CASMEntryPoint.fromJson(Map<String, dynamic> json) =
-      _$_CASMEntryPoint.fromJson;
+      _$CASMEntryPointImpl.fromJson;
 
   @override
   Felt get selector;
@@ -790,9 +844,12 @@ abstract class _CASMEntryPoint implements CASMEntryPoint {
   int get offset;
   @override
   List<String> get builtins;
+
+  /// Create a copy of CASMEntryPoint
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$_CASMEntryPointCopyWith<_$_CASMEntryPoint> get copyWith =>
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CASMEntryPointImplCopyWith<_$CASMEntryPointImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -813,8 +870,12 @@ mixin _$DeprecatedCairoEntryPointsByType {
   List<DeprecatedCairoEntryPoint> get l1Handler =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this DeprecatedCairoEntryPointsByType to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DeprecatedCairoEntryPointsByType
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DeprecatedCairoEntryPointsByTypeCopyWith<DeprecatedCairoEntryPointsByType>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -845,6 +906,8 @@ class _$DeprecatedCairoEntryPointsByTypeCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DeprecatedCairoEntryPointsByType
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -870,12 +933,12 @@ class _$DeprecatedCairoEntryPointsByTypeCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_DeprecatedCairoEntryPointsByTypeCopyWith<$Res>
+abstract class _$$DeprecatedCairoEntryPointsByTypeImplCopyWith<$Res>
     implements $DeprecatedCairoEntryPointsByTypeCopyWith<$Res> {
-  factory _$$_DeprecatedCairoEntryPointsByTypeCopyWith(
-          _$_DeprecatedCairoEntryPointsByType value,
-          $Res Function(_$_DeprecatedCairoEntryPointsByType) then) =
-      __$$_DeprecatedCairoEntryPointsByTypeCopyWithImpl<$Res>;
+  factory _$$DeprecatedCairoEntryPointsByTypeImplCopyWith(
+          _$DeprecatedCairoEntryPointsByTypeImpl value,
+          $Res Function(_$DeprecatedCairoEntryPointsByTypeImpl) then) =
+      __$$DeprecatedCairoEntryPointsByTypeImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -886,15 +949,17 @@ abstract class _$$_DeprecatedCairoEntryPointsByTypeCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_DeprecatedCairoEntryPointsByTypeCopyWithImpl<$Res>
+class __$$DeprecatedCairoEntryPointsByTypeImplCopyWithImpl<$Res>
     extends _$DeprecatedCairoEntryPointsByTypeCopyWithImpl<$Res,
-        _$_DeprecatedCairoEntryPointsByType>
-    implements _$$_DeprecatedCairoEntryPointsByTypeCopyWith<$Res> {
-  __$$_DeprecatedCairoEntryPointsByTypeCopyWithImpl(
-      _$_DeprecatedCairoEntryPointsByType _value,
-      $Res Function(_$_DeprecatedCairoEntryPointsByType) _then)
+        _$DeprecatedCairoEntryPointsByTypeImpl>
+    implements _$$DeprecatedCairoEntryPointsByTypeImplCopyWith<$Res> {
+  __$$DeprecatedCairoEntryPointsByTypeImplCopyWithImpl(
+      _$DeprecatedCairoEntryPointsByTypeImpl _value,
+      $Res Function(_$DeprecatedCairoEntryPointsByTypeImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DeprecatedCairoEntryPointsByType
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -902,7 +967,7 @@ class __$$_DeprecatedCairoEntryPointsByTypeCopyWithImpl<$Res>
     Object? external = null,
     Object? l1Handler = null,
   }) {
-    return _then(_$_DeprecatedCairoEntryPointsByType(
+    return _then(_$DeprecatedCairoEntryPointsByTypeImpl(
       constructor: null == constructor
           ? _value._constructor
           : constructor // ignore: cast_nullable_to_non_nullable
@@ -921,9 +986,9 @@ class __$$_DeprecatedCairoEntryPointsByTypeCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_DeprecatedCairoEntryPointsByType
+class _$DeprecatedCairoEntryPointsByTypeImpl
     implements _DeprecatedCairoEntryPointsByType {
-  const _$_DeprecatedCairoEntryPointsByType(
+  const _$DeprecatedCairoEntryPointsByTypeImpl(
       {@JsonKey(name: 'CONSTRUCTOR')
       required final List<DeprecatedCairoEntryPoint> constructor,
       @JsonKey(name: 'EXTERNAL')
@@ -934,9 +999,9 @@ class _$_DeprecatedCairoEntryPointsByType
         _external = external,
         _l1Handler = l1Handler;
 
-  factory _$_DeprecatedCairoEntryPointsByType.fromJson(
+  factory _$DeprecatedCairoEntryPointsByTypeImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$_DeprecatedCairoEntryPointsByTypeFromJson(json);
+      _$$DeprecatedCairoEntryPointsByTypeImplFromJson(json);
 
   final List<DeprecatedCairoEntryPoint> _constructor;
   @override
@@ -971,10 +1036,10 @@ class _$_DeprecatedCairoEntryPointsByType
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_DeprecatedCairoEntryPointsByType &&
+            other is _$DeprecatedCairoEntryPointsByTypeImpl &&
             const DeepCollectionEquality()
                 .equals(other._constructor, _constructor) &&
             const DeepCollectionEquality().equals(other._external, _external) &&
@@ -982,7 +1047,7 @@ class _$_DeprecatedCairoEntryPointsByType
                 .equals(other._l1Handler, _l1Handler));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -990,17 +1055,19 @@ class _$_DeprecatedCairoEntryPointsByType
       const DeepCollectionEquality().hash(_external),
       const DeepCollectionEquality().hash(_l1Handler));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DeprecatedCairoEntryPointsByType
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DeprecatedCairoEntryPointsByTypeCopyWith<
-          _$_DeprecatedCairoEntryPointsByType>
-      get copyWith => __$$_DeprecatedCairoEntryPointsByTypeCopyWithImpl<
-          _$_DeprecatedCairoEntryPointsByType>(this, _$identity);
+  _$$DeprecatedCairoEntryPointsByTypeImplCopyWith<
+          _$DeprecatedCairoEntryPointsByTypeImpl>
+      get copyWith => __$$DeprecatedCairoEntryPointsByTypeImplCopyWithImpl<
+          _$DeprecatedCairoEntryPointsByTypeImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DeprecatedCairoEntryPointsByTypeToJson(
+    return _$$DeprecatedCairoEntryPointsByTypeImplToJson(
       this,
     );
   }
@@ -1015,10 +1082,11 @@ abstract class _DeprecatedCairoEntryPointsByType
           required final List<DeprecatedCairoEntryPoint> external,
           @JsonKey(name: 'L1_HANDLER')
           required final List<DeprecatedCairoEntryPoint> l1Handler}) =
-      _$_DeprecatedCairoEntryPointsByType;
+      _$DeprecatedCairoEntryPointsByTypeImpl;
 
   factory _DeprecatedCairoEntryPointsByType.fromJson(
-      Map<String, dynamic> json) = _$_DeprecatedCairoEntryPointsByType.fromJson;
+          Map<String, dynamic> json) =
+      _$DeprecatedCairoEntryPointsByTypeImpl.fromJson;
 
   @override
   @JsonKey(name: 'CONSTRUCTOR')
@@ -1029,10 +1097,13 @@ abstract class _DeprecatedCairoEntryPointsByType
   @override
   @JsonKey(name: 'L1_HANDLER')
   List<DeprecatedCairoEntryPoint> get l1Handler;
+
+  /// Create a copy of DeprecatedCairoEntryPointsByType
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$_DeprecatedCairoEntryPointsByTypeCopyWith<
-          _$_DeprecatedCairoEntryPointsByType>
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DeprecatedCairoEntryPointsByTypeImplCopyWith<
+          _$DeprecatedCairoEntryPointsByTypeImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1046,8 +1117,12 @@ mixin _$DeprecatedCairoEntryPoint {
   String get offset => throw _privateConstructorUsedError;
   Felt get selector => throw _privateConstructorUsedError;
 
+  /// Serializes this DeprecatedCairoEntryPoint to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DeprecatedCairoEntryPoint
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DeprecatedCairoEntryPointCopyWith<DeprecatedCairoEntryPoint> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1072,6 +1147,8 @@ class _$DeprecatedCairoEntryPointCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DeprecatedCairoEntryPoint
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1092,34 +1169,36 @@ class _$DeprecatedCairoEntryPointCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_DeprecatedCairoEntryPointCopyWith<$Res>
+abstract class _$$DeprecatedCairoEntryPointImplCopyWith<$Res>
     implements $DeprecatedCairoEntryPointCopyWith<$Res> {
-  factory _$$_DeprecatedCairoEntryPointCopyWith(
-          _$_DeprecatedCairoEntryPoint value,
-          $Res Function(_$_DeprecatedCairoEntryPoint) then) =
-      __$$_DeprecatedCairoEntryPointCopyWithImpl<$Res>;
+  factory _$$DeprecatedCairoEntryPointImplCopyWith(
+          _$DeprecatedCairoEntryPointImpl value,
+          $Res Function(_$DeprecatedCairoEntryPointImpl) then) =
+      __$$DeprecatedCairoEntryPointImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String offset, Felt selector});
 }
 
 /// @nodoc
-class __$$_DeprecatedCairoEntryPointCopyWithImpl<$Res>
+class __$$DeprecatedCairoEntryPointImplCopyWithImpl<$Res>
     extends _$DeprecatedCairoEntryPointCopyWithImpl<$Res,
-        _$_DeprecatedCairoEntryPoint>
-    implements _$$_DeprecatedCairoEntryPointCopyWith<$Res> {
-  __$$_DeprecatedCairoEntryPointCopyWithImpl(
-      _$_DeprecatedCairoEntryPoint _value,
-      $Res Function(_$_DeprecatedCairoEntryPoint) _then)
+        _$DeprecatedCairoEntryPointImpl>
+    implements _$$DeprecatedCairoEntryPointImplCopyWith<$Res> {
+  __$$DeprecatedCairoEntryPointImplCopyWithImpl(
+      _$DeprecatedCairoEntryPointImpl _value,
+      $Res Function(_$DeprecatedCairoEntryPointImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DeprecatedCairoEntryPoint
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? offset = null,
     Object? selector = null,
   }) {
-    return _then(_$_DeprecatedCairoEntryPoint(
+    return _then(_$DeprecatedCairoEntryPointImpl(
       offset: null == offset
           ? _value.offset
           : offset // ignore: cast_nullable_to_non_nullable
@@ -1134,12 +1213,12 @@ class __$$_DeprecatedCairoEntryPointCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_DeprecatedCairoEntryPoint implements _DeprecatedCairoEntryPoint {
-  const _$_DeprecatedCairoEntryPoint(
+class _$DeprecatedCairoEntryPointImpl implements _DeprecatedCairoEntryPoint {
+  const _$DeprecatedCairoEntryPointImpl(
       {required this.offset, required this.selector});
 
-  factory _$_DeprecatedCairoEntryPoint.fromJson(Map<String, dynamic> json) =>
-      _$$_DeprecatedCairoEntryPointFromJson(json);
+  factory _$DeprecatedCairoEntryPointImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DeprecatedCairoEntryPointImplFromJson(json);
 
   @override
   final String offset;
@@ -1152,29 +1231,31 @@ class _$_DeprecatedCairoEntryPoint implements _DeprecatedCairoEntryPoint {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_DeprecatedCairoEntryPoint &&
+            other is _$DeprecatedCairoEntryPointImpl &&
             (identical(other.offset, offset) || other.offset == offset) &&
             (identical(other.selector, selector) ||
                 other.selector == selector));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, offset, selector);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DeprecatedCairoEntryPoint
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DeprecatedCairoEntryPointCopyWith<_$_DeprecatedCairoEntryPoint>
-      get copyWith => __$$_DeprecatedCairoEntryPointCopyWithImpl<
-          _$_DeprecatedCairoEntryPoint>(this, _$identity);
+  _$$DeprecatedCairoEntryPointImplCopyWith<_$DeprecatedCairoEntryPointImpl>
+      get copyWith => __$$DeprecatedCairoEntryPointImplCopyWithImpl<
+          _$DeprecatedCairoEntryPointImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DeprecatedCairoEntryPointToJson(
+    return _$$DeprecatedCairoEntryPointImplToJson(
       this,
     );
   }
@@ -1183,17 +1264,20 @@ class _$_DeprecatedCairoEntryPoint implements _DeprecatedCairoEntryPoint {
 abstract class _DeprecatedCairoEntryPoint implements DeprecatedCairoEntryPoint {
   const factory _DeprecatedCairoEntryPoint(
       {required final String offset,
-      required final Felt selector}) = _$_DeprecatedCairoEntryPoint;
+      required final Felt selector}) = _$DeprecatedCairoEntryPointImpl;
 
   factory _DeprecatedCairoEntryPoint.fromJson(Map<String, dynamic> json) =
-      _$_DeprecatedCairoEntryPoint.fromJson;
+      _$DeprecatedCairoEntryPointImpl.fromJson;
 
   @override
   String get offset;
   @override
   Felt get selector;
+
+  /// Create a copy of DeprecatedCairoEntryPoint
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$_DeprecatedCairoEntryPointCopyWith<_$_DeprecatedCairoEntryPoint>
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DeprecatedCairoEntryPointImplCopyWith<_$DeprecatedCairoEntryPointImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

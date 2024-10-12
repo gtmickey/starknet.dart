@@ -12,7 +12,7 @@ part of 'pedersen_params.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 PedersenParams _$PedersenParamsFromJson(Map<String, dynamic> json) {
   return _PedersenParams.fromJson(json);
@@ -27,8 +27,12 @@ mixin _$PedersenParams {
   BigInt get beta => throw _privateConstructorUsedError;
   List<List<BigInt>> get constantPoints => throw _privateConstructorUsedError;
 
+  /// Serializes this PedersenParams to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PedersenParams
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PedersenParamsCopyWith<PedersenParams> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -58,6 +62,8 @@ class _$PedersenParamsCopyWithImpl<$Res, $Val extends PedersenParams>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PedersenParams
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -98,11 +104,11 @@ class _$PedersenParamsCopyWithImpl<$Res, $Val extends PedersenParams>
 }
 
 /// @nodoc
-abstract class _$$_PedersenParamsCopyWith<$Res>
+abstract class _$$PedersenParamsImplCopyWith<$Res>
     implements $PedersenParamsCopyWith<$Res> {
-  factory _$$_PedersenParamsCopyWith(
-          _$_PedersenParams value, $Res Function(_$_PedersenParams) then) =
-      __$$_PedersenParamsCopyWithImpl<$Res>;
+  factory _$$PedersenParamsImplCopyWith(_$PedersenParamsImpl value,
+          $Res Function(_$PedersenParamsImpl) then) =
+      __$$PedersenParamsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -115,13 +121,15 @@ abstract class _$$_PedersenParamsCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PedersenParamsCopyWithImpl<$Res>
-    extends _$PedersenParamsCopyWithImpl<$Res, _$_PedersenParams>
-    implements _$$_PedersenParamsCopyWith<$Res> {
-  __$$_PedersenParamsCopyWithImpl(
-      _$_PedersenParams _value, $Res Function(_$_PedersenParams) _then)
+class __$$PedersenParamsImplCopyWithImpl<$Res>
+    extends _$PedersenParamsCopyWithImpl<$Res, _$PedersenParamsImpl>
+    implements _$$PedersenParamsImplCopyWith<$Res> {
+  __$$PedersenParamsImplCopyWithImpl(
+      _$PedersenParamsImpl _value, $Res Function(_$PedersenParamsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PedersenParams
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -132,7 +140,7 @@ class __$$_PedersenParamsCopyWithImpl<$Res>
     Object? beta = null,
     Object? constantPoints = null,
   }) {
-    return _then(_$_PedersenParams(
+    return _then(_$PedersenParamsImpl(
       fieldPrime: null == fieldPrime
           ? _value.fieldPrime
           : fieldPrime // ignore: cast_nullable_to_non_nullable
@@ -164,8 +172,8 @@ class __$$_PedersenParamsCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.screamingSnake)
-class _$_PedersenParams implements _PedersenParams {
-  const _$_PedersenParams(
+class _$PedersenParamsImpl implements _PedersenParams {
+  const _$PedersenParamsImpl(
       {required this.fieldPrime,
       required this.fieldGen,
       required this.ecOrder,
@@ -174,8 +182,8 @@ class _$_PedersenParams implements _PedersenParams {
       required final List<List<BigInt>> constantPoints})
       : _constantPoints = constantPoints;
 
-  factory _$_PedersenParams.fromJson(Map<String, dynamic> json) =>
-      _$$_PedersenParamsFromJson(json);
+  factory _$PedersenParamsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PedersenParamsImplFromJson(json);
 
   @override
   final BigInt fieldPrime;
@@ -201,10 +209,10 @@ class _$_PedersenParams implements _PedersenParams {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PedersenParams &&
+            other is _$PedersenParamsImpl &&
             (identical(other.fieldPrime, fieldPrime) ||
                 other.fieldPrime == fieldPrime) &&
             (identical(other.fieldGen, fieldGen) ||
@@ -216,20 +224,23 @@ class _$_PedersenParams implements _PedersenParams {
                 .equals(other._constantPoints, _constantPoints));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, fieldPrime, fieldGen, ecOrder,
       alpha, beta, const DeepCollectionEquality().hash(_constantPoints));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PedersenParams
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PedersenParamsCopyWith<_$_PedersenParams> get copyWith =>
-      __$$_PedersenParamsCopyWithImpl<_$_PedersenParams>(this, _$identity);
+  _$$PedersenParamsImplCopyWith<_$PedersenParamsImpl> get copyWith =>
+      __$$PedersenParamsImplCopyWithImpl<_$PedersenParamsImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PedersenParamsToJson(
+    return _$$PedersenParamsImplToJson(
       this,
     );
   }
@@ -242,10 +253,10 @@ abstract class _PedersenParams implements PedersenParams {
       required final BigInt ecOrder,
       required final BigInt alpha,
       required final BigInt beta,
-      required final List<List<BigInt>> constantPoints}) = _$_PedersenParams;
+      required final List<List<BigInt>> constantPoints}) = _$PedersenParamsImpl;
 
   factory _PedersenParams.fromJson(Map<String, dynamic> json) =
-      _$_PedersenParams.fromJson;
+      _$PedersenParamsImpl.fromJson;
 
   @override
   BigInt get fieldPrime;
@@ -259,8 +270,11 @@ abstract class _PedersenParams implements PedersenParams {
   BigInt get beta;
   @override
   List<List<BigInt>> get constantPoints;
+
+  /// Create a copy of PedersenParams
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$_PedersenParamsCopyWith<_$_PedersenParams> get copyWith =>
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$PedersenParamsImplCopyWith<_$PedersenParamsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

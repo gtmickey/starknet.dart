@@ -645,12 +645,17 @@ abstract class _JsonStringifier {
 
   /// Serialize a [Map].
   bool writeMap(Map<Object?, Object?> map) {
+
     if (map.isEmpty) {
       writeString("{}");
       return true;
     }
     // FIXME: workaround for freezed `union_key` present in generated json
-    map.remove("starkNetRuntimeTypeToRemove");
+    try {
+      map.remove("starkNetRuntimeTypeToRemove");
+    } catch(e){
+      // inner map maybe unmodifiable, so if it is, skip it;
+    }
     var keyValueList = List<Object?>.filled(map.length * 2, null);
     var i = 0;
     var allStringKeys = true;

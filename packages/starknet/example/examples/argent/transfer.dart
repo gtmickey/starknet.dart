@@ -45,6 +45,7 @@ void main() async {
   final fee = await account.getEstimateMaxFeeForArgentInvokeTx(
     nonce: nonce,
     functionCalls: [functionCall],
+    version: '0x1'
   );
   print("wtf fee $fee");
   final tx = await account.send(

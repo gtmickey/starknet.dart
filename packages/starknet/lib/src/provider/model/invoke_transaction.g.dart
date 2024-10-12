@@ -75,6 +75,49 @@ Map<String, dynamic> _$$InvokeTransactionV1ImplToJson(
       'type': instance.type,
     };
 
+_$InvokeTransactionV3Impl _$$InvokeTransactionV3ImplFromJson(
+        Map<String, dynamic> json) =>
+    _$InvokeTransactionV3Impl(
+      accountDeploymentData: (json['account_deployment_data'] as List<dynamic>)
+          .map((e) => Felt.fromJson(e as String))
+          .toList(),
+      calldata: (json['calldata'] as List<dynamic>)
+          .map((e) => Felt.fromJson(e as String))
+          .toList(),
+      feeDataAvailabilityMode: json['fee_data_availability_mode'] as String,
+      nonce: Felt.fromJson(json['nonce'] as String),
+      nonceDataAvailabilityMode: json['nonce_data_availability_mode'] as String,
+      paymasterData: (json['paymaster_data'] as List<dynamic>)
+          .map((e) => Felt.fromJson(e as String))
+          .toList(),
+      resourceBounds: json['resource_bounds'] as Map<String, dynamic>,
+      senderAddress: Felt.fromJson(json['sender_address'] as String),
+      signature: (json['signature'] as List<dynamic>)
+          .map((e) => Felt.fromJson(e as String))
+          .toList(),
+      tip: Felt.fromJson(json['tip'] as String),
+      version: json['version'] as String? ?? '0x03',
+      type: json['type'] as String? ?? 'INVOKE',
+    );
+
+Map<String, dynamic> _$$InvokeTransactionV3ImplToJson(
+        _$InvokeTransactionV3Impl instance) =>
+    <String, dynamic>{
+      'account_deployment_data':
+          instance.accountDeploymentData.map((e) => e.toJson()).toList(),
+      'calldata': instance.calldata.map((e) => e.toJson()).toList(),
+      'fee_data_availability_mode': instance.feeDataAvailabilityMode,
+      'nonce': instance.nonce.toJson(),
+      'nonce_data_availability_mode': instance.nonceDataAvailabilityMode,
+      'paymaster_data': instance.paymasterData.map((e) => e.toJson()).toList(),
+      'resource_bounds': instance.resourceBounds,
+      'sender_address': instance.senderAddress.toJson(),
+      'signature': instance.signature.map((e) => e.toJson()).toList(),
+      'tip': instance.tip.toJson(),
+      'version': instance.version,
+      'type': instance.type,
+    };
+
 _$InvokeTransactionResultImpl _$$InvokeTransactionResultImplFromJson(
         Map<String, dynamic> json) =>
     _$InvokeTransactionResultImpl(
