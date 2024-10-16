@@ -12,16 +12,19 @@ void main() async {
       mnemonic: testMnemonic,
       provider: provider,
       chainId: chainId,
-      index: 3,
+      index: 7,
       accountDerivation:
           ArgentXAccountDerivation(provider: provider, chainId: chainId));
 
   final valid = await account.isValid;
   if (valid) {
-    print("account already deploy");
+    print("账户已经部署 ${account.accountAddress.toHexString()}");
     return;
-  }
+  } else {
+    print("账户${account.accountAddress.toHexString()}未部署");
 
+  }
+  // return;
   final fee = await account.getEstimateMaxFeeForArgentDeployAccountTx(
     nonce: Felt.fromInt(0),
     constructorCalldata: [
@@ -32,13 +35,15 @@ void main() async {
     contractAddressSalt: account.signer.publicKey,
     classHash: ArgentXAccountDerivation.classHash,
     version: "0x100000000000000000000000000000001",
+    feeMultiplier: 1.0,
   );
-  print("address = ${account.accountAddress.toJson()}");
+  print("账户部署手续费 ETH: ${fee.toBigInt()}");
+  // return;
   final argentAccountDerivation =
       ArgentXAccountDerivation(provider: provider, chainId: chainId);
 
   final txHash =
-      await argentAccountDerivation.deploy(account: account, maxFee: fee);
+      await argentAccountDerivation.deploy(account: account, maxFee: fee,version: "0x1");
   print("tx hash: ${json.encode(txHash.toJson())}");
 
   final signed =

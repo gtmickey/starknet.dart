@@ -75,6 +75,30 @@ class ERC20 extends Contract {
     ));
   }
 
+
+  Future<String> transferV3(Felt recipient, Uint256 value, Felt maxFee) async {
+    final InvokeTransactionResponse trx = await execute(
+      "transfer",
+      [
+        Felt.fromHexString('0x1'),
+        address,
+        transferSelector,
+        Felt.fromHexString('0x3'),
+        recipient,
+        value.low,
+        value.high
+      ],
+      maxFee,
+    );
+    return (trx.when(
+      result: (result) {
+        return result.transaction_hash;
+      },
+      error: (error) {
+        throw Exception("Error transfer (${error.code}): ${error.message}");
+      },
+    ));
+  }
   Future<InvokeTransactionRequest> transferSign(
     Felt recipient,
     Uint256 value,

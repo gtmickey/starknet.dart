@@ -57,6 +57,10 @@ class Felt {
     return bigIntToHexString(_bigInt);
   }
 
+  String toHexAddressString() {
+    return  '0x${_bigInt.toRadixString(16).padLeft(64, "0")}';
+  }
+
   @override
   String toString() {
     return "Felt(${_bigInt.toString()})";

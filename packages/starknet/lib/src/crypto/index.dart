@@ -50,6 +50,34 @@ BigInt calculateTransactionHashCommon({
   return computeHashOnElements(dataToHash);
 }
 
+BigInt calculateTransactionHashCommonV3({
+  required BigInt txHashPrefix,
+  required BigInt version,
+  required BigInt address,
+  required BigInt entryPointSelector,
+  required List<BigInt> calldata,
+  required BigInt gas,
+  required BigInt gasPrice,
+  required BigInt chainId,
+  List<BigInt> additionalData = const [],
+}) {
+  final calldataHash = computeHashOnElements(calldata);
+
+  final List<BigInt> dataToHash = [
+    txHashPrefix,
+    version,
+    address,
+    entryPointSelector,
+    calldataHash,
+    gas,
+    gasPrice,
+    chainId,
+    ...additionalData,
+  ];
+
+  return computeHashOnElements(dataToHash);
+}
+
 /// Computes a hash chain over the data, in the following order:
 /// h(h(h(h(0, data[0]), data[1]), ...), data[n-1]), n)
 ///

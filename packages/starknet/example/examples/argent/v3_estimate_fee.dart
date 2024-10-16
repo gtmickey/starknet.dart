@@ -1,6 +1,8 @@
+import 'package:starknet/src/crypto/poseidon.dart';
 import 'package:starknet/starknet.dart';
 
 import '../config.dart';
+import '../transfer_erc20.dart';
 
 void main() async {
   final provider = JsonRpcProvider(nodeUri: infurasepoliaTestnetUri);
@@ -11,7 +13,7 @@ void main() async {
         mnemonic: testMnemonic,
         provider: provider,
         chainId: chainId,
-        index: 4,
+        index: 7,
         accountDerivation:
             ArgentXAccountDerivation(provider: provider, chainId: chainId));
 
@@ -23,7 +25,9 @@ void main() async {
     }
 
     print("wtf account address = ${account.accountAddress.toHexString()}");
-    final fee = await account.getEstimateMaxFeeForArgentDeployAccountTx(
+    print("wtf account pri = ${account.signer.privateKey.toHexString()}");
+    final fee = await account.getEstimateMaxFeeForArgentDeployAccountV3Tx(
+      address: account.accountAddress,
       nonce: nonce,
       constructorCalldata: [
         Felt.fromInt(0),
@@ -32,43 +36,38 @@ void main() async {
       ],
       contractAddressSalt: account.signer.publicKey,
       classHash: ArgentXAccountDerivation.classHash,
-      version: "0x100000000000000000000000000000001",
+      feeMultiplier: 1.5,
     );
 
-    print("deploy fee * 1.2 = ${fee.toBigInt()}");
+    print("deploy fee * 1.5 = ${fee.gas.toBigInt()}");
+    print("deploy fee * 1.5 = ${fee.gasPrice.toBigInt()}");
+    print("deploy fee * 1.5 = ${fee.overallFee.toBigInt()}");
   }
 
-  // deployFee();
+  deployFee();
 
   void transferFee() async {
     final account = Account.fromMnemonic(
       mnemonic: testMnemonic,
       provider: provider,
       chainId: chainId,
-      index: 0,
+      index: 1,
       accountDerivation:
           ArgentXAccountDerivation(provider: provider, chainId: chainId),
     );
 
     print("wtf privatekey = ${account.signer.privateKey.toHexString()}");
+    print("wtf address = ${account.accountAddress.toHexString()}");
 
     final receiverAddress = Felt.fromHexString(
-        "0x0261b745499c44af9e29138525025e988ad1d90d6d53cf0d2f91510073283bb5");
+        "0x06c2a560e3a2a1303699e24a6a9249ecb6e9a51163dada01b2ab0b8a43e24905");
     final nonce = await account.getNonce();
     print("wtf nonce $nonce");
 
     final functionCall = FunctionCall(
-        contractAddress: ethAddress,
+        contractAddress: strkContractAddress,
         entryPointSelector: getSelectorByName("transfer"),
         calldata: [
-          // version
-          Felt.fromHexString('0x1'),
-          // eth 代币 合约地址
-          ethAddress,
-          // selector name transfer 16 进制
-          transferSelector,
-          // 未知， 默认3
-          Felt.fromHexString('0x3'),
           // 接受方地址
           receiverAddress,
           // amount low
@@ -77,14 +76,18 @@ void main() async {
           Felt.fromInt(0),
         ]);
 
-    final fee = await account.getEstimateMaxFeeForArgentInvokeTx(
+    final feeV3 = await account.getEstimateMaxFeeForArgentInvokeTxV3(
       nonce: nonce,
       functionCalls: [functionCall],
-      version: '0x1'
+      gasPrice: Felt.fromInt(0),
+      gas: Felt.fromInt(0),
+      feeMultiplier: 1.5,
+      blockId: BlockId.latest,
+      classHash: ArgentXAccountDerivation.classHash,
+      contractAddressSalt: account.signer.publicKey,
     );
-
-    print("transfer fee * 1.2 = ${fee.toBigInt()}");
+    print("transfer fee * 1.5 = ${feeV3.toString()}");
   }
 
-  transferFee();
+  // transferFee();
 }

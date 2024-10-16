@@ -349,6 +349,442 @@ abstract class _DeployAccountTransactionV1
       get copyWith => throw _privateConstructorUsedError;
 }
 
+DeployAccountTransactionV3 _$DeployAccountTransactionV3FromJson(
+    Map<String, dynamic> json) {
+  return _DeployAccountTransactionV3.fromJson(json);
+}
+
+/// @nodoc
+mixin _$DeployAccountTransactionV3 {
+  List<Felt> get signature => throw _privateConstructorUsedError;
+  Felt get contractAddressSalt => throw _privateConstructorUsedError;
+  List<Felt> get constructorCalldata => throw _privateConstructorUsedError;
+  Felt get nonce => throw _privateConstructorUsedError;
+  Felt get tip => throw _privateConstructorUsedError;
+  Felt get classHash => throw _privateConstructorUsedError;
+  String get feeDataAvailabilityMode => throw _privateConstructorUsedError;
+  String get nonceDataAvailabilityMode => throw _privateConstructorUsedError;
+  List<Felt> get paymasterData => throw _privateConstructorUsedError;
+  Map<String, dynamic> get resourceBounds => throw _privateConstructorUsedError;
+  String get version => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
+
+  /// Serializes this DeployAccountTransactionV3 to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of DeployAccountTransactionV3
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $DeployAccountTransactionV3CopyWith<DeployAccountTransactionV3>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DeployAccountTransactionV3CopyWith<$Res> {
+  factory $DeployAccountTransactionV3CopyWith(DeployAccountTransactionV3 value,
+          $Res Function(DeployAccountTransactionV3) then) =
+      _$DeployAccountTransactionV3CopyWithImpl<$Res,
+          DeployAccountTransactionV3>;
+  @useResult
+  $Res call(
+      {List<Felt> signature,
+      Felt contractAddressSalt,
+      List<Felt> constructorCalldata,
+      Felt nonce,
+      Felt tip,
+      Felt classHash,
+      String feeDataAvailabilityMode,
+      String nonceDataAvailabilityMode,
+      List<Felt> paymasterData,
+      Map<String, dynamic> resourceBounds,
+      String version,
+      String type});
+}
+
+/// @nodoc
+class _$DeployAccountTransactionV3CopyWithImpl<$Res,
+        $Val extends DeployAccountTransactionV3>
+    implements $DeployAccountTransactionV3CopyWith<$Res> {
+  _$DeployAccountTransactionV3CopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of DeployAccountTransactionV3
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? signature = null,
+    Object? contractAddressSalt = null,
+    Object? constructorCalldata = null,
+    Object? nonce = null,
+    Object? tip = null,
+    Object? classHash = null,
+    Object? feeDataAvailabilityMode = null,
+    Object? nonceDataAvailabilityMode = null,
+    Object? paymasterData = null,
+    Object? resourceBounds = null,
+    Object? version = null,
+    Object? type = null,
+  }) {
+    return _then(_value.copyWith(
+      signature: null == signature
+          ? _value.signature
+          : signature // ignore: cast_nullable_to_non_nullable
+              as List<Felt>,
+      contractAddressSalt: null == contractAddressSalt
+          ? _value.contractAddressSalt
+          : contractAddressSalt // ignore: cast_nullable_to_non_nullable
+              as Felt,
+      constructorCalldata: null == constructorCalldata
+          ? _value.constructorCalldata
+          : constructorCalldata // ignore: cast_nullable_to_non_nullable
+              as List<Felt>,
+      nonce: null == nonce
+          ? _value.nonce
+          : nonce // ignore: cast_nullable_to_non_nullable
+              as Felt,
+      tip: null == tip
+          ? _value.tip
+          : tip // ignore: cast_nullable_to_non_nullable
+              as Felt,
+      classHash: null == classHash
+          ? _value.classHash
+          : classHash // ignore: cast_nullable_to_non_nullable
+              as Felt,
+      feeDataAvailabilityMode: null == feeDataAvailabilityMode
+          ? _value.feeDataAvailabilityMode
+          : feeDataAvailabilityMode // ignore: cast_nullable_to_non_nullable
+              as String,
+      nonceDataAvailabilityMode: null == nonceDataAvailabilityMode
+          ? _value.nonceDataAvailabilityMode
+          : nonceDataAvailabilityMode // ignore: cast_nullable_to_non_nullable
+              as String,
+      paymasterData: null == paymasterData
+          ? _value.paymasterData
+          : paymasterData // ignore: cast_nullable_to_non_nullable
+              as List<Felt>,
+      resourceBounds: null == resourceBounds
+          ? _value.resourceBounds
+          : resourceBounds // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      version: null == version
+          ? _value.version
+          : version // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$DeployAccountTransactionV3ImplCopyWith<$Res>
+    implements $DeployAccountTransactionV3CopyWith<$Res> {
+  factory _$$DeployAccountTransactionV3ImplCopyWith(
+          _$DeployAccountTransactionV3Impl value,
+          $Res Function(_$DeployAccountTransactionV3Impl) then) =
+      __$$DeployAccountTransactionV3ImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {List<Felt> signature,
+      Felt contractAddressSalt,
+      List<Felt> constructorCalldata,
+      Felt nonce,
+      Felt tip,
+      Felt classHash,
+      String feeDataAvailabilityMode,
+      String nonceDataAvailabilityMode,
+      List<Felt> paymasterData,
+      Map<String, dynamic> resourceBounds,
+      String version,
+      String type});
+}
+
+/// @nodoc
+class __$$DeployAccountTransactionV3ImplCopyWithImpl<$Res>
+    extends _$DeployAccountTransactionV3CopyWithImpl<$Res,
+        _$DeployAccountTransactionV3Impl>
+    implements _$$DeployAccountTransactionV3ImplCopyWith<$Res> {
+  __$$DeployAccountTransactionV3ImplCopyWithImpl(
+      _$DeployAccountTransactionV3Impl _value,
+      $Res Function(_$DeployAccountTransactionV3Impl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of DeployAccountTransactionV3
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? signature = null,
+    Object? contractAddressSalt = null,
+    Object? constructorCalldata = null,
+    Object? nonce = null,
+    Object? tip = null,
+    Object? classHash = null,
+    Object? feeDataAvailabilityMode = null,
+    Object? nonceDataAvailabilityMode = null,
+    Object? paymasterData = null,
+    Object? resourceBounds = null,
+    Object? version = null,
+    Object? type = null,
+  }) {
+    return _then(_$DeployAccountTransactionV3Impl(
+      signature: null == signature
+          ? _value._signature
+          : signature // ignore: cast_nullable_to_non_nullable
+              as List<Felt>,
+      contractAddressSalt: null == contractAddressSalt
+          ? _value.contractAddressSalt
+          : contractAddressSalt // ignore: cast_nullable_to_non_nullable
+              as Felt,
+      constructorCalldata: null == constructorCalldata
+          ? _value._constructorCalldata
+          : constructorCalldata // ignore: cast_nullable_to_non_nullable
+              as List<Felt>,
+      nonce: null == nonce
+          ? _value.nonce
+          : nonce // ignore: cast_nullable_to_non_nullable
+              as Felt,
+      tip: null == tip
+          ? _value.tip
+          : tip // ignore: cast_nullable_to_non_nullable
+              as Felt,
+      classHash: null == classHash
+          ? _value.classHash
+          : classHash // ignore: cast_nullable_to_non_nullable
+              as Felt,
+      feeDataAvailabilityMode: null == feeDataAvailabilityMode
+          ? _value.feeDataAvailabilityMode
+          : feeDataAvailabilityMode // ignore: cast_nullable_to_non_nullable
+              as String,
+      nonceDataAvailabilityMode: null == nonceDataAvailabilityMode
+          ? _value.nonceDataAvailabilityMode
+          : nonceDataAvailabilityMode // ignore: cast_nullable_to_non_nullable
+              as String,
+      paymasterData: null == paymasterData
+          ? _value._paymasterData
+          : paymasterData // ignore: cast_nullable_to_non_nullable
+              as List<Felt>,
+      resourceBounds: null == resourceBounds
+          ? _value._resourceBounds
+          : resourceBounds // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      version: null == version
+          ? _value.version
+          : version // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$DeployAccountTransactionV3Impl implements _DeployAccountTransactionV3 {
+  const _$DeployAccountTransactionV3Impl(
+      {required final List<Felt> signature,
+      required this.contractAddressSalt,
+      required final List<Felt> constructorCalldata,
+      required this.nonce,
+      required this.tip,
+      required this.classHash,
+      required this.feeDataAvailabilityMode,
+      required this.nonceDataAvailabilityMode,
+      required final List<Felt> paymasterData,
+      required final Map<String, dynamic> resourceBounds,
+      this.version = '0x3',
+      this.type = 'DEPLOY_ACCOUNT'})
+      : _signature = signature,
+        _constructorCalldata = constructorCalldata,
+        _paymasterData = paymasterData,
+        _resourceBounds = resourceBounds;
+
+  factory _$DeployAccountTransactionV3Impl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$DeployAccountTransactionV3ImplFromJson(json);
+
+  final List<Felt> _signature;
+  @override
+  List<Felt> get signature {
+    if (_signature is EqualUnmodifiableListView) return _signature;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_signature);
+  }
+
+  @override
+  final Felt contractAddressSalt;
+  final List<Felt> _constructorCalldata;
+  @override
+  List<Felt> get constructorCalldata {
+    if (_constructorCalldata is EqualUnmodifiableListView)
+      return _constructorCalldata;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_constructorCalldata);
+  }
+
+  @override
+  final Felt nonce;
+  @override
+  final Felt tip;
+  @override
+  final Felt classHash;
+  @override
+  final String feeDataAvailabilityMode;
+  @override
+  final String nonceDataAvailabilityMode;
+  final List<Felt> _paymasterData;
+  @override
+  List<Felt> get paymasterData {
+    if (_paymasterData is EqualUnmodifiableListView) return _paymasterData;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_paymasterData);
+  }
+
+  final Map<String, dynamic> _resourceBounds;
+  @override
+  Map<String, dynamic> get resourceBounds {
+    if (_resourceBounds is EqualUnmodifiableMapView) return _resourceBounds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_resourceBounds);
+  }
+
+  @override
+  @JsonKey()
+  final String version;
+  @override
+  @JsonKey()
+  final String type;
+
+  @override
+  String toString() {
+    return 'DeployAccountTransactionV3(signature: $signature, contractAddressSalt: $contractAddressSalt, constructorCalldata: $constructorCalldata, nonce: $nonce, tip: $tip, classHash: $classHash, feeDataAvailabilityMode: $feeDataAvailabilityMode, nonceDataAvailabilityMode: $nonceDataAvailabilityMode, paymasterData: $paymasterData, resourceBounds: $resourceBounds, version: $version, type: $type)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeployAccountTransactionV3Impl &&
+            const DeepCollectionEquality()
+                .equals(other._signature, _signature) &&
+            (identical(other.contractAddressSalt, contractAddressSalt) ||
+                other.contractAddressSalt == contractAddressSalt) &&
+            const DeepCollectionEquality()
+                .equals(other._constructorCalldata, _constructorCalldata) &&
+            (identical(other.nonce, nonce) || other.nonce == nonce) &&
+            (identical(other.tip, tip) || other.tip == tip) &&
+            (identical(other.classHash, classHash) ||
+                other.classHash == classHash) &&
+            (identical(
+                    other.feeDataAvailabilityMode, feeDataAvailabilityMode) ||
+                other.feeDataAvailabilityMode == feeDataAvailabilityMode) &&
+            (identical(other.nonceDataAvailabilityMode,
+                    nonceDataAvailabilityMode) ||
+                other.nonceDataAvailabilityMode == nonceDataAvailabilityMode) &&
+            const DeepCollectionEquality()
+                .equals(other._paymasterData, _paymasterData) &&
+            const DeepCollectionEquality()
+                .equals(other._resourceBounds, _resourceBounds) &&
+            (identical(other.version, version) || other.version == version) &&
+            (identical(other.type, type) || other.type == type));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_signature),
+      contractAddressSalt,
+      const DeepCollectionEquality().hash(_constructorCalldata),
+      nonce,
+      tip,
+      classHash,
+      feeDataAvailabilityMode,
+      nonceDataAvailabilityMode,
+      const DeepCollectionEquality().hash(_paymasterData),
+      const DeepCollectionEquality().hash(_resourceBounds),
+      version,
+      type);
+
+  /// Create a copy of DeployAccountTransactionV3
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeployAccountTransactionV3ImplCopyWith<_$DeployAccountTransactionV3Impl>
+      get copyWith => __$$DeployAccountTransactionV3ImplCopyWithImpl<
+          _$DeployAccountTransactionV3Impl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$DeployAccountTransactionV3ImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _DeployAccountTransactionV3
+    implements DeployAccountTransactionV3 {
+  const factory _DeployAccountTransactionV3(
+      {required final List<Felt> signature,
+      required final Felt contractAddressSalt,
+      required final List<Felt> constructorCalldata,
+      required final Felt nonce,
+      required final Felt tip,
+      required final Felt classHash,
+      required final String feeDataAvailabilityMode,
+      required final String nonceDataAvailabilityMode,
+      required final List<Felt> paymasterData,
+      required final Map<String, dynamic> resourceBounds,
+      final String version,
+      final String type}) = _$DeployAccountTransactionV3Impl;
+
+  factory _DeployAccountTransactionV3.fromJson(Map<String, dynamic> json) =
+      _$DeployAccountTransactionV3Impl.fromJson;
+
+  @override
+  List<Felt> get signature;
+  @override
+  Felt get contractAddressSalt;
+  @override
+  List<Felt> get constructorCalldata;
+  @override
+  Felt get nonce;
+  @override
+  Felt get tip;
+  @override
+  Felt get classHash;
+  @override
+  String get feeDataAvailabilityMode;
+  @override
+  String get nonceDataAvailabilityMode;
+  @override
+  List<Felt> get paymasterData;
+  @override
+  Map<String, dynamic> get resourceBounds;
+  @override
+  String get version;
+  @override
+  String get type;
+
+  /// Create a copy of DeployAccountTransactionV3
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DeployAccountTransactionV3ImplCopyWith<_$DeployAccountTransactionV3Impl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
 DeployAccountTransactionRequest _$DeployAccountTransactionRequestFromJson(
     Map<String, dynamic> json) {
   return _DeployAccountTransactionRequest.fromJson(json);

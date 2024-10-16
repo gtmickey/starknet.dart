@@ -38,6 +38,48 @@ Map<String, dynamic> _$$DeployAccountTransactionV1ImplToJson(
       'type': instance.type,
     };
 
+_$DeployAccountTransactionV3Impl _$$DeployAccountTransactionV3ImplFromJson(
+        Map<String, dynamic> json) =>
+    _$DeployAccountTransactionV3Impl(
+      signature: (json['signature'] as List<dynamic>)
+          .map((e) => Felt.fromJson(e as String))
+          .toList(),
+      contractAddressSalt:
+          Felt.fromJson(json['contract_address_salt'] as String),
+      constructorCalldata: (json['constructor_calldata'] as List<dynamic>)
+          .map((e) => Felt.fromJson(e as String))
+          .toList(),
+      nonce: Felt.fromJson(json['nonce'] as String),
+      tip: Felt.fromJson(json['tip'] as String),
+      classHash: Felt.fromJson(json['class_hash'] as String),
+      feeDataAvailabilityMode: json['fee_data_availability_mode'] as String,
+      nonceDataAvailabilityMode: json['nonce_data_availability_mode'] as String,
+      paymasterData: (json['paymaster_data'] as List<dynamic>)
+          .map((e) => Felt.fromJson(e as String))
+          .toList(),
+      resourceBounds: json['resource_bounds'] as Map<String, dynamic>,
+      version: json['version'] as String? ?? '0x3',
+      type: json['type'] as String? ?? 'DEPLOY_ACCOUNT',
+    );
+
+Map<String, dynamic> _$$DeployAccountTransactionV3ImplToJson(
+        _$DeployAccountTransactionV3Impl instance) =>
+    <String, dynamic>{
+      'signature': instance.signature.map((e) => e.toJson()).toList(),
+      'contract_address_salt': instance.contractAddressSalt.toJson(),
+      'constructor_calldata':
+          instance.constructorCalldata.map((e) => e.toJson()).toList(),
+      'nonce': instance.nonce.toJson(),
+      'tip': instance.tip.toJson(),
+      'class_hash': instance.classHash.toJson(),
+      'fee_data_availability_mode': instance.feeDataAvailabilityMode,
+      'nonce_data_availability_mode': instance.nonceDataAvailabilityMode,
+      'paymaster_data': instance.paymasterData.map((e) => e.toJson()).toList(),
+      'resource_bounds': instance.resourceBounds,
+      'version': instance.version,
+      'type': instance.type,
+    };
+
 _$DeployAccountTransactionRequestImpl
     _$$DeployAccountTransactionRequestImplFromJson(Map<String, dynamic> json) =>
         _$DeployAccountTransactionRequestImpl(

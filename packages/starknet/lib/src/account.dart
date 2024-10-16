@@ -21,6 +21,39 @@ class AccountInfo {
   AccountInfo(this.privateKey, this.publicKey, this.address);
 }
 
+class EstimateFeeModel {
+  late Felt gasConsumed;
+  late Felt gasPrice;
+  late Felt overallFee;
+
+  EstimateFeeModel({
+    required this.gasConsumed,
+    required this.gasPrice,
+    required this.overallFee,
+  });
+}
+
+class GasFeeV3 {
+  late Felt gas;
+  late Felt gasPrice;
+  late Felt overallFee;
+
+  GasFeeV3({
+    required this.gas,
+    required this.gasPrice,
+    required this.overallFee,
+  });
+
+  @override
+  String toString() {
+    return {
+      "gas": gas.toBigInt(),
+      "gasPrice": gasPrice.toBigInt(),
+      "overallFee": overallFee.toBigInt(),
+    }.toString();
+  }
+}
+
 /// Account abstraction class
 class Account {
   Provider provider;
@@ -187,30 +220,7 @@ class Account {
 
     BroadcastedTxn broadcastedTxn;
 
-    if (version == "0x3") {
-      final calldata = functionCallsToCalldata(
-        functionCalls: functionCalls,
-        useLegacyCalldata: useLegacyCalldata,
-      );
-      broadcastedTxn = BroadcastedInvokeTxnV3(
-        type: "INVOKE",
-        version: "0x100000000000000000000000000000003",
-        // queryOnly
-        signature: signature,
-        nonce: nonce,
-        senderAddress: accountAddress,
-        calldata: calldata,
-        accountDeploymentData: [],
-        feeDataAvailabilityMode: feeDataAvailabilityMode,
-        nonceDataAvailabilityMode: nonceDataAvailabilityMode,
-        paymasterData: [],
-        resourceBounds: {
-          "l1_gas": {"max_amount": "0x0", "max_price_per_unit": "0x0"},
-          "l2_gas": {"max_amount": "0x0", "max_price_per_unit": "0x0"}
-        },
-        tip: Felt.fromHexString('0x0'), // 根据官方文档，目前总是0
-      );
-    } else if (version == "0x1") {
+    if (version == "0x1") {
       final calldata = functionCallsToCalldata(
         functionCalls: functionCalls,
         useLegacyCalldata: useLegacyCalldata,
@@ -242,6 +252,65 @@ class Account {
         broadcastedTxn, blockId, feeMultiplier);
 
     return maxFee;
+  }
+
+  Future<GasFeeV3> getEstimateMaxFeeForArgentInvokeTxV3({
+    BlockId blockId = const BlockId.blockTag("pending"),
+    required List<FunctionCall> functionCalls,
+    bool useLegacyCalldata = false,
+    required Felt nonce,
+    double feeMultiplier = 1.5,
+    String nonceDataAvailabilityMode = "L1",
+    String feeDataAvailabilityMode = "L1",
+    required Felt gas,
+    required Felt gasPrice,
+    required Felt classHash,
+    required Felt contractAddressSalt,
+  }) async {
+    final signature = signer.signTransactions(
+      transactions: functionCalls,
+      contractAddress: accountAddress,
+      version: 3,
+      chainId: chainId,
+      entryPointSelectorName: "__execute__",
+      nonce: nonce,
+      queryOnly: true,
+      useLegacyCalldata: useLegacyCalldata,
+      maxFee: Felt.fromInt(0),
+      gas: gas,
+      gasPrice: gasPrice,
+      classHash: classHash,
+      contractAddressSalt: contractAddressSalt,
+    );
+
+    BroadcastedTxn broadcastedTxn;
+
+    final calldata = functionCallsToCalldata(
+      functionCalls: functionCalls,
+      useLegacyCalldata: useLegacyCalldata,
+    );
+    broadcastedTxn = BroadcastedInvokeTxnV3(
+      type: "INVOKE",
+      version: "0x100000000000000000000000000000003",
+      // queryOnly
+      signature: signature,
+      nonce: nonce,
+      senderAddress: accountAddress,
+      calldata: calldata,
+      accountDeploymentData: [],
+      feeDataAvailabilityMode: feeDataAvailabilityMode,
+      nonceDataAvailabilityMode: nonceDataAvailabilityMode,
+      paymasterData: [],
+      resourceBounds: {
+        "l1_gas": {"max_amount": "0x0", "max_price_per_unit": "0x0"},
+        "l2_gas": {"max_amount": "0x0", "max_price_per_unit": "0x0"}
+      },
+      tip: Felt.fromHexString('0x0'), // 根据官方文档，目前总是0
+    );
+
+    final feeV3 = await getFeeFromBroadcastedTxnV3(
+        broadcastedTxn, blockId, feeMultiplier);
+    return feeV3;
   }
 
   /// Get Estimate max fee for Declare Tx
@@ -321,7 +390,7 @@ class Account {
     required List<Felt> constructorCalldata,
     required Felt contractAddressSalt,
     required Felt classHash,
-    double feeMultiplier = 1.2,
+    double feeMultiplier = 1.5,
   }) async {
     final signature = signer.signArgentDeployAccountTransactionV1(
       contractAddressSalt: contractAddressSalt,
@@ -349,7 +418,7 @@ class Account {
     return maxFee;
   }
 
-  Future<Felt> getEstimateMaxFeeForArgentDeployAccountV3Tx({
+  Future<GasFeeV3> getEstimateMaxFeeForArgentDeployAccountV3Tx({
     BlockId blockId = BlockId.latest,
     String version = "0x100000000000000000000000000000003",
     required Felt address,
@@ -369,7 +438,12 @@ class Account {
       chainId: chainId,
       nonce: nonce,
       version: Felt.fromHexString(version),
+      gas: Felt.fromInt(0),
+      gasPrice: Felt.fromInt(0),
     );
+
+    print("wtf  deploy signature  r ${signature.first.toHexString()}");
+    print("wtf  deploy signature s ${signature.last.toHexString()}");
 
     final broadcastedTxnV3 = BroadcastedDeployAccountTxnV3(
       type: "DEPLOY_ACCOUNT",
@@ -379,7 +453,6 @@ class Account {
       nonce: nonce,
       signature: signature,
       classHash: classHash,
-      // chainId: chainId,
       feeDataAvailabilityMode: feeDataAvailabilityMode,
       nonceDataAvailabilityMode: nonceDataAvailabilityMode,
       paymasterData: [],
@@ -390,10 +463,13 @@ class Account {
       tip: Felt.fromHexString('0x0'), // 根据官方文档，目前总是0
     );
 
-    final maxFee = await getMaxFeeFromBroadcastedTxn(
-        broadcastedTxnV3, blockId, feeMultiplier);
+    final fee = await getFeeFromBroadcastedTxnV3(
+      broadcastedTxnV3,
+      blockId,
+      feeMultiplier,
+    );
 
-    return maxFee;
+    return fee;
   }
 
   Future<Felt> getEstimateMaxFeeForBraavosDeployAccountTx({
@@ -463,6 +539,50 @@ class Account {
     return maxFee;
   }
 
+  Future<GasFeeV3> getFeeFromBroadcastedTxnV3(
+    BroadcastedTxn broadcastedTxn,
+    BlockId blockId,
+    double feeMultiplier,
+  ) async {
+    EstimateFeeRequest estimateFeeRequest = EstimateFeeRequest(
+      request: [broadcastedTxn],
+      blockId: blockId,
+      simulation_flags: [],
+    );
+
+    final estimateFeeResponse = await provider.estimateFee(
+      estimateFeeRequest,
+    );
+
+    final fee = estimateFeeResponse.when(
+      result: (result) => result[0],
+      error: (error) => throw Exception(error.message),
+    );
+
+    final Felt overallFee = Felt.fromHexString(fee.overallFee);
+    final Felt gasConsumed = Felt.fromHexString(fee.gasConsumed);
+    final Felt gasPrice = Felt.fromHexString(fee.gasPrice);
+
+    //公式来源  starknet-accounts/src/account/execution.rs 文件  469行和484行
+    /// v3 gas 费用计算
+    /// gas = (overall_fee + gas_price - 1) / gas_price * 1.5
+    /// gas_price = gas_price * 1.5
+
+    final finalGas = Felt.fromDouble(
+        (overallFee.toBigInt() + gasPrice.toBigInt() - BigInt.one).toDouble() /
+            gasPrice.toBigInt().toDouble() *
+            feeMultiplier);
+
+    final finalGasPrice =
+        Felt.fromDouble(gasPrice.toBigInt().toDouble() * feeMultiplier);
+
+    return GasFeeV3(
+      gas: finalGas,
+      gasPrice: finalGasPrice,
+      overallFee: overallFee,
+    );
+  }
+
   /// Call account contract `__execute__` with given [functionCalls]
   Future<InvokeTransactionResponse> execute({
     required List<FunctionCall> functionCalls,
@@ -471,24 +591,23 @@ class Account {
     Felt? nonce,
     String feeDataAvailabilityMode = 'L1',
     String nonceDataAvailabilityMode = 'L1',
-
   }) async {
     nonce = nonce ?? await getNonce();
-
-    final signature = signer.signTransactions(
-      transactions: functionCalls,
-      contractAddress: accountAddress,
-      version: supportedTxVersion == AccountSupportedTxVersion.v1 ? 1 : 0,
-      chainId: chainId,
-      entryPointSelectorName: "__execute__",
-      nonce: nonce,
-      useLegacyCalldata: useLegacyCalldata,
-      maxFee: maxFee,
-    );
 
     switch (supportedTxVersion) {
       // ignore: deprecated_member_use_from_same_package
       case AccountSupportedTxVersion.v0:
+        final signature = signer.signTransactions(
+          transactions: functionCalls,
+          contractAddress: accountAddress,
+          version: supportedTxVersion == AccountSupportedTxVersion.v1 ? 1 : 0,
+          chainId: chainId,
+          entryPointSelectorName: "__execute__",
+          nonce: nonce,
+          useLegacyCalldata: useLegacyCalldata,
+          maxFee: maxFee,
+        );
+
         final calldata =
             functionCallsToCalldataLegacy(functionCalls: functionCalls) +
                 [nonce];
@@ -505,6 +624,17 @@ class Account {
           ),
         );
       case AccountSupportedTxVersion.v1:
+        final signature = signer.signTransactions(
+          transactions: functionCalls,
+          contractAddress: accountAddress,
+          version: supportedTxVersion == AccountSupportedTxVersion.v1 ? 1 : 0,
+          chainId: chainId,
+          entryPointSelectorName: "__execute__",
+          nonce: nonce,
+          useLegacyCalldata: useLegacyCalldata,
+          maxFee: maxFee,
+        );
+
         final calldata = functionCallsToCalldata(
           functionCalls: functionCalls,
           useLegacyCalldata: useLegacyCalldata,
@@ -522,6 +652,17 @@ class Account {
           ),
         );
       case AccountSupportedTxVersion.v3:
+        final signature = signer.signTransactions(
+          transactions: functionCalls,
+          contractAddress: accountAddress,
+          version: supportedTxVersion == AccountSupportedTxVersion.v1 ? 1 : 0,
+          chainId: chainId,
+          entryPointSelectorName: "__execute__",
+          nonce: nonce,
+          useLegacyCalldata: useLegacyCalldata,
+          maxFee: maxFee,
+        );
+
         final calldata = functionCallsToCalldata(
           functionCalls: functionCalls,
           useLegacyCalldata: useLegacyCalldata,
@@ -809,40 +950,87 @@ class Account {
     required Provider provider,
     required List<Felt> constructorCalldata,
     required Felt classHash,
+    required Felt address,
+    required String version,
     Felt? contractAddressSalt,
     Felt? maxFee,
     Felt? nonce,
+    Felt? gas,
+    Felt? gasPrice,
   }) async {
     final chainId = (await provider.chainId()).when(
       result: (result) => Felt.fromHexString(result),
       error: (error) => StarknetChainId.testNet,
     );
 
-    maxFee = maxFee ?? defaultMaxFee;
     nonce = nonce ?? defaultNonce;
     contractAddressSalt = contractAddressSalt ?? signer.publicKey;
 
-    final signature = signer.signArgentDeployAccountTransactionV1(
-      contractAddressSalt: contractAddressSalt,
-      classHash: classHash,
-      constructorCalldata: constructorCalldata,
-      chainId: chainId,
-      nonce: nonce,
-      maxFee: maxFee,
-    );
+    if (version == '0x1') {
+      // v1 部署时 这个费用一定会存在
+      assert(maxFee != null);
 
-    return provider.addDeployAccountTransaction(
-      DeployAccountTransactionRequest(
-        deployAccountTransaction: DeployAccountTransactionV1(
-          classHash: classHash,
-          signature: signature,
-          maxFee: maxFee,
-          nonce: nonce,
-          contractAddressSalt: contractAddressSalt,
-          constructorCalldata: constructorCalldata,
+      final signature = signer.signArgentDeployAccountTransactionV1(
+        contractAddressSalt: contractAddressSalt,
+        classHash: classHash,
+        constructorCalldata: constructorCalldata,
+        chainId: chainId,
+        nonce: nonce,
+        maxFee: maxFee,
+      );
+
+      return provider.addDeployAccountTransaction(
+        DeployAccountTransactionRequest(
+          deployAccountTransaction: DeployAccountTransactionV1(
+            classHash: classHash,
+            signature: signature,
+            maxFee: maxFee!,
+            nonce: nonce,
+            contractAddressSalt: contractAddressSalt,
+            constructorCalldata: constructorCalldata,
+          ),
         ),
-      ),
-    );
+      );
+    } else {
+      // v3 部署时 这两个费用一定会存在
+      assert(gas != null);
+      assert(gasPrice != null);
+
+      final signature = signer.signArgentDeployAccountTransactionV3(
+        address: address,
+        contractAddressSalt: contractAddressSalt,
+        classHash: classHash,
+        constructorCalldata: constructorCalldata,
+        chainId: chainId,
+        nonce: nonce,
+        version: Felt.fromHexString(version),
+        gas: gas!,
+        gasPrice: gasPrice!,
+      );
+
+      return provider.addDeployAccountTransaction(
+        DeployAccountTransactionRequest(
+          deployAccountTransaction: DeployAccountTransactionV3(
+            classHash: classHash,
+            signature: signature,
+            nonce: nonce,
+            contractAddressSalt: contractAddressSalt,
+            constructorCalldata: constructorCalldata,
+            tip: Felt.fromHexString('0x0'),
+            feeDataAvailabilityMode: 'L1',
+            nonceDataAvailabilityMode: 'L1',
+            paymasterData: [],
+            resourceBounds: {
+              "l1_gas": {
+                "max_amount": gas.toHexString(),
+                "max_price_per_unit": gasPrice.toHexString()
+              },
+              "l2_gas": {"max_amount": "0x0", "max_price_per_unit": "0x0"}
+            },
+          ),
+        ),
+      );
+    }
   }
 
   static Future<String> signDeployArgentAccount({
@@ -1284,7 +1472,10 @@ class ArgentXAccountDerivation extends AccountDerivation {
 
   Future<Felt> deploy({
     required Account account,
-    required Felt maxFee,
+    Felt? maxFee,
+    required String version,
+    Felt? gas,
+    Felt? gasPrice,
   }) async {
     final tx = await Account.deployArgentAccount(
       signer: account.signer,
@@ -1296,6 +1487,10 @@ class ArgentXAccountDerivation extends AccountDerivation {
       contractAddressSalt: account.signer.publicKey,
       nonce: Felt.fromInt(0),
       maxFee: maxFee,
+      version: version,
+      gasPrice: gasPrice,
+      gas: gas,
+      address: account.accountAddress,
     );
     final deployTxHash = tx.when(
       result: (result) {
@@ -1329,7 +1524,8 @@ class ArgentXAccountDerivation extends AccountDerivation {
     return request;
   }
 
-  static AccountInfo getAccountInfoFromMnemonic(String mnemonic, int index) {
+  static AccountInfo getAccountInfoFromMnemonic(String mnemonic,
+      {int index = 0}) {
     final seed = bip39.mnemonicToSeed(mnemonic);
     final hdNodeSingleSeed = bip32.BIP32.fromSeed(seed);
     final hdNodeDoubleSeed = bip32.BIP32

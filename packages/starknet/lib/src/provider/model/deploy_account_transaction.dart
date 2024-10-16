@@ -35,6 +35,31 @@ class DeployAccountTransactionV1
 }
 
 @freezed
+class DeployAccountTransactionV3
+    with _$DeployAccountTransactionV3
+    implements DeployAccountTransaction {
+  const factory DeployAccountTransactionV3({
+
+    required List<Felt> signature,
+    required Felt contractAddressSalt,
+    required List<Felt> constructorCalldata,
+    required Felt nonce,
+    required Felt tip,
+    required Felt classHash,
+    required String feeDataAvailabilityMode,
+    required String nonceDataAvailabilityMode,
+    required List<Felt> paymasterData,
+    required Map<String, dynamic> resourceBounds,
+
+    @Default('0x3') String version,
+    @Default('DEPLOY_ACCOUNT') String type,
+  }) = _DeployAccountTransactionV3;
+
+  factory DeployAccountTransactionV3.fromJson(Map<String, Object?> json) =>
+      _$DeployAccountTransactionV3FromJson(json);
+}
+
+@freezed
 class DeployAccountTransactionRequest with _$DeployAccountTransactionRequest {
   const factory DeployAccountTransactionRequest({
     required DeployAccountTransaction deployAccountTransaction,
