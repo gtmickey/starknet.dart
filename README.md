@@ -1,3 +1,6 @@
+修改的3方库，只需要开发 starknet.dart/packages/starknet 这个项目， 其他项目为扩展性的支持， 不需要
+
+
 # starknet.dart
 
 The goal of this SDK is to be able to interact with Starknet smart contracts in a type-safe way.
