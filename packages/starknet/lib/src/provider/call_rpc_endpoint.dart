@@ -26,3 +26,20 @@ Future<Map<String, dynamic>> callRpcEndpoint(
 
   return jsonResponse;
 }
+
+Future<Map<String, dynamic>> callRpcEndpointRaw(
+    {required Uri nodeUri, required String rawTx}) async {
+  const headers = {
+    'Content-Type': 'application/json',
+  };
+
+  // 2023-07-13: Disabling symbol sorting is required for Declare V2
+
+  final response =
+  await http.post(nodeUri, headers: headers, body: rawTx);
+
+  print("wtf response = ${response.body}");
+  final jsonResponse = json.decode(response.body);
+
+  return jsonResponse;
+}

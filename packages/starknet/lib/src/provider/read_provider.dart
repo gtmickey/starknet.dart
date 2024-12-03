@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:starknet/starknet.dart';
@@ -135,15 +136,12 @@ class JsonRpcReadProvider implements ReadProvider {
 
   @override
   Future<BlockNumber> blockNumber() async {
-    return callRpcEndpoint(nodeUri: nodeUri, method: 'starknet_blockNumber')
-        .then(BlockNumber.fromJson);
+    return callRpcEndpoint(nodeUri: nodeUri, method: 'starknet_blockNumber').then(BlockNumber.fromJson);
   }
 
   @override
   Future<BlockHashAndNumber> blockHashAndNumber() async {
-    return callRpcEndpoint(
-            nodeUri: nodeUri, method: 'starknet_blockHashAndNumber')
-        .then(BlockHashAndNumber.fromJson);
+    return callRpcEndpoint(nodeUri: nodeUri, method: 'starknet_blockHashAndNumber').then(BlockHashAndNumber.fromJson);
   }
 
   @override
@@ -178,10 +176,7 @@ class JsonRpcReadProvider implements ReadProvider {
     required FunctionCall request,
     required BlockId blockId,
   }) async {
-    return callRpcEndpoint(
-        nodeUri: nodeUri,
-        method: 'starknet_call',
-        params: [request, blockId]).then(Call.fromJson);
+    return callRpcEndpoint(nodeUri: nodeUri, method: 'starknet_call', params: [request, blockId]).then(Call.fromJson);
   }
 
   @override
@@ -207,8 +202,7 @@ class JsonRpcReadProvider implements ReadProvider {
   }
 
   @override
-  Future<GetTransaction> getTransactionByBlockIdAndIndex(
-      BlockId blockId, int index) {
+  Future<GetTransaction> getTransactionByBlockIdAndIndex(BlockId blockId, int index) {
     return callRpcEndpoint(
       nodeUri: nodeUri,
       method: 'starknet_getTransactionByBlockIdAndIndex',
@@ -327,13 +321,24 @@ class JsonRpcReadProvider implements ReadProvider {
     ).then(EstimateFee.fromJson);
   }
 
+  Future<String> sendRawTx(String rawTx) async {
+    final res = await callRpcEndpointRaw(nodeUri: nodeUri, rawTx: rawTx);
+    try {
+      return res['result']['transaction_hash'];
+    } catch (e) {
+      if(res.containsKey('error')) {
+        throw (res['error']['message']);
+      } else {
+        rethrow;
+      }
+    }
+  }
+
   static final devnet = JsonRpcReadProvider(nodeUri: devnetUri);
 
-  static final v010PathfinderGoerliTestnet =
-      JsonRpcReadProvider(nodeUri: v010PathfinderGoerliTestnetUri);
+  static final v010PathfinderGoerliTestnet = JsonRpcReadProvider(nodeUri: v010PathfinderGoerliTestnetUri);
 
-  static final infuraGoerliTestnet =
-      JsonRpcReadProvider(nodeUri: infuraGoerliTestnetUri);
+  static final infuraGoerliTestnet = JsonRpcReadProvider(nodeUri: infuraGoerliTestnetUri);
 
   static final infuraMainnet = JsonRpcReadProvider(nodeUri: infuraMainnetUri);
 }
